@@ -88,13 +88,13 @@ Redisへのタスク投入からPLCの実動作までの統合テストフロー
 graph TD
     User((ユーザー)) -->|1. タスク発行| Redis[Redis DB]
     
-    subgraph PC_Process [PC側処理]
+    subgraph PC_Process ["PC側処理"]
         Redis -->|RPOP| Lua[LUAスクリプト]
         Lua -->|"解析 & マスク"| Lua
         Lua -->|"2. 書込 (Src/Destのみ)"| PLC_Mem["PLCメモリ (通信エリア)"]
     end
     
-    subgraph PLC_Process [PLC側処理]
+    subgraph PLC_Process ["PLC側処理"]
         PLC_Mem -->|BLOCK_02受信| D339_D340[D339 / D340]
         D339_D340 -->|STロジック| Judge{判定実行}
         Judge -->|結果| D330["D330: TaskType確定"]

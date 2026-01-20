@@ -5,22 +5,22 @@
 
 ```mermaid
 graph TB
-    subgraph Host [上位層]
+    subgraph Host ["上位層"]
         WMS["<i class='fa fa-server'></i> WMS Server<br/>(倉庫管理システム)"]
     end
 
-    subgraph PC_Layer [制御PC層 (Windows)]
+    subgraph PC_Layer ["制御PC層 (Windows)"]
         style PC_Layer fill:#f9f,stroke:#333
         CtrlPC["<i class='fa fa-desktop'></i> 制御PC"]
         
-        subgraph PC_Internal [PC内部ソフトウェア]
+        subgraph PC_Internal ["PC内部ソフトウェア"]
             style PC_Internal fill:#fff,stroke:#666
             Redis["<i class='fa fa-database'></i> Redis DB"]
             LuaApp["<i class='fa fa-code'></i> Lua制御アプリ"]
         end
     end
 
-    subgraph PLC_Layer [PLC制御層]
+    subgraph PLC_Layer ["PLC制御層"]
         style PLC_Layer fill:#eef,stroke:#333
         
         GP_PLC["<i class='fa fa-microchip'></i> 地上盤 PLC<br/>(Q Series)"]
@@ -28,7 +28,7 @@ graph TB
         CV_PLC["<i class='fa fa-microchip'></i> コンベア PLC<br/>(CV)"]
     end
 
-    subgraph Device_Layer [フィールド機器層]
+    subgraph Device_Layer ["フィールド機器層"]
         AGV["<i class='fa fa-truck'></i> 無人搬送車 (AGV)"]
         SRM_HW[クレーン モータ/センサ]
         CV_HW[コンベア モータ/センサ]
