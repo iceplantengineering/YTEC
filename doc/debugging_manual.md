@@ -90,16 +90,16 @@ graph TD
     
     subgraph PC_Process [PC側処理]
         Redis -->|RPOP| Lua[LUAスクリプト]
-        Lua -->|解析 & マスク| Lua
-        Lua -->|2. 書込 (Src/Destのみ)| PLC_Mem[PLCメモリ (通信エリア)]
+        Lua -->|"解析 & マスク"| Lua
+        Lua -->|"2. 書込 (Src/Destのみ)"| PLC_Mem["PLCメモリ (通信エリア)"]
     end
     
     subgraph PLC_Process [PLC側処理]
         PLC_Mem -->|BLOCK_02受信| D339_D340[D339 / D340]
         D339_D340 -->|STロジック| Judge{判定実行}
-        Judge -->|結果| D330[D330: TaskType確定]
-        D330 -->|起動条件成立| Ladder[ラダー: 搬送シーケンス開始]
-        Ladder -->|3. 物理動作| Motor[モータ/機器動作]
+        Judge -->|結果| D330["D330: TaskType確定"]
+        D330 -->|起動条件成立| Ladder["ラダー: 搬送シーケンス開始"]
+        Ladder -->|"3. 物理動作"| Motor[モータ/機器動作]
     end
     
     Motor -->|完了信号| Ladder
