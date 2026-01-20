@@ -149,24 +149,34 @@ flowchart TD
 ## 3. コンベアPLC (Conveyor)
 ファイル: `Conveyor_Refactored_Q_GXW.asc`
 
-### 3-1. 搬入・搬出連携フロー
-AGVおよび地上盤との連携ロジックです。
+### 3-1. 搬入ライン連携フロー (Input Line)
+AGV到着から地上盤へのデータ連携までのフローです。
 
 ```mermaid
-flowchart TD
-    subgraph InputLine ["搬入ライン制御"]
-        StartIn([開始]) --> CheckCondIn{搬入開始条件}
-        CheckCondIn -- "準備OK(M21)" --> WaitAGV_In["AGV到着待ち"]
-        WaitAGV_In --> RFID_In["RFID読取 (Net.19)"]
-        RFID_In --> Handshake_In["AGV発進許可 (Y132)"]
-        Handshake_In --> SendGP_In[地上盤へデータ送信]
-    end
+flowchart LR
+    Start([開始]) --> Check{搬入開始条件<br/>M21}
+    Check -- OK --> Wait[AGV到着待ち]
+    Wait -- 到着 --> RFID[RFID読取<br/>(Net.19)]
+    
+    RFID --> Handshake[AGV発進許可<br/>(Y132)]
+    Handshake --> Send[地上盤へ<br/>データ送信]
+    
+    classDef process fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    class Check,Wait,RFID,Handshake,Send process;
+```
 
-    subgraph OutputLine ["搬出ライン制御"]
-        StartOut([開始]) --> CheckCondOut{搬出開始条件}
-        CheckCondOut -- "準備OK(M22)" --> WaitFork_Out["出庫フォーク待ち"]
-        WaitFork_Out --> RFID_Out["RFID読取 (Net.20)"]
-        RFID_Out --> Handshake_Out["AGV発進許可 (Y13A)"]
-        Handshake_Out --> SendGP_Out[地上盤へデータ送信]
-    end
+### 3-2. 搬出ライン連携フロー (Output Line)
+出庫フォーク待ちから搬出完了までのフローです。
+
+```mermaid
+flowchart LR
+    Start([開始]) --> Check{搬出開始条件<br/>M22}
+    Check -- OK --> Wait[出庫フォーク待ち]
+    Wait -- 到着 --> RFID[RFID読取<br/>(Net.20)]
+    
+    RFID --> Handshake[AGV発進許可<br/>(Y13A)]
+    Handshake --> Send[地上盤へ<br/>データ送信]
+    
+    classDef process fill:#fff3e0,stroke:#e65100,stroke-width:2px;
+    class Check,Wait,RFID,Handshake,Send process;
 ```
