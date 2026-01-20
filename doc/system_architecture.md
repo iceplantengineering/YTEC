@@ -73,9 +73,8 @@ classDiagram
     class ST_Logic {
         <<New Function>>
         +DetermineTaskType(Src, Dest)
-        +IF Src>0 AND Dest=0 THEN Type=100
-        +IF Src=0 AND Dest>0 THEN Type=200
     }
+    note for ST_Logic "Logic Rules:\nIF Src>0 AND Dest=0 THEN Type=100\nIF Src=0 AND Dest>0 THEN Type=200"
 
     class LadderLogic {
         +BLOCK_02: Input Check

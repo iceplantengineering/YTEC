@@ -105,6 +105,7 @@ graph TD
     Motor -->|完了信号| Ladder
     Ladder -->|4. 完了通知| Lua
     Lua -->|ステータス更新| Redis
+    Redis -->|完了確認| User
 ```
 
 ### 確認手順
