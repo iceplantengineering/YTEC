@@ -16,7 +16,7 @@ flowchart TD
     Block02 --> Block09[09: 異常監視・安全]
     Block09 --> Block10[10: モード管理]
     
-    subgraph ModeCtrl [モード別処理]
+    subgraph ModeCtrl ["モード別処理"]
         direction TB
         Block10 --> CheckMode{モード判定}
         CheckMode -- 連動PC有 --> Block11[11: 連動PC有処理]
@@ -125,7 +125,7 @@ stateDiagram-v2
 
 ```mermaid
 flowchart TD
-    subgraph SafetyCheck [安全インターロック (BLOCK_03)]
+    subgraph SafetyCheck ["安全インターロック (BLOCK_03)"]
         CheckInv[INV電源ON?]
         CheckFork[フォーク中位?]
         CheckLimit[ソフトリミット内?]
@@ -134,13 +134,13 @@ flowchart TD
         CheckInv & CheckFork & CheckLimit & CheckSensor --> SafeOK{安全OK?}
     end
 
-    subgraph MotionCtrl [位置決め制御 (BLOCK_04/05/06)]
+    subgraph MotionCtrl ["位置決め制御 (BLOCK_04/05/06)"]
         SafeOK -- Yes --> CalcTarget[目標位置計算]
         CalcTarget --> ServoOn[サーボ起動]
         ServoOn --> Moving[移動中]
         
         Moving --> Compare{偏差チェック}
-        Compare -- "偏差 < 規定値" --> Arrived[位置到達 (M416/M437/M458)]
+        Compare -- "偏差 < 規定値" --> Arrived["位置到達 (M416/M437/M458)"]
         
         SafeOK -- No --> Stop[非常停止/インターロック]
     end
@@ -154,19 +154,19 @@ AGVおよび地上盤との連携ロジックです。
 
 ```mermaid
 flowchart TD
-    subgraph InputLine [搬入ライン制御]
+    subgraph InputLine ["搬入ライン制御"]
         StartIn([開始]) --> CheckCondIn{搬入開始条件}
-        CheckCondIn -- "準備OK(M21)" --> WaitAGV_In[AGV到着待ち]
-        WaitAGV_In --> RFID_In[RFID読取 (Net.19)]
-        RFID_In --> Handshake_In[AGV発進許可 (Y132)]
+        CheckCondIn -- "準備OK(M21)" --> WaitAGV_In["AGV到着待ち"]
+        WaitAGV_In --> RFID_In["RFID読取 (Net.19)"]
+        RFID_In --> Handshake_In["AGV発進許可 (Y132)"]
         Handshake_In --> SendGP_In[地上盤へデータ送信]
     end
 
-    subgraph OutputLine [搬出ライン制御]
+    subgraph OutputLine ["搬出ライン制御"]
         StartOut([開始]) --> CheckCondOut{搬出開始条件}
-        CheckCondOut -- "準備OK(M22)" --> WaitFork_Out[出庫フォーク待ち]
-        WaitFork_Out --> RFID_Out[RFID読取 (Net.20)]
-        RFID_Out --> Handshake_Out[AGV発進許可 (Y13A)]
+        CheckCondOut -- "準備OK(M22)" --> WaitFork_Out["出庫フォーク待ち"]
+        WaitFork_Out --> RFID_Out["RFID読取 (Net.20)"]
+        RFID_Out --> Handshake_Out["AGV発進許可 (Y13A)"]
         Handshake_Out --> SendGP_Out[地上盤へデータ送信]
     end
 ```
