@@ -20,9 +20,9 @@ graph TD
     
     subgraph Test Cases
         direction TB
-        CaseA[ケースA: 入庫<br/>D339=1001, D340=0]
-        CaseB[ケースB: 出庫<br/>D339=0, D340=1002]
-        CaseC[ケースC: 移動<br/>D339=1001, D340=1002]
+        CaseA["ケースA: 入庫<br/>D339=1001, D340=0"]
+        CaseB["ケースB: 出庫<br/>D339=0, D340=1002"]
+        CaseC["ケースC: 移動<br/>D339=1001, D340=1002"]
     end
     
     InputSet --> CaseA
@@ -33,14 +33,14 @@ graph TD
     CaseB --> CheckB{D330を確認}
     CaseC --> CheckC{D330を確認}
     
-    CheckA -- "100 (入庫)" --> PassA[OK]
-    CheckA -- その他 --> FailA[NG: ロジック確認]
+    CheckA -- "100 (入庫)" --> PassA["OK"]
+    CheckA -- その他 --> FailA["NG: ロジック確認"]
     
-    CheckB -- "200 (出庫)" --> PassB[OK]
-    CheckB -- その他 --> FailB[NG: ロジック確認]
+    CheckB -- "200 (出庫)" --> PassB["OK"]
+    CheckB -- その他 --> FailB["NG: ロジック確認"]
     
-    CheckC -- "300 (移動)" --> PassC[OK]
-    CheckC -- その他 --> FailC[NG: ロジック確認]
+    CheckC -- "300 (移動)" --> PassC["OK"]
+    CheckC -- その他 --> FailC["NG: ロジック確認"]
 ```
 
 ### 判定条件テーブル

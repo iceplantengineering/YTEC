@@ -35,8 +35,8 @@ graph TB
     end
 
     %% Network Connections
-    WMS <==>|Task I/F| Redis
-    Redis <==>|Localhost| LuaApp
+    WMS <==>|"Task I/F"| Redis
+    Redis <==>|"Localhost"| LuaApp
     
     LuaApp == Modbus/TCP ==> GP_PLC
     LuaApp == Modbus/TCP ==> SRM_PLC
