@@ -154,12 +154,12 @@ AGV到着から地上盤へのデータ連携までのフローです。
 
 ```mermaid
 flowchart LR
-    Start([開始]) --> Check{搬入開始条件<br/>M21}
+    Start([開始]) --> Check{"搬入開始条件<br/>M21"}
     Check -- OK --> Wait[AGV到着待ち]
-    Wait -- 到着 --> RFID[RFID読取<br/>(Net.19)]
+    Wait -- 到着 --> RFID["RFID読取<br/>(Net.19)"]
     
-    RFID --> Handshake[AGV発進許可<br/>(Y132)]
-    Handshake --> Send[地上盤へ<br/>データ送信]
+    RFID --> Handshake["AGV発進許可<br/>(Y132)"]
+    Handshake --> Send["地上盤へ<br/>データ送信"]
     
     classDef process fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
     class Check,Wait,RFID,Handshake,Send process;
@@ -170,12 +170,12 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    Start([開始]) --> Check{搬出開始条件<br/>M22}
+    Start([開始]) --> Check{"搬出開始条件<br/>M22"}
     Check -- OK --> Wait[出庫フォーク待ち]
-    Wait -- 到着 --> RFID[RFID読取<br/>(Net.20)]
+    Wait -- 到着 --> RFID["RFID読取<br/>(Net.20)"]
     
-    RFID --> Handshake[AGV発進許可<br/>(Y13A)]
-    Handshake --> Send[地上盤へ<br/>データ送信]
+    RFID --> Handshake["AGV発進許可<br/>(Y13A)"]
+    Handshake --> Send["地上盤へ<br/>データ送信"]
     
     classDef process fill:#fff3e0,stroke:#e65100,stroke-width:2px;
     class Check,Wait,RFID,Handshake,Send process;
