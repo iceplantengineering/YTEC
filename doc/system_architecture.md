@@ -35,22 +35,22 @@ graph TB
     end
 
     %% Network Connections
-    WMS <==>|"Task I/F"| Redis
-    Redis <==>|"Localhost"| LuaApp
+    WMS ---|"Task I/F"| Redis
+    Redis ---|"Localhost"| LuaApp
 
-    LuaApp == Modbus/TCP ==> GP_PLC
-    LuaApp == Modbus/TCP ==> SRM_PLC
-    LuaApp == Modbus/TCP ==> CV_PLC
+    LuaApp ---|"Modbus/TCP"| GP_PLC
+    LuaApp ---|"Modbus/TCP"| SRM_PLC
+    LuaApp ---|"Modbus/TCP"| CV_PLC
     note1["※ Modbus/TCP通信は TConEquipmentTest.lua<br/>および TClientHelper により実装"]
-    LuaApp -. note1
+    LuaApp --- note1
 
-    GP_PLC == CC-Link ==> SRM_PLC
-    GP_PLC == CC-Link ==> CV_PLC
+    GP_PLC ---|"CC-Link"| SRM_PLC
+    GP_PLC ---|"CC-Link"| CV_PLC
     note2["※ CC-Linkは三菱電機の<br/>オープンネットワーク"]
-    GP_PLC -. note2
+    GP_PLC --- note2
 
     %% Field Connections
-    GP_PLC -. Wireless .-> AGV
+    GP_PLC ---|"Wireless"| AGV
     SRM_PLC --- SRM_HW
     CV_PLC --- CV_HW
 ```
