@@ -6,30 +6,30 @@
 ```mermaid
 graph TB
     subgraph Host ["上位層"]
-        WMS["<i class='fa fa-server'></i> WMS Server<br/>(倉庫管理システム)"]
+        WMS["WMS Server<br/>倉庫管理システム"]
     end
 
     subgraph PC_Layer ["制御PC層 (Windows)"]
         style PC_Layer fill:#f9f,stroke:#333
-        CtrlPC["<i class='fa fa-desktop'></i> 制御PC"]
+        CtrlPC["制御PC"]
 
         subgraph PC_Internal ["PC内部ソフトウェア"]
             style PC_Internal fill:#fff,stroke:#666
-            Redis["<i class='fa fa-database'></i> Redis DB"]
-            LuaApp["<i class='fa fa-code'></i> Lua制御アプリ<br/>(TTask.lua, TConEquipmentTest.lua)"]
+            Redis["Redis DB"]
+            LuaApp["Lua制御アプリ<br/>TTask.lua, TConEquipmentTest.lua"]
         end
     end
 
     subgraph PLC_Layer ["PLC制御層"]
         style PLC_Layer fill:#eef,stroke:#333
 
-        GP_PLC["<i class='fa fa-microchip'></i> 地上盤 PLC<br/>(Q Series)"]
-        SRM_PLC["<i class='fa fa-microchip'></i> スタッカー PLC<br/>(SRM)"]
-        CV_PLC["<i class='fa fa-microchip'></i> コンベア PLC<br/>(CV)"]
+        GP_PLC["地上盤 PLC<br/>Q Series"]
+        SRM_PLC["スタッカー PLC<br/>SRM"]
+        CV_PLC["コンベア PLC<br/>CV"]
     end
 
     subgraph Device_Layer ["フィールド機器層"]
-        AGV["<i class='fa fa-truck'></i> 無人搬送車 (AGV)"]
+        AGV["無人搬送車 AGV"]
         SRM_HW[クレーン モータ/センサ]
         CV_HW[コンベア モータ/センサ]
     end
@@ -115,8 +115,8 @@ classDiagram
     class ST_Logic {
         <<New Function>>
         +DetermineTaskType(Src, Dest)
+        Logic Rules: IF Src>0 AND Dest=0 THEN Type=100, IF Src=0 AND Dest>0 THEN Type=200
     }
-    note for ST_Logic "Logic Rules:\nIF Src>0 AND Dest=0 THEN Type=100\nIF Src=0 AND Dest>0 THEN Type=200"
 
     class LadderLogic {
         +BLOCK_02: Input Check
@@ -149,23 +149,15 @@ classDiagram
 sequenceDiagram
     autonumber
 
-    box "上位システム" #f9f9f9
-        participant WMS
-        participant Redis
-    end
-
-    box "制御PC" #ececff
-        participant Task as TTask.lua
-        participant Conn as TConEquipmentTest.lua
-        participant Client as TClientHelper
-    end
-
-    box "PLC (制御ロジック)" #ffecec
-        participant Mem as PLCメモリ
-        participant ST as ST判定部
-        participant Lad as ラダー制御部
-        participant CCLink as CC-Link通信部
-    end
+    participant WMS
+    participant Redis
+    participant Task as TTask.lua
+    participant Conn as TConEquipmentTest.lua
+    participant Client as TClientHelper
+    participant Mem as PLCメモリ
+    participant ST as ST判定部
+    participant Lad as ラダー制御部
+    participant CCLink as CC-Link通信部
 
     Note over WMS, Lad: タスク発行フェーズ
     WMS->>Redis: タスク登録 (LPUSH taskInfo)

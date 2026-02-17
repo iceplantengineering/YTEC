@@ -88,3 +88,25 @@
 **関連ファイル:**
 - 更新MDファイル: `system_architecture.md`, `io_signal_list.md`, `debug_checklist.md`, `debugging_manual.md`, `plc_flowcharts.md`
 - 参照プログラム: `TConEquipmentTest.lua`, `Conveyor_Refactored_Q_GXW.asc`, `GroundPanel_Refactored_Q_GXW.asc`
+
+### 2026-02-17: ドキュメント修正 - GitHubでのMermaidチャート表示対応
+
+**目的:**
+GitHub上のMermaidレンダラーで正しく表示されない問題を修正しました。
+
+**変更内容:**
+
+1. **`doc/system_architecture.md` の修正**
+   - FontAwesome HTMLタグ（`<i class='fa ...'>`）の削除
+   - クラス図の `note for` 構文をクラス内プロパティに変更
+   - シーケンス図の `box` 構文を削除（単純なparticipant宣言に変更）
+
+**GitHubでサポートされないMermaid構文:**
+| 構文 | 対応 |
+|------|------|
+| `<i class='fa fa-xxx'></i>` | 削除（プレーンテキストに変更） |
+| `note for クラス名 "テキスト"` | クラス内のプロパティに変更 |
+| `box "タイトル" ... end` | 単純なparticipant宣言に変更 |
+
+**関連ファイル:**
+- 更新MDファイル: `system_architecture.md`
