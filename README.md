@@ -32,3 +32,59 @@
 ## 確認事項
 この構成により、`origine` の機能が `refact` に完全に移植され、かつ設計コンセプト（PLC主体の制御）に従った実装となっていることを確認してください。
 詳細は `doc/debugging_manual.md` を参照して動作検証を行ってください。
+
+---
+
+## 改変履歴
+
+### 2025-02-17: ドキュメント更新 - CC-Link/Modbus通信仕様の明確化
+
+**目的:**
+プログラム実装（`refact`）とドキュメント（`doc`）の記述間にあったCC-LinkおよびModbus/TCPに関する齟齬を解消しました。
+
+**変更内容:**
+
+1. **`doc/system_architecture.md` の更新**
+   - Modbus/TCP通信詳細の記載追加
+     - 実装ファイル：`TConEquipmentTest.lua`, `TClientHelper`
+     - 機能コード、接続処理の詳細
+   - CC-Link通信詳細の記載追加
+     - マスター/スレーブ構成
+     - バッファメモリマップ（B00-BFF, B1000-B1023等）
+     - 通信監視デバイス（M370-M372）
+   - 通信プロトコル詳細セクション（セクション5）の新規追加
+
+2. **`doc/io_signal_list.md` の更新**
+   - CC-Link信号マップセクション（セクション5）の新規追加
+     - B01設備 CC-Link入出力の詳細
+     - RFIDデータバッファ（W0-W13等）
+     - 通信監視デバイス（SB49, W900.0-2）
+   - Modbus/TCP通信マップセクション（セクション6）の新規追加
+     - 接続設定、レジスタマップ
+     - `TConEquipmentTest.lua` メソッド対応表
+
+3. **`doc/debug_checklist.md` の更新**
+   - Modbus/TCP通信確認セクション（セクション2）の新規追加
+   - CC-Link通信確認セクション（セクション3）の新規追加
+   - トラブルシューティングの拡張（Modbus/CC-Link関連）
+
+4. **`doc/debugging_manual.md` の更新**
+   - Modbus/TCP通信確認セクション（セクション3）の新規追加
+   - CC-Link通信確認セクション（セクション4）の新規追加
+   - 通信フロー図の追加
+
+5. **`doc/plc_flowcharts.md` の更新**
+   - 地上盤PLC CC-Link処理フローの追加（セクション2）
+   - コンベアPLC CC-Link処理フローの追加（セクション4）
+   - CC-Linkシーケンス図の追加
+
+**技術的詳細:**
+
+| 項目 | 説明 |
+|------|------|
+| **Modbus/TCP** | PC(Lua) ↔ PLC間の通信<br/>実装: `TConEquipmentTest.lua`<br/>ポート: 502 |
+| **CC-Link** | 地上盤PLC ↔ コンベア/スタッカーPLC間の通信<br/>マスター: 地上盤PLC<br/>スレーブ: コンベアPLC, スタッカーPLC |
+
+**関連ファイル:**
+- 更新MDファイル: `system_architecture.md`, `io_signal_list.md`, `debug_checklist.md`, `debugging_manual.md`, `plc_flowcharts.md`
+- 参照プログラム: `TConEquipmentTest.lua`, `Conveyor_Refactored_Q_GXW.asc`, `GroundPanel_Refactored_Q_GXW.asc`

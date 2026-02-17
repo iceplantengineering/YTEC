@@ -64,10 +64,82 @@ sequenceDiagram
     end
 ```
 
-## 2. スタッカークレーンPLC (Stacker Crane)
+## 2. 地上盤PLC (Ground Panel) - CC-Link通信詳細
+ファイル: `GroundPanel_Refactored_Q_GXW.asc`
+
+### 2-1. CC-Link受信処理フロー（プログラム01）
+
+コンベアPLCからのステータス受信処理の詳細フローです。
+
+```mermaid
+flowchart LR
+    Start([スキャン開始]) --> RxCk[CC-Link受信タイミング]
+    RxCk --> B00Check[B00: 電源入]
+    RxCk --> B01Check[B01: 運転準備入]
+    RxCk --> B02Check[B02: 重故障]
+    RxCk --> B03Check[B03: 軽故障]
+    RxCk --> B04Check[B04: 非常停止正常]
+
+    B00Check --> M1000[M1000: CCLink_In_B01電源入]
+    B01Check --> M1001[M1001: CCLink_In_B01運転準備入]
+    B02Check --> M1002[M1002: CCLink_In_B01重故障]
+    B03Check --> M1003[M1003: CCLink_In_B01軽故障]
+    B04Check --> M1004[M1004: CCLink_In_B01非常停止正常]
+
+    RxCk --> RFID1Check[B20: RFID1読取完了]
+    RFID1Check --> RFID1Data[W0-W13 → D331-D337<br/>RFIDデータ転送]
+
+    RxCk --> RFID2Check[B22: RFID2読取完了]
+    RFID2Check --> RFID2Data[W10-W23 → D338-D344<br/>RFIDデータ転送]
+```
+
+### 2-2. CC-Link送信処理フロー（プログラム41）
+
+コンベアPLCへの制御データ送信処理の詳細フローです。
+
+```mermaid
+flowchart LR
+    Start([スキャン開始]) --> TxCk[CC-Link送信タイミング]
+
+    subgraph Control_Data ["制御データ生成"]
+        M100[M100: 電源入] --> B1000[B1000: 電源入]
+        M10[M10: 運転準備入] --> B1001[B1001: 運転準備入]
+        M40[M40: 非常停止正常] --> B1004[B1004: 非常停止正常]
+        M31[M31: 自動運転中] --> B100A[B100A: 自動運転中]
+        M15[M15: サイクル停止中] --> B100B[B100B: サイクル停止中]
+        M30[M30: 手動操作中] --> B100C[B100C: 手動操作中]
+    end
+
+    TxCk --> Control_Data
+    Control_Data --> End([送信完了])
+```
+
+### 2-3. CC-Link通信監視フロー（プログラム09）
+
+CC-Link通信状態の監視処理フローです。
+
+```mermaid
+flowchart TD
+    Start([常時監視]) --> CheckSB[SB49: ユニットステータス]
+    CheckSB --> LinkStatus{リモートI/Oステータス}
+
+    LinkStatus -->|W900.0=ON| Check1[スレーブ1正常]
+    LinkStatus -->|W900.1=ON| Check2[スレーブ2正常]
+    LinkStatus -->|W900.2=ON| Check3[スレーブ3正常]
+
+    Check1 --> M370[M370: B01_ON正常]
+    Check2 --> M371[M371: B02_ON正常]
+    Check3 --> M372[M372: AGV_ON正常]
+
+    M370 --> MonitorOK[通信正常]
+    M371 --> MonitorOK
+    M372 --> MonitorOK
+```
+
+## 3. スタッカークレーンPLC (Stacker Crane)
 ファイル: `StackerCrane_Refactored_Q_GXW.asc`
 
-### 2-1. 自動運転ステートマシン (BLOCK_07)
+### 3-1. 自動運転ステートマシン (BLOCK_07)
 スタッカークレーンの自動運転ロジックの中心となるステートマシンです。
 
 ```mermaid
@@ -146,10 +218,69 @@ flowchart TD
     end
 ```
 
-## 3. コンベアPLC (Conveyor)
+## 4. コンベアPLC (Conveyor)
 ファイル: `Conveyor_Refactored_Q_GXW.asc`
 
-### 3-1. 搬入ライン連携フロー (Input Line)
+### 4-1. CC-Link通信処理フロー
+
+コンベアPLCと地上盤PLC間のCC-Link通信処理の詳細フローです。
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant GP as 地上盤PLC<br/>(Master)
+    participant CV as コンベアPLC<br/>(Slave)
+    participant MEM as 内部メモリ
+    participant RFID as RFIDリーダー
+
+    Note over GP: スキャン開始
+
+    循環伝送: 送信サイクル
+    GP->>CV: B1000-B1023送信<br/>(制御データ)
+    CV->>MEM: Bレジスタ→Mリレー変換
+    MEM->>MEM: M1000-M1059更新
+
+    循環伝送: 受信サイクル
+    CV->>GP: B00-BFF送信<br/>(ステータスデータ)
+    Note over CV: M1000→B00<br/>M1001→B01<br/>...
+
+    RFID処理: RFID読取
+    Note over CV: ネットワーク19開始
+    CV->>RFID: RFID読取要求
+    RFID-->>CV: RFIDデータ(12文字)
+    CV->>MEM: W0-W13にRFIDデータ格納
+    Note over CV: ネットワーク19終了
+
+    Note over GP: スキャン終了
+```
+
+### 4-2. CC-Link信号マッピング
+
+**地上盤→コンベア（制御データ）:**
+
+| バッファ | 内部リレー | 説明 |
+|---------|-----------|------|
+| B1000 | M1000 | 電源入 |
+| B1001 | M1001 | 運転準備入 |
+| B1004 | M1004 | 非常停止正常 |
+| B100A | M1010 | 自動運転中 |
+| B1010 | M1016 | 自動モード選択 |
+| B101A | M1026 | 連動運転開始 |
+
+**コンベア→地上盤（ステータスデータ）:**
+
+| 内部リレー | バッファ | 説明 |
+|-----------|---------|------|
+| M1000 | B00 | 電源入 |
+| M1001 | B01 | 運転準備入 |
+| M1002 | B02 | 重故障 |
+| M1004 | B04 | 非常停止正常 |
+| M1048 | B30 | CV1_STK受取可 |
+| M1049 | B31 | CV1_AGV発進可 |
+| M1064 | B40 | CV2_STK受渡可 |
+| M1065 | B41 | CV2_AGV発進可 |
+
+### 4-3. 搬入ライン連携フロー (Input Line)
 AGV到着から地上盤へのデータ連携までのフローです。
 
 ```mermaid
@@ -157,15 +288,18 @@ flowchart LR
     Start([開始]) --> Check{"搬入開始条件<br/>M21"}
     Check -- OK --> Wait[AGV到着待ち]
     Wait -- 到着 --> RFID["RFID読取<br/>(Net.19)"]
-    
-    RFID --> Handshake["AGV発進許可<br/>(Y132)"]
+
+    RFID --> CCLinkTx["CC-Link送信<br/>B00-BFF"]
+    CCLinkTx --> Handshake["AGV発進許可<br/>(Y132)"]
     Handshake --> Send["地上盤へ<br/>データ送信"]
-    
+
     classDef process fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    classDef cclink fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
     class Check,Wait,RFID,Handshake,Send process;
+    class CCLinkTx cclink;
 ```
 
-### 3-2. 搬出ライン連携フロー (Output Line)
+### 4-4. 搬出ライン連携フロー (Output Line)
 出庫フォーク待ちから搬出完了までのフローです。
 
 ```mermaid
@@ -173,10 +307,13 @@ flowchart LR
     Start([開始]) --> Check{"搬出開始条件<br/>M22"}
     Check -- OK --> Wait[出庫フォーク待ち]
     Wait -- 到着 --> RFID["RFID読取<br/>(Net.20)"]
-    
-    RFID --> Handshake["AGV発進許可<br/>(Y13A)"]
+
+    RFID --> CCLinkTx["CC-Link送信<br/>B00-BFF"]
+    CCLinkTx --> Handshake["AGV発進許可<br/>(Y13A)"]
     Handshake --> Send["地上盤へ<br/>データ送信"]
-    
+
     classDef process fill:#fff3e0,stroke:#e65100,stroke-width:2px;
+    classDef cclink fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
     class Check,Wait,RFID,Handshake,Send process;
+    class CCLinkTx cclink;
 ```
