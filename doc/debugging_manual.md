@@ -197,7 +197,7 @@ graph TD
     end
 
     CCLinkTx -->|"6. 装置動作"| Motor["モータ/機器動作"]
-    Motor -->|"7. 完了信号| Lad
+    Motor -->|"7. 完了信号"| Lad
     Lad -->|"8. Modbus読取"| Conn
     Conn -->|"9. ステータス更新"| Redis
     Redis -->|"10. 完了確認"| User
