@@ -235,16 +235,13 @@ sequenceDiagram
 
     Note over GP: スキャン開始
 
-    循環伝送: 送信サイクル
     GP->>CV: B1000-B1023送信<br/>(制御データ)
     CV->>MEM: Bレジスタ→Mリレー変換
     MEM->>MEM: M1000-M1059更新
 
-    循環伝送: 受信サイクル
     CV->>GP: B00-BFF送信<br/>(ステータスデータ)
     Note over CV: M1000→B00<br/>M1001→B01<br/>...
 
-    RFID処理: RFID読取
     Note over CV: ネットワーク19開始
     CV->>RFID: RFID読取要求
     RFID-->>CV: RFIDデータ(12文字)
