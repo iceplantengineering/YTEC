@@ -119,3 +119,50 @@ GitHub上のMermaidレンダラーで正しく表示されない問題を修正�
 
 **関連ファイル:**
 - 更新MDファイル: `system_architecture.md`, `plc_flowcharts.md`, `debugging_manual.md`
+
+### 2026-02-18: PLC分割検証レポートの作成
+
+**目的:**
+ORIGINE（4PLC構成）からREFACT（3PLC構成）への変更に伴う機能上の問題を分析し、GroundPanel PLCのB01/B02分割の可否を検証しました。
+
+**変更内容:**
+
+1. **`PLC_separation.md` の新規作成**
+   - PLC構成比較（ORIGINE vs REFACT）
+   - HMI接続構成の検討（1PLC+複数HMIの可能性）
+   - GroundPanel_Refactored_Q_GXW.ascの構造分析
+   - B01/B02分割の可否評価
+   - HMI画面設計の推測
+   - Modbusによるオフライン検証手法
+   - CC-Link実装への移行手順
+
+2. **分析結果のサマリー**
+   - **分割の可否**: 技術的に容易。プログラム構造が明確に分離されている
+   - **デバイス割り当て**: B01（M1000-M1079, D331-D338）、B02（M1200-M1279, D352-D359）
+   - **HMI対応**: 1PLC+2HMI構成が可能。複数HMIから1PLCに同時接続できる
+   - **検証手法**: Modbusシミュレータによるオフライン検証後、CC-Linkに置き換え可能
+
+**技術的詳細:**
+
+| 項目 | 説明 |
+|------|------|
+| **B01デバイス範囲** | M1000-M1079（内部リレー）、D331-D338（RFID1/2） |
+| **B02デバイス範囲** | M1200-M1279（内部リレー）、D352-D359（RFID3/4） |
+| **CC-Link B01用** | B00-B4F（77-185行） |
+| **CC-Link B02用** | B100-B11F（201-206行） |
+| **HMI接続** | MCプロトコル（TCP/IP、ポート5007） |
+
+**検証フロー:**
+```
+Phase 1: Modbus（オフライン検証）
+  └─ ModbusシミュレータでB01/B02設備を模倣
+     └─ 機能検証完了
+
+Phase 2: CC-Link（実装）
+  └─ 実機（CC-Link対応）に接続
+     └─ 通信タイミング調整
+```
+
+**関連ファイル:**
+- 新規作成: `PLC_separation.md`
+- 参照プログラム: `GroundPanel_Refactored_Q_GXW.asc`, `Conveyor_Refactored_Q_GXW.asc`

@@ -1,0 +1,1341 @@
+ (     0) SM400 
+BMOV U4\ 
+G4096 D100 K8U4\G4096 
+A/S 1 
+A/S 
+D100 
+A/S 28 
+B/D 1 
+BMOV U4\ 
+G4112 D110 K8U4\G4112 
+A/S 6 
+A/S 
+D110 
+A/S 31 
+B/D 6 
+ (    11) SM400 
+BMOV D120 U4\ 
+G12288 K8D120 
+A/S 12 
+B/D 35 
+U4\G12288 
+B/D 12 
+B/D 
+BMOV D130 U4\ 
+G12304 K8D130 
+A/S 17 
+B/D 37 
+U4\G12304 
+B/D 17 
+B/D 
+ (    22) SM400 
+MOV U4\ 
+G3104 K4M320U4\G3104 
+A/S 23 
+A/S 
+K4M320 
+B/D 23 
+B/D 
+ (    27) SM400 
+MOV D100 K4M200D100 
+A/S 28 
+B/D 1 
+K4M200 
+B/D 28 
+B/D 
+MOV D110 K4M220D110 
+A/S 31 
+B/D 6 
+K4M220 
+B/D 31 
+B/D 
+ (    34) SM400 
+MOV K4M240 D120K4M240 
+A/S 35 
+A/S 
+D120 
+A/S 12 
+B/D 35 
+MOV K4M260 D130K4M260 
+A/S 37 
+A/S 
+D130 
+A/S 17 
+B/D 37 
+ (    40) ENDラダー 2025/11/24 
+データ名 : drive 
+1
+ (     0) T0 K999 
+T0 T0 
+B/D 0 
+B/D 
+ (     5)  DInput.运行准 备01  DInput.运行准 备02 DInput.故障复位 
+ DOutput.就 绪按钮灯
+ DInput.运行准 备11  DInput.运行准 备12 
+ DInput.灯光 检检按钮
+ (    21)  DOutput.启 动按钮灯  DOutput.柜体灯_ 红
+ DOutput.柜体灯_ 绿
+ (    28)  DOutput.启 动按钮灯
+=  Master_R. 设备状态 K1 DOutput.柜体灯_ 红
+K0
+ DInput.手 动自动 SM413 
+K0 DOutput.柜体灯_黄 
+ (    41) <> Alarm_Code
+错错错K0  DOutput.柜体灯_ 红 DOutput.柜体灯_ 红
+B/D 24 37 
+B/D 
+ (    46) SM400 
+= Alarm_Code
+错错错K16  DOutput.光 栅1警示灯_ 红
+<> Alarm_Code
+错错错K16  DOutput.光 栅1警示灯_ 绿
+ (    60) SM400 
+= Alarm_Code
+错错错K17  DOutput.光 栅2警示灯_ 红
+<> Alarm_Code
+错错错K17  DOutput.光 栅2警示灯_ 绿
+ (    73) SM400 
+=  CCLink_W.心跳 检检 HeartbeatK30 
+T2 T2 
+A/S 86 
+A/S 
+MOV  CCLink_W.心跳 检检 Heartbeat CCLink_W.心跳 检检
+A/S 76 84 
+A/S 
+Heartbeat 
+A/S 76 
+B/D 84 
+T2 
+ A01断 连
+ (    90) ENDラダー 2025/11/24 
+データ名 : MAIN 
+2
+ (     0)  Manual.手 动入库台上升  手动模式状 态  Deliver_In.入 库口顶升上限 检检
+K0
+ Deliver_In.入 库口顶升上升控制 
+K0 DOutput.Bx02 顶升反 转运行 E_Stop  DOutput.就 绪按钮灯
+ DOutput.Bx02 顶升正 转运行  DOutput.Bx02 顶升正 转运行 
+B/D 27 
+B/D 
+ (    17)  Manual.手 动入库台下降  手动模式状 态  Deliver_In.入 库口顶升下限 检检
+K0
+回原点中 
+ Deliver_In.入 库口顶升下降控制 
+K0 DOutput.Bx02 顶升正 转运行 E_Stop  DOutput.就 绪按钮灯
+K1
+K1 CCLink_W_Control_Bit.取 货中
+ DOutput.Bx02 顶升反 转运行  DOutput.Bx02 顶升反 转运行 
+B/D 9 
+B/D 
+ (    37)  Manual.手 动入库货叉上升  手动模式状 态  Deliver_In. 货叉顶升上限 检检
+K0
+ Deliver_In. 货叉顶升上升控制 
+K0 DOutput.Bx01 顶升反 转运行 E_Stop  DOutput.就 绪按钮灯
+ DOutput.Bx01 顶升正 转运行  DOutput.Bx01 顶升正 转运行 
+B/D 66 
+B/D 
+ (    54)  Manual.手 动入库货叉下降  手动模式状 态  Deliver_In. 货叉顶升下限 检检 E_Stop 
+K0
+回原点中 
+ Deliver_In. 货叉顶升下降控制 
+K0 DOutput.Bx01 顶升正 转运行  DOutput.就 绪按钮灯
+ DOutput.Bx01 顶升反 转运行  DOutput.Bx01 顶升反 转运行 
+B/D 46 
+B/D 
+ (    72)  Manual.手 动入库库送线运转  手动模式状 态  Deliver_In.入 库口物料 检检 E_Stop 
+K0
+ Deliver_In. 库送线控制 
+K0 DOutput.Bx02 库送反 转运行  DOutput.就 绪按钮灯
+ DOutput.Bx02 库送正 转运行  DOutput.Bx02 库送正 转运行 
+A/S 89 95 
+B/D 110 
+ (    89)  DOutput.Bx02 库送正 转运行 
+ DOutput.Bx02 库送速度A 
+ DOutput.Bx02 库送反 转运行 
+ (    95)  DOutput.Bx02 库送正 转运行  Deliver_In.入 库口减速 检检
+SET  DOutput.Bx02 库送速度B  DOutput.Bx02 库送速度B 
+A/S 100 
+B/D 104 
+RST  DOutput.Bx02 库送速度B  DOutput.Bx02 库送速度B 
+A/S 100 
+B/D 104 
+ (   106)  Manual.手 动入库库送线反转  手动模式状 态  DOutput.Bx02 库送正 转运行  DOutput.就 绪按钮灯
+K0
+K0 Deliver_In. 货叉位置物料 检检 E_Stop 
+ DOutput.Bx02 库送反 转运行  DOutput.Bx02 库送反 转运行 
+A/S 91 
+B/D 83 
+ (   120)  Manual.手 动出库台上升  手动模式状 态  Deliver_Out.出 库口顶升上限 检检
+K0
+ Deliver_Out.出 库口顶升上升控制 
+K0 DOutput.Bx04 顶升反 转运行 E_Stop  DOutput.就 绪按钮灯
+ DOutput.Bx04 顶升正 转运行  DOutput.Bx04 顶升正 转运行 
+B/D 147 
+B/D 
+ (   137)  Manual.手 动出库台下降  手动模式状 态  Deliver_Out.出 库口顶升下限 检检
+K0
+回原点中 
+ Deliver_Out.出 库口顶升下降控制 
+K0 DOutput.Bx04 顶升正 转运行 E_Stop  DOutput.就 绪按钮灯
+K1
+K1 CCLink_W_Control_Bit.放 货中
+ DOutput.Bx04 顶升反 转运行  DOutput.Bx04 顶升反 转运行 
+B/D 129 
+B/D ラダー 2025/11/24 
+データ名 : Manual
+3
+ (   157)  Manual.手 动出库货叉上升  手动模式状 态  Deliver_Out. 货叉顶升上限 检检
+K0
+ Deliver_Out. 货叉顶升上升控制 
+K0 DOutput.Bx03 顶升反 转运行 E_Stop  DOutput.就 绪按钮灯
+ DOutput.Bx03 顶升正 转运行  DOutput.Bx03 顶升正 转运行 
+B/D 184 
+B/D 
+ (   174)  Manual.手 动出库货叉下降  手动模式状 态  Deliver_Out. 货叉顶升下限 检检
+K0
+回原点中 
+ Deliver_Out. 货叉顶升下降控制 
+K0 DOutput.Bx03 顶升正 转运行 E_Stop  DOutput.就 绪按钮灯
+ DOutput.Bx03 顶升反 转运行  DOutput.Bx03 顶升反 转运行 
+B/D 166 
+B/D 
+ (   192)  Manual.手 动出库库送线运转  手动模式状 态  Deliver_Out. 货叉位置物料 检检 E_Stop 
+K0
+ Deliver_Out. 库送线控制 
+K0 DOutput.Bx04 库送反 转运行  DOutput.就 绪按钮灯
+ DOutput.Bx04 库送正 转运行  DOutput.Bx04 库送正 转运行 
+A/S 209 215 
+B/D 234 
+ (   209)  DOutput.Bx04 库送正 转运行 
+ DOutput.Bx04 库送速度A 
+ DOutput.Bx04 库送反 转运行 
+ (   215)  DOutput.Bx04 库送正 转运行  Deliver_Out. 货叉位置减速 检检
+SET  DOutput.Bx04 库送速度B  DOutput.Bx04 库送速度B 
+A/S 220 
+B/D 224 
+RST  DOutput.Bx04 库送速度B  DOutput.Bx04 库送速度B 
+A/S 220 
+B/D 224 
+ (   226)  Manual.手 动出库库送线反转  手动模式状 态  Deliver_OUT.出 库口物料 检检 E_Stop 
+K0
+K0 DOutput.Bx04 库送正 转运行  DOutput.就 绪按钮灯
+ DOutput.Bx04 库送反 转运行  DOutput.Bx04 库送反 转运行 
+A/S 211 
+B/D 203 
+ (   240) SM400 
+DMOV D106 D160D106 
+A/S 242 
+A/S 
+D160 
+A/S 244 
+B/D 242 
+MOV D160 D163D160 
+A/S 244 
+B/D 242 
+D163 
+B/D 244 
+B/D 
+MOV D161 D162D161 
+A/S 246 
+A/S 
+D162 
+B/D 246 
+B/D 
+ (   248) SM400 
+DMOV D164 D166D164 
+A/S 249 
+A/S 
+D166 
+A/S 253 
+B/D 249 
+MOV D167 D126D167 
+A/S 251 
+A/S 
+D126 
+B/D 251 
+B/D 
+MOV D166 D127D166 
+A/S 253 
+B/D 249 
+D127 
+B/D 253 
+B/D 
+ (   255) SM400 
+DMOV D116 D170D116 
+A/S 257 
+A/S 
+D170 
+A/S 259 
+B/D 257 
+MOV D170 D173D170 
+A/S 259 
+B/D 257 
+D173 
+B/D 259 
+B/D 
+MOV D171 D172D171 
+A/S 261 
+A/S 
+D172 
+B/D 261 
+B/D ラダー 2025/11/24 
+データ名 : Manual
+4
+ (   263) SM400 
+DMOV D174 D176D174 
+A/S 264 
+A/S 
+D176 
+A/S 268 
+B/D 264 
+MOV D177 D136D177 
+A/S 266 
+A/S 
+D136 
+B/D 266 
+B/D 
+MOV D176 D137D176 
+A/S 268 
+B/D 264 
+D137 
+B/D 268 
+B/D 
+ (   270) ENDラダー 2025/11/24 
+データ名 : Manual
+5
+ST 2025/11/24 
+データ名 : Alarm 
+6IF DInput.库入电源=FALSE AND Alarm_Code=0 THEN 
+Alarm_Code:=1;
+END_IF;
+IF DInput.柜机空 调故障 AND Alarm_Code=0 THEN 
+Alarm_Code:=2;
+END_IF;
+IF E_Stop=FALSE AND Alarm_Code=0 THEN 
+Alarm_Code:=3;
+END_IF;
+IF Axle_IN_Sew_Status_Bit.故障 AND Alarm_Code=0 THEN 
+Alarm_Code:=4;
+END_IF;
+IF Axle_OUT_Sew_Status_Bit.故障 AND Alarm_Code=0 THEN
+Alarm_Code:=5;
+END_IF;
+(*1： 计划不 满足，2：RFID不匹配，3： 计划不 满足，且RFID不匹配*) 
+IF CCLink_W.入 库口RFID 报警=1 AND Alarm_Code=0 THEN 
+Alarm_Code:=6;
+END_IF;
+IF CCLink_W.出 库口RFID 报警=1 AND Alarm_Code=0 THEN 
+Alarm_Code:=7;
+END_IF;
+IF CCLink_W.出 库口RFID 报警=2 AND Alarm_Code=0 THEN 
+Alarm_Code:=8;
+END_IF;
+IF CCLink_W.出 库口RFID 报警=3 AND Alarm_Code=0 THEN 
+Alarm_Code:=9;
+END_IF;
+IF M320 AND Alarm_Code=0 THEN 
+Alarm_Code:=10;
+END_IF;
+IF M322 AND Alarm_Code=0 THEN 
+Alarm_Code:=11;
+END_IF;
+(*入 库库*) 
+IF( DInput.CV01超 宽检检1 OR DInput.CV01超 宽检检2) AND Alarm_Code=0 THEN 
+Alarm_Code:=12;
+END_IF;
+IF DInput.CV01超高 检检 AND Alarm_Code=0 THEN 
+Alarm_Code:=13;
+END_IF;
+(*光 栅*) 
+IF (DInput.AGV 库安全光 栅库入信号1=FALSE  OR DInput.AGV 库安全光 栅库入信号2=FALSE ) AND Deliver_In.AGV 进入中=FALSE AND Alarm_Code=0 THEN 
+Alarm_Code:=14;
+END_IF;
+IF( DInput.AGV 库安全光 栅库入信号11=FALSE  OR DInput.AGV 库安全光 栅库入信号12=FALSE  ) AND Deliver_Out.AGVl离开中=FALSE AND Al arm_Code=0 THEN 
+Alarm_Code:=15;
+END_IF;
+IF (DInput.CV_IN 库安全光 栅库入信号1 =FALSE OR DInput.CV_IN 库安全光 栅库入信号2=FALSE  ) AND DInput.CV01伸 缩中位 检检2 AND Alarm_Code=0 THEN 
+Alarm_Code:=16;
+END_IF;
+IF (DInput.CV_Out 库安全光 栅库入信号1=FALSE  OR DInput.CV_Out 库安全光 栅库入信号2=FALSE  ) AND DInput.Bx03伸 缩中位 检检2 AND  Alarm_Code=0 THEN 
+Alarm_Code:=17;
+END_IF;
+(*安全 门*) 
+IF (DInput.安全 门1库入信号1=FALSE   OR DInput.安全 门1库入信号2 =FALSE ) AND Alarm_Code=0 THEN 
+Alarm_Code:=18;
+END_IF;
+(*入 库库坍塌 报警*) 
+IF CCLink_R_Status_Bit.入 库坍塌 检检 AND DInput.CV01伸 缩中位 检检2 AND Alarm_Code=0 THEN 
+Alarm_Code:=19;
+END_IF;
+(* 弹出报警画面*) 
+IF Alarm_Code<>0 AND NOT 报警上升沿 THEN 
+     HMI画面切 换:=5;
+END_IF;
+报警上升沿:=Alarm_Code<>0 ;
+(*故障复位*) 
+IF (DInput.故障复位 OR HMI. 报警复位 OR CCLink_W_Control_Bit.故障复位) AND Alarm_Code<>0  THEN 
+Axle_IN_Sew_Control_Bit.故障复位:=TRUE;
+Axle_OUT_Sew_Control_Bit.故障复位:=TRUE;
+Alarm_Code:=0;
+Deliver_In.Step1:=0;
+Deliver_OUT.Step1:=0;
+Deliver_In.当前任 务状态:=0;
+Deliver_OUT.当前任 务状态:=0;
+ELSE 
+Axle_IN_Sew_Control_Bit.故障复位:=FALSE;
+Axle_OUT_Sew_Control_Bit.故障复位:=FALSE;
+ST 2025/11/24 
+データ名 : Alarm 
+7END_IF;
+ST 2025/11/24 
+データ名 : CCLink 
+8(* 1#    RX/RY 0000-002F  RWr/RWw  0100-012F*)  (* 主站X1000(48点)  Y1000(48点)  RWw-D4000(48点)   RWr-D300 0(48点)  *) 
+(* 2#    RX/RY 0030-005F  RWr/RWw  0130-015F*)  (* 主站X1030(48点)  Y1030(48点)  RWw-D4048(48点)   RWr-D304 8(48点)  *) 
+(* 3#    RX/RY 0060-008F  RWr/RWw  0160-018F*)  (* 主站X1060(48点)  Y1060(48点)  RWw-D4096(48点)   RWr-D309 6(48点)  *) 
+(* 1#    RX/RY 0000-002F  RWr/RWw  0100-012F*)  (* 主站X1000(48点)  Y1000(48点)  RWw-D3100(48点)   RWr-D300 0(48点)  *) 
+(*Read*) 
+CCLink_R.心跳 检检:=TN0;
+CCLink_R.当前模式:=Mode;
+CCLink_R.设备状态:=Master_R. 设备状态;
+CCLink_R.错错错:=Alarm_Code;
+CCLink_R.入 库线_任 务状态:=Deliver_In.当前任 务状态;
+CCLink_R.站台1002任 务ID:=Deliver_In.当前任 务ID;
+CCLink_R.出 库线_任 务状态:=Deliver_Out.当前任 务状态;
+CCLink_R.站台1003任 务ID:=Deliver_Out.当前任 务ID;
+IF Deliver_In.入 库口顶升上限 检检 AND Deliver_In.入 库口物料 检检 THEN 
+    CCLink_R.堆 垛机允 许取货1002:=1;
+ELSE 
+CCLink_R.堆 垛机允 许取货1002:=0;
+END_IF;
+IF Deliver_Out.出 库口顶升上限 检检 AND Deliver_Out.出 库口物料 检检=FALSE THEN 
+    CCLink_R.堆 垛机允 许放货1004:=1;
+ELSE 
+CCLink_R.堆 垛机允 许放货1004:=0;
+END_IF;
+(*托 盘RFID 编号信息，最 长12位数*) 
+CCLink_R.站台1001RFID 读取值:=Master_R.站台1001RFID 读取值;
+CCLink_R.站台1003RIFD 读取值:=Master_R.站台1003RIFD 读取值;
+CCLink_R.入 库流程字:=Deliver_In.Step1;
+CCLink_R.出 库流程字:=Deliver_Out.Step1;
+CCLink_R.入 库货叉位置:=DINT_TO_INT( 入 库货叉当前位置);
+CCLink_R.出 库货叉位置:=DINT_TO_INT( 出 库货叉当前位置);
+(*Rx*) 
+CCLink_R_Status_Bit.入 库台减速 检检:=Deliver_In.入 库口减速 检检;
+CCLink_R_Status_Bit.入 库台物料 检检 :=Deliver_In.入 库口物料 检检;
+CCLink_R_Status_Bit.入 库货叉台物料 检检:=Deliver_In. 货叉位置物料 检检;
+CCLink_R_Status_Bit.出 库台物料 检检:=Deliver_OUT.出 库口物料 检检;
+CCLink_R_Status_Bit.出 库货叉台减速 检检:=Deliver_OUT. 货叉位置减速 检检;
+CCLink_R_Status_Bit.出 库货叉台物料 检检:=Deliver_OUT. 货叉位置物料 检检;
+CCLink_R_Status_Bit.入 库货叉上限 检检:=Deliver_In. 货叉顶升上限 检检;
+CCLink_R_Status_Bit.入 库货叉下限 检检:=Deliver_In. 货叉顶升下限 检检;
+CCLink_R_Status_Bit.入 库台上限 检检:=Deliver_In.入 库口顶升上限 检检;
+CCLink_R_Status_Bit.入 库台下限 检检:=Deliver_In.入 库口顶升下限 检检;
+CCLink_R_Status_Bit.出 库货叉上限 检检:=Deliver_OUT. 货叉顶升上限 检检;
+CCLink_R_Status_Bit.出 库货叉下限 检检:=Deliver_OUT. 货叉顶升下限 检检;
+CCLink_R_Status_Bit.出 库台上限 检检:=Deliver_OUT.出 库口顶升上限 检检;
+CCLink_R_Status_Bit.出 库台下限 检检:=Deliver_OUT.出 库口顶升下限 检检;
+CCLink_R_Status_Bit.入 库超宽检检1:=DInput.CV01超 宽检检1;
+CCLink_R_Status_Bit.入 库超宽检检2:=DInput.CV01超 宽检检2;
+CCLink_R_Status_Bit.入 库超高 检检:=DInput.CV01超高 检检;
+CCLink_R_Status_Bit.入 库坍塌 检检:=DInput.CV01超高 检检;
+CCLink_R_Status_Bit.入 库光栅:=DInput.CV_IN 库安全光 栅库入信号1 AND DInput.CV_IN 库安全光 栅库入信号2;
+CCLink_R_Status_Bit.出 库光栅:=DInput.CV_Out 库安全光 栅库入信号1 AND DInput.CV_Out 库安全光 栅库入信号2;
+CCLink_R_Status_Bit.AGV入光 栅:=DInput.AGV 库安全光 栅库入信号1 AND DInput.AGV 库安全光 栅库入信号2;
+CCLink_R_Status_Bit.AGV出光 栅:=DInput.AGV 库安全光 栅库入信号11 AND DInput.AGV 库安全光 栅库入信号12;
+CCLink_R_Status_Bit.安全 门状态:=DInput.安全 门1库入信号1 AND DInput.安全 门1库入信号2;
+CCLink_R_Status_Bit.入 库agv本体 检检:=Deliver_In.AGV本体 检检;
+CCLink_R_Status_Bit.入 库agv物料 检检:=Deliver_In.AGV物料探 检;
+CCLink_R_Status_Bit.出 库agv本体 检检:=Deliver_Out.AGV本体 检检;
+CCLink_R_Status_Bit.出 库agv物料 检检:=Deliver_Out.AGV物料探 检;
+CCLink_R_Status_Bit.入 库货叉极限:=DInput.CV01伸 缩极限 检检;
+CCLink_R_Status_Bit.入 库货叉原点:=DInput.CV01伸 缩中位 检检1 AND DInput.CV01伸 缩中位 检检2;
+CCLink_R_Status_Bit.出 库库货叉极限:=DInput.Bx03伸 缩极限 检检;
+CCLink_R_Status_Bit.出 库货叉原点:=DInput.Bx03伸 缩中位 检检1 AND DInput.Bx03伸 缩中位 检检2;
+(*Write*) 
+(*Ry*) 
+ST 2025/11/24 
+データ名 : Func 
+9(*急停*) 
+E_Stop:=DInput.BO1急停回路1 AND DInput.BO1急停回路2;
+IF E_Stop=FALSE OR Alarm_Code<>0 OR mode=2 OR DOutp ut.就 绪按钮灯=FALSE THEN 
+    DOutput.启 动按钮灯:=FALSE;
+    DOutput. 暂停按 钮灯:=FALSE;
+END_IF;
+(*启 动按钮*) 
+IF DInput.启 动按钮 AND mode<=1  AND DOutput.就 绪按钮灯 AND Alarm_Code=0  AND DOutput. 暂停按 钮灯=FALSE THEN 
+DOutput.启 动按钮灯:=TRUE;
+END_IF;
+(* 暂停按 钮*) 
+IF DInput.暂停按 钮 AND DOutput.启 动按钮灯 THEN 
+DOutput.暂停按 钮灯:=TRUE;
+DOutput.启 动按钮灯:=FALSE;
+ELSIF 
+设备静止中 THEN 
+DOutput.暂停按 钮灯:=FALSE;
+END_IF;
+ 
+ (*光 栅屏蔽*) 
+ IF DInput.CV01伸 缩中位 检检2=FALSE OR HMI.入 库库光栅屏蔽 THEN 
+ DOutput.屏蔽CV_IN 库光栅信号1:=TRUE;
+ DOutput.屏蔽CV_IN 库光栅信号2:=TRUE;
+ ELSE 
+ DOutput.屏蔽CV_IN 库光栅信号1:=FALSE;
+ DOutput.屏蔽CV_IN 库光栅信号2:=FALSE;
+ END_IF;
+ IF  DInput.Bx03伸 缩中位 检检2=FALSE OR HMI.出 库库光栅屏蔽 THEN 
+ DOutput.屏蔽CV_OUT 库光栅信号1 :=TRUE;
+ DOutput.屏蔽CV_OUT 库光栅信号2 :=TRUE;
+ ELSE 
+ DOutput.屏蔽CV_OUT 库光栅信号1 :=FALSE;
+ DOutput.屏蔽CV_OUT 库光栅信号2 :=FALSE;
+ END_IF;
+  IF HMI.安全 门屏蔽 THEN 
+ DOutput.屏蔽安全 门信号1  :=TRUE;
+ DOutput.屏蔽安全 门信号2  :=TRUE;
+ ELSE 
+ DOutput.屏蔽安全 门信号1  :=FALSE;
+ DOutput.屏蔽安全 门信号2  :=FALSE;
+ END_IF;
+ 
+  (*解 锁1安全 门 *) 
+ IF DInput.解 锁1安全 门 THEN 
+ DOutput.开 锁指示:=FALSE;
+ DOutput. 锁住安全 门:=TRUE;
+ ELSE 
+ DOutput.开 锁指示:=TRUE;
+ DOutput. 锁住安全 门:=FALSE;
+ END_IF;
+ 
+ (*SM411~SM414 ：分 别10ms、100ms、1s、1min的 时时脉冲信号*) 
+(* 设备静止中*) 
+IF Deliver_In.Step1=0 AND Deliver_Out.Step1=0 THEN 
+设备静止中 :=TRUE;
+ELSE 
+设备静止中 :=FALSE;
+END_IF;
+ (*模式*) 
+ IF DInput.手 动自动=FALSE THEN 
+  mode :=2;
+ ELSE 
+  IF DInput. 单机联机=FALSE THEN 
+  mode :=1;
+  ELSE 
+  mode :=0;
+  END_IF;
+ END_IF;
+  
+(*模式 显示*) 
+自动联机模式状 态:=Mode=0;
+自动单机模式状 态:=Mode=1;
+手动模式状 态:=Mode=2;
+(* 语言切 换*) 
+IF 语言显示>3 OR 语言显示=0 THEN 
+语言显示:=1;
+END_IF;
+INCP( 语言切 换,语言显示);
+(*密 错码限-管理者*) 
+IF DInput.管理者=FALSE THEN 
+密错码限:=0;
+DOutput.蜂 鸣器通道4:=FALSE;
+ELSE 
+DOutput.蜂 鸣器通道4:=TRUE;
+END_IF;
+ 
+ (*自 动流程入 库*) 
+Store_1();
+ST 2025/11/24 
+データ名 : Func 
+10  
+ (*自 动流程出 库*) 
+Outbound_1();
+ 
+  (*Fork_在零点*) 
+入库Fork_在零点:=DInput.CV01伸 缩中位 检检1 AND DInput.CV01伸 缩中位 检检2 AND 入 库货叉当前位置>-2 AND 入 库货叉当前位置<2 ;
+出库Fork_在零点:=DInput.Bx03伸 缩中位 检检1 AND DInput.Bx03伸 缩中位 检检2 AND 出 库货叉当前位置>-2 AND 出 库货叉当前位置<2 ;
+ 
+ (*手 动允许*) 
+ IF 入 库货叉当前位置<=parameter.入 库货叉位置 设置 AND DInput.CV01伸 缩极限 检检=FALSE AND DOutput.就 绪按钮灯 THEN 
+ 入库货叉伸出允 许:=TRUE;
+ ELSE 
+ 入库货叉伸出允 许:=FALSE;
+ END_IF;
+  IF 入 库货叉当前位置>-1  AND DOutput.就 绪按钮灯 THEN 
+ 入库货叉缩回允 许:=TRUE;
+ ELSE 
+ 入库货叉缩回允 许:=FALSE;
+  END_IF;
+  
+  IF 出 库货叉当前位置<=parameter.出 库货叉位置 设置 AND DInput.Bx03伸 缩极限 检检=FALSE  AND DOutput.就 绪按钮灯 THEN 
+   出 库货叉伸出允 许:=TRUE;
+ ELSE 
+   出 库货叉伸出允 许:=FALSE;
+ END_IF;
+  IF 出 库货叉当前位置>-1  AND DOutput.就 绪按钮灯 THEN 
+     出 库货叉缩回允 许:=TRUE;
+ ELSE 
+ 出库货叉缩回允 许:=FALSE;
+  END_IF;
+  
+   (*手 动模式*) 
+IF Mode=2 THEN 
+    Axle_IN_Sew_Control_Bit.正点 动:=Manual.手 动入库货叉伸出 AND 入 库货叉伸出允 许 ;
+Axle_IN_Sew_Control_Bit. 负点动:=Manual.手 动入库货叉缩回 AND 入 库货叉缩回允 许;
+Axle_OUT_Sew_Control_Bit.正点 动:=Manual.手 动出库货叉伸出 AND 出 库货叉伸出允 许;
+Axle_OUT_Sew_Control_Bit. 负点动:=Manual.手 动出库货叉缩回 AND 出 库货叉缩回允 许;
+IF Axle_IN_Sew_Control_Bit.正点 动 OR Axle_IN_Sew_Control_Bit. 负点动 THEN 
+Axle_IN_Sew_Write. 设定应用模式:=100;
+Axle_IN_Sew_Control_Bit.使能 紧急停止:=TRUE;
+Axle_IN_Sew_Control_Bit.使能 应用停止:=TRUE;
+Axle_IN_Sew_Write. 额定速度:=100;
+END_IF;
+IF Axle_OUT_Sew_Control_Bit.正点 动 OR Axle_OUT_Sew_Control_Bit. 负点动 THEN 
+Axle_OUT_Sew_Write. 设定应用模式:=100;
+Axle_OUT_Sew_Control_Bit.使能 紧急停止:=TRUE;
+Axle_OUT_Sew_Control_Bit.使能 应用停止:=TRUE;
+Axle_OUT_Sew_Write. 额定速度:=100;
+END_IF;
+END_IF;
+ (*自 动模式*) 
+ (*入 库*) 
+IF( Deliver_In. 货叉伸出控制  OR (Manual.自 动入库货叉伸出 AND 手 动模式状 态)) AND DOutput.就 绪按钮灯  THEN 
+入库定位位置:=(parameter.入 库货叉位置 设置+parameter.入 库货叉位置偏移 设置);
+Axle_IN_Pos:=入 库定位位置*10;
+开始定位_IN:=TRUE;
+END_IF;
+IF( Deliver_In. 货叉缩回控制 OR (Manual.自 动入库货叉缩回 AND 手 动模式状 态))AND DOutput.就 绪按钮灯 THEN 
+入库定位位置:=0;
+Axle_IN_Pos:=入 库定位位置;
+开始定位_IN:=TRUE;
+END_IF;
+IF 开始定位_IN  THEN 
+        Axle_IN_Sew_Write. 设定应用模式:=400;
+Axle_IN_Sew_Control_Bit.使能 紧急停止:=TRUE;
+Axle_IN_Sew_Control_Bit.使能 应用停止:=TRUE;
+Axle_IN_Sew_Control_Bit.随 总线斜波启 动停止:=TRUE;
+Axle_IN_Sew_Write. 额定速度:=parameter.入 库货叉速度 设置;
+END_IF;
+(*出 库*) 
+   IF( Deliver_OUT. 货叉伸出控制  OR (Manual.自 动出库货叉伸出  AND 手 动模式状 态)) AND DOutput.就 绪按钮灯  THEN 
+  出 库定位位置:=(parameter.出 库货叉位置 设置+parameter.出 库货叉位置偏移 设置);
+  Axle_OUT_Pos:=出 库定位位置*10;
+  开始定位_OUT:=TRUE;
+END_IF;
+IF (Deliver_OUT. 货叉缩回控制 OR (Manual.自 动出库货叉缩回 AND 手 动模式状 态)) AND DOutput.就 绪按钮灯  THEN 
+出库定位位置:=0;
+Axle_OUT_Pos:=出 库定位位置;
+开始定位_OUT:=TRUE;
+END_IF;
+IF 开始定位_OUT THEN 
+       Axle_OUT_Sew_Write. 设定应用模式:=400;
+Axle_OUT_Sew_Control_Bit.使能 紧急停止:=TRUE;
+Axle_OUT_Sew_Control_Bit.使能 应用停止:=TRUE;
+Axle_OUT_Sew_Control_Bit.随 总线斜波启 动停止:=TRUE;
+Axle_OUT_Sew_Write. 额定速度:=parameter.出 库货叉速度 设置;
+END_IF;
+ST 2025/11/24 
+データ名 : Func 
+11 (*加减速度*) 
+Axle_IN_Sew_Write.加速度:=parameter.入 库货叉加速度;
+Axle_IN_Sew_Write.减速度:=parameter.入 库货叉减速度;
+Axle_OUT_Sew_Write.加速度:=parameter.出 库货叉加速度;
+Axle_OUT_Sew_Write.减速度:=parameter.出 库货叉减速度;
+(*定位到达*) 
+IF ABS(入 库货叉当前位置-入 库定位位置)<20 THEN 
+      入 库货叉定位到达:=TRUE;
+ELSE 
+入库货叉定位到达:=FALSE;
+END_IF;
+IF ABS(出 库货叉当前位置-出 库定位位置)<20 THEN 
+      出 库货叉定位到达:=TRUE;
+ELSE 
+出库货叉定位到达:=FALSE;
+END_IF;
+IF Axle_IN_Sew_Status_Bit.信息已就位激活 AND Axle_IN_Sew_C ontrol_Bit.随 总线斜波启 动停止  AND 入 库货叉定位到达 THEN 
+开始定位_IN:=FALSE;
+END_IF;
+IF Axle_OUT_Sew_Status_Bit.信息已就位激活 AND Axle_OUT_Sew _Control_Bit.随 总线斜波启 动停止  AND 出 库货叉定位到达 THEN 
+开始定位_OUT:=FALSE;
+END_IF;
+(*复位*) 
+IF Axle_IN_Sew_Control_Bit.正点 动=FALSE  AND Axle_IN_Sew_Control_Bit. 负点动=FALSE  AND 开始定位_IN=FALSE THEN 
+Axle_IN_Sew_Control_Bit.使能 紧急停止:=FALSE;
+Axle_IN_Sew_Control_Bit.使能 应用停止:=FALSE;
+Axle_IN_Sew_Control_Bit.随 总线斜波启 动停止:=FALSE;
+END_IF;
+IF Axle_OUT_Sew_Control_Bit.正点 动=FALSE  AND Axle_OUT_Sew_Control_Bit. 负点动=FALSE  AND 开始定位_OUT=FALSE THEN 
+Axle_OUT_Sew_Control_Bit.使能 紧急停止:=FALSE;
+Axle_OUT_Sew_Control_Bit.使能 应用停止:=FALSE;
+Axle_OUT_Sew_Control_Bit.随 总线斜波启 动停止:=FALSE;
+END_IF;
+(* 货叉当前位置 换算*) 
+入库货叉实实位置:=入 库货叉实实位置_1/10;
+入库货叉当前位置:=入 库货叉实实位置-parameter.入 库货叉位置偏移 设置;
+出库货叉实实位置:=出 库货叉实实位置_1/10;
+出库货叉当前位置:=出 库货叉实实位置-parameter.出 库货叉位置偏移 设置;
+(*故障及状 态态取*) 
+IF  Axle_IN_Sew_Status_Bit.故障 THEN 
+Axle_IN_Alalm := Axle_IN_Sew_Read.状 态主故障;
+Axle_IN_Status := 0;
+ELSE 
+Axle_IN_Alalm:=0 ;
+Axle_IN_Status:=Axle_IN_Sew_Read.状 态主故障 ;
+END_IF;
+IF  Axle_Out_Sew_Status_Bit.故障 THEN 
+Axle_OUT_Alalm:=Axle_OUT_Sew_Read.状 态主故障;
+Axle_OUT_Status:=0;
+ELSE 
+Axle_OUT_Alalm:=0;
+Axle_OUT_Status:=Axle_OUT_Sew_Read.状 态主故障;
+END_IF;
+(*急停*) 
+IF E_Stop=FALSE OR Alarm_Code<>0 THEN 
+开始定位_IN:=FALSE;
+开始定位_OUT:=FALSE;
+Axle_IN_Sew_Control_Bit.使能 紧急停止:=FALSE;
+Axle_IN_Sew_Control_Bit.使能 应用停止:=FALSE;
+Axle_IN_Sew_Control_Bit.随 总线斜波启 动停止:=FALSE;
+Axle_OUT_Sew_Control_Bit.使能 紧急停止:=FALSE;
+Axle_OUT_Sew_Control_Bit.使能 应用停止:=FALSE;
+Axle_OUT_Sew_Control_Bit.随 总线斜波启 动停止:=FALSE;
+END_IF;
+(* 设备状态*) 
+Master_R.设备状态:=0;
+IF Mode<=1 AND Alarm_Code=0 AND DOutput.启 动按钮灯 AND 初始化完成 THEN 
+Master_R.设备状态:=1;
+END_IF;
+IF Alarm_Code<>0 THEN 
+Master_R.设备状态:=3;
+END_IF;
+(*回原点*) 
+IF 回原点按 钮 AND Mode=2 THEN 
+回原点中:=TRUE;
+END_IF;
+IF 回原点中 THEN 
+IF 入 库Fork_在零点=FALSE  THEN 
+Manual.自 动入库货叉缩回:=TRUE;
+END_IF;
+IF 出 库Fork_在零点=FALSE THEN 
+Manual.自 动出库货叉缩回:=TRUE;
+ST 2025/11/24 
+データ名 : Func 
+12 END_IF;
+IF  Deliver_In. 入 库口顶升下限 检检 AND Deliver_In. 货叉顶升下限 检检 AND 
+ Deliver_Out.出 库口顶升下限 检检 AND Deliver_Out. 货叉顶升下限 检检 AND 
+ 入 库Fork_在零点 AND 出 库Fork_在零点 THEN 
+ Deliver_In. 货叉缩回控制:=FALSE;
+ Deliver_Out. 货叉缩回控制:=FALSE;
+ 回原点中:=FALSE;
+END_IF;
+END_IF;
+IF  Mode<>2 OR Alarm_Code<>0  THEN 
+Deliver_In.货叉缩回控制:=FALSE;
+Deliver_Out. 货叉缩回控制:=FALSE;
+回原点中:=FALSE;
+END_IF;
+ 
+ 
+ 
+ST 2025/11/24 
+データ名 : IO 
+13 (* 库入*) 
+DInput.库入电源:=X60;
+DInput.X01_1:=X61;
+DInput.BO1急停回路1:=X62;
+DInput.BO1急停回路2:=X63;
+DInput.BO1光 栅回路1:=X64;
+DInput.BO1光 栅回路2:=X65;
+DInput.BO1安全 门回路1:=X66;
+DInput.BO1安全 门回路2:=X67;
+DInput.AO2急停回路1:=X68;
+DInput.AO2急停回路2:=X69;
+DInput.BO2急停回路1:=X6A;
+DInput.BO2急停回路2:=X6B;
+DInput.BO2光 栅回路1:=X6C;
+DInput.BO2光 栅回路2:=X6D;
+DInput.BO2安全 门回路1:=X6E;
+DInput.BO2安全 门回路2:=X6F;
+DInput.手 动自动:=X70;
+DInput.单机联机:=X71;
+DInput.X02_2:=X72;
+DInput.管理者:=X73;
+DInput.故障复位:=X74;
+DInput.就 绪按钮:=X75;
+DInput.启 动按钮:=X76;
+DInput.暂停按 钮:=X77;
+DInput.灯光 检检按钮:=X78;
+DInput.X09_2:=X79;
+DInput.运行准 备01:=X7A;
+DInput.运行准 备02:=X7B;
+DInput.运行准 备11:=X7C;
+DInput.运行准 备12:=X7D;
+DInput.柜机空 调故障:=X7E;
+DInput.X0F_2:=X7F;
+DInput.CV01 顶升上限 检检:=X80;
+DInput.CV01 顶升下限 检检:=X81;
+DInput.CV01 顶升故障 检检:=X82;
+DInput.CV01 顶升电源检检:=X83;
+DInput.CV01物料停止 检检:=X84;
+DInput.X05_3:=X85;
+DInput.CV01伸 缩中位 检检1:=X86;
+DInput.CV01伸 缩中位 检检2:=X87;
+DInput.CV01伸 缩极限 检检:=NOT X88;
+DInput.CV01伸 缩电源检检:=X89;
+DInput.CV01AGV物料 检检:=X8A;
+DInput.CV01AGV本体 检检1:=X8B;
+DInput.CV01AGV本体 检检2:=X8C;
+DInput.CV01超 宽检检1:=X8D;
+DInput.CV01超 宽检检2:=X8E;
+DInput.CV01超高 检检:=X8F;
+DInput.Bx03 顶升上限 检检:=X90;
+DInput.Bx03 顶升下限 检检:=X91;
+DInput.Bx03 顶升故障 检检:=X92;
+DInput.Bx03 顶升电源检检:=X93;
+DInput.Bx03物料停止 检检:=X94;
+DInput.Bx03物料减速 检检:=X95;
+DInput.Bx03伸 缩中位 检检1:=X96;
+DInput.Bx03伸 缩中位 检检2:=X97;
+DInput.Bx03伸 缩极限 检检:=NOT X98;
+DInput.Bx03伸 缩电源检检:=X99;
+DInput.Bx03AGV物料 检检:=X9A;
+DInput.Bx03AGV本体 检检1:=X9B;
+DInput.Bx03AGV本体 检检2:=X9C;
+DInput.X0D_4:=X9D;
+DInput.X0E_4:=X9E;
+DInput.X0F_4:=X9F;
+DInput.Bx02 顶升上限 检检:=XA0;
+DInput.Bx02 顶升下限 检检:=XA1;
+DInput.Bx02 顶升故障 检检:=XA2;
+DInput.Bx02 顶升电源检检:=XA3;
+DInput.Bx02物料到位 检检:=XA4;
+DInput.Bx02物料减速 检检:=XA5;
+DInput.Bx02 库送故障 检检:=XA6;
+DInput.Bx02 库送电源检检:=XA7;
+DInput.Bx04 顶升上限 检检:=XA8;
+DInput.Bx04 顶升下限 检检:=XA9;
+DInput.Bx04 顶升故障 检检:=XAA;
+DInput.Bx04 顶升电源检检:=XAB;
+DInput.Bx04物料到位 检检:=XAC;
+DInput.X0D_5:=XAD;
+DInput.Bx04 库送故障 检检:=XAE;
+DInput.Bx04 库送电源检检:=XAF;
+DInput.AGV 库安全光 栅库入信号1:=XB0;
+DInput.AGV 库安全光 栅库入信号2:=XB1;
+DInput.AGV 库安全光 栅库入信号11:=XB2;
+DInput.AGV 库安全光 栅库入信号12:=XB3;
+DInput.CV_IN 库安全光 栅库入信号1:=XB4;
+DInput.CV_IN 库安全光 栅库入信号2:=XB5;
+ST 2025/11/24 
+データ名 : IO 
+14 DInput.CV_Out 库安全光 栅库入信号1:=XB6;
+DInput.CV_Out 库安全光 栅库入信号2:=XB7;
+DInput.X08_6:=XB8;
+DInput.X09_6:=XB9;
+DInput.安全 门1库入信号1:=XBA;
+DInput.安全 门1库入信号2:=XBB;
+DInput.解 锁1安全 门:=XBC;
+DInput.X0D_6:=XBD;
+DInput.X0E_6:=XBE;
+DInput.X0F_6:=XBF;
+DInput.Photonic1_output1:=XC0;
+DInput.Photonic1_output2:=XC1;
+DInput.Photonic1_output3:=XC2;
+DInput.Photonic1_output4:=XC3;
+DInput.Photonic1_Error:=XC4;
+DInput.X05_7:=XC5;
+DInput.Photonic2_output1:=XC6;
+DInput.Photonic2_output2:=XC7;
+DInput.Photonic2_output3:=XC8;
+DInput.Photonic2_output4:=XC9;
+DInput.Photonic2_Error:=XCA;
+DInput.X0B_7:=XCB;
+DInput.Photonic3_output1:=XCC;
+DInput.Photonic3_output2:=XCD;
+DInput.Photonic3_output3:=XCE;
+DInput.Photonic3_output4:=XCF;
+DInput.Photonic3_Error:=XD0;
+DInput.X01_8:=XD1;
+DInput.Photonic4_output1:=XD2;
+DInput.Photonic4_output2:=XD3;
+DInput.Photonic4_output3:=XD4;
+DInput.Photonic4_output4:=XD5;
+DInput.Photonic4_Error:=XD6;
+DInput.X07_8:=XD7;
+DInput.X08_8:=XD8;
+DInput.X09_8:=XD9;
+DInput.X0A_8:=XDA;
+DInput.X0B_8:=XDB;
+DInput.X0C_8:=XDC;
+DInput.X0D_8:=XDD;
+DInput.X0E_8:=XDE;
+DInput.X0F_8:=XDF;
+(* 库出*) 
+YE0:=DOutput.柜体灯_ 红 OR DInput.灯光 检检按钮;
+YE1:=DOutput.柜体灯_黄 OR DInput.灯光 检检按钮;
+YE2:=DOutput.柜体灯_ 绿 OR DInput.灯光 检检按钮;
+YE3:=DOutput.蜂 鸣器通道1;
+YE4:=DOutput.蜂 鸣器通道2;
+YE5:=DOutput.蜂 鸣器通道3;
+YE6:=DOutput.蜂 鸣器通道4;
+YE7:=DOutput.Y07_1;
+YE8:=DOutput.就 绪按钮灯 OR DInput.灯光 检检按钮;
+YE9:=DOutput.启 动按钮灯 OR DInput.灯光 检检按钮;
+YEA:=DOutput. 暂停按 钮灯 OR DInput.灯光 检检按钮;
+YEB:=DOutput.Y0B_1;
+YEC:=DOutput.Y0C_1;
+YED:=DOutput.Y0D_1;
+YEE:=DOutput.开 锁指示;
+YEF:=DOutput. 锁住安全 门;
+YF0:=DOutput.Bx01 顶升正 转运行;
+YF1:=DOutput.Bx01 顶升反 转运行;
+YF2:=DOutput.Bx01 顶升故障复位;
+DOutput.Bx01 顶升故障复位:=TRUE;
+YF3:=DOutput.Y03_2;
+YF4:=DOutput.光 栅1警示灯_ 红 OR DInput.灯光 检检按钮;
+YF5:=DOutput.光 栅1警示灯_ 绿 OR DInput.灯光 检检按钮;
+YF6:=DOutput.Bx02 顶升正 转运行;
+YF7:=DOutput.Bx02 顶升反 转运行;
+YF8:=DOutput.Bx02 顶升故障复位;
+DOutput.Bx02 顶升故障复位:=TRUE;
+YF9:=DOutput.Y09_2;
+YFA:=DOutput.Bx02 库送正 转运行;
+YFB:=DOutput.Bx02 库送反 转运行;
+YFC:=DOutput.Bx02 库送速度A;
+YFD:=DOutput.Bx02 库送速度B;
+YFE:=DOutput.Bx02 库送故障复位;
+YFF:=DOutput.Y0F_2;
+Y100:=DOutput.Bx03 顶升正 转运行;
+Y101:=DOutput.Bx03 顶升反 转运行;
+Y102:=DOutput.Bx03 顶升故障复位;
+DOutput.Bx03 顶升故障复位:=TRUE;
+Y103:=DOutput.Y03_3;
+Y104:=DOutput.光 栅2警示灯_ 红 OR DInput.灯光 检检按钮;
+Y105:=DOutput.光 栅2警示灯_ 绿 OR DInput.灯光 检检按钮;
+Y106:=DOutput.Bx04 顶升正 转运行;
+Y107:=DOutput.Bx04 顶升反 转运行;
+Y108:=DOutput.Bx04 顶升故障复位;
+ST 2025/11/24 
+データ名 : IO 
+15 DOutput.Bx04 顶升故障复位:=TRUE;
+Y109:=DOutput.Y09_3;
+Y10A:=DOutput.Bx04 库送正 转运行;
+Y10B:=DOutput.Bx04 库送反 转运行;
+Y10C:=DOutput.Bx04 库送速度A;
+Y10D:=DOutput.Bx04 库送速度B;
+Y10E:=DOutput.Bx04 库送故障复位;
+Y10F:=DOutput.Y0F_3;
+Y110:=DOutput.Photonic1_Input1;
+Y111:=DOutput.Photonic1_Input2;
+Y112:=DOutput.Photonic1_Input3;
+Y113:=DOutput.Photonic1_Input4;
+Y114:=DOutput.Photonic2_Input1;
+Y115:=DOutput.Photonic2_Input2;
+Y116:=DOutput.Photonic2_Input3;
+Y117:=DOutput.Photonic2_Input4;
+Y118:=DOutput.Photonic3_Input1;
+Y119:=DOutput.Photonic3_Input2;
+Y11A:=DOutput.Photonic3_Input3;
+Y11B:=DOutput.Photonic3_Input4;
+Y11C:=DOutput.Photonic4_Input1;
+Y11D:=DOutput.Photonic4_Input2;
+Y11E:=DOutput.Photonic4_Input3;
+Y11F:=DOutput.Photonic4_Input4;
+Y120:=DOutput.Y00_5;
+Y121:=DOutput.Y01_5;
+Y122:=DOutput.Y02_5;
+Y123:=DOutput.Y03_5;
+Y124:=DOutput.Y04_5;
+Y125:=DOutput.Y05_5;
+Y126:=DOutput.屏蔽CV_IN 库光栅信号1;
+Y127:=DOutput.屏蔽CV_IN 库光栅信号2;
+Y128:=DOutput.Y08_5;
+Y129:=DOutput.屏蔽CV_OUT 库光栅信号1;
+Y12A:=DOutput.屏蔽CV_OUT 库光栅信号2;
+Y12B:=DOutput.Y0B_5;
+Y12C:=DOutput.屏蔽安全 门信号1;
+Y12D:=DOutput.屏蔽安全 门信号2;
+Y12E:=DOutput.Y0E_5;
+Y12F:=DOutput.Y0F_5;
+Deliver_In.入 库口顶升上限 检检:=DInput.Bx02 顶升上限 检检;
+Deliver_In.入 库口顶升下限 检检:=DInput.Bx02 顶升下限 检检;
+Deliver_In.货叉顶升上限 检检:=DInput.CV01 顶升上限 检检;
+Deliver_In.货叉顶升下限 检检:=DInput.CV01 顶升下限 检检;
+Deliver_In.入 库口物料 检检:=DInput.Bx02物料到位 检检;
+Deliver_In.入 库口减速 检检:=DInput.Bx02物料减速 检检;
+Deliver_In.货叉位置物料 检检:=DInput.CV01物料停止 检检;
+Deliver_In.货叉伸出到位:=入 库货叉定位到达 AND Deliver_In. 货叉伸出控制;
+Deliver_In.货叉缩回到位:=DInput.CV01伸 缩中位 检检1 AND DInput.CV01伸 缩中位 检检2 AND 开始定位_IN=FALSE ;
+Deliver_OUT.出 库口顶升上限 检检:=DInput.Bx04 顶升上限 检检;
+Deliver_OUT.出 库口顶升下限 检检:=DInput.Bx04 顶升下限 检检;
+Deliver_OUT. 货叉顶升上限 检检:=DInput.Bx03 顶升上限 检检;
+Deliver_OUT. 货叉顶升下限 检检:=DInput.Bx03 顶升下限 检检;
+Deliver_OUT.出 库口物料 检检:=DInput.Bx04物料到位 检检;
+Deliver_OUT. 货叉位置减速 检检:=DInput.Bx03物料减速 检检;
+Deliver_OUT. 货叉位置物料 检检:=DInput.Bx03物料停止 检检;
+Deliver_OUT. 货叉伸出到位:=出 库货叉定位到达 AND Deliver_OUT. 货叉伸出控制;
+Deliver_OUT. 货叉缩回到位:=DInput.Bx03伸 缩中位 检检1 AND DInput.Bx03伸 缩中位 检检2  AND 开始定位_OUT=FALSE ;
+ST 2025/11/24 
+データ名 : Wcs 
+16 (*托 盘编号信息，最 长12位数    RFID字符串 长度12*) 
+Master_R.站台1001RFID 读取值:="1A2B3C4D5E6F";
+Master_R.站台1003RIFD 读取值:=Master_R.站台1003RIFD 读取值;
+FB/FUNプログラム 2025/11/24 
+データ名 : Outbound 
+ファンクションブロック 
+17 (*出 库台初始化*) 
+IF (Mode>1 OR  Deliver_Out.Step1=0  OR Alarm_Code<> 0 )AND 初始化开始=FALSE THEN 
+Deliver_Out.出 库口顶升下降控制:=FALSE;
+Deliver_Out.出 库口顶升上升控制:=FALSE;
+Deliver_Out. 货叉顶升上升控制:=FALSE;
+Deliver_Out. 货叉顶升下降控制:=FALSE;
+Deliver_Out. 库送线控制:=FALSE;
+    Deliver_Out. 库送线低速控制:=FALSE;
+    Deliver_Out. 货叉伸出控制:=FALSE;
+    Deliver_Out. 货叉缩回控制:=FALSE;
+    CCLink_R.出 库AGV放 货完成:=0;
+CCLink_R.出 库AGV目的地:=0;
+END_IF;
+(* 报警*) 
+IF Alarm_Code<>0 AND Deliver_Out.Step1<>0 THEN 
+Deliver_Out.Step1:=0;
+Deliver_Out.当前任 务状态:=3;
+END_IF;
+(*出 库口到 货叉*) 
+(* 联机*) 
+IF Master_R. 设备状态=1  AND Mode=0 AND  CCLink_W.出 库站台任 务ID<>Deliver_Out.当前任 务ID AND CCLink_W.出 库站台任 务ID<>0 
+AND Deliver_Out.Step1=0  AND Alarm_Code=0  AND Deli ver_Out.货叉位置物料 检检=FALSE AND Deliver_Out.出 库口物料 检检 THEN 
+Deliver_Out.当前任 务ID:=CCLink_W.出 库站台任 务ID;
+Deliver_Out.当前任 务状态:=1;
+Deliver_Out.Step1:=1;
+END_IF;
+(* 单机*) 
+IF Master_R. 设备状态=1  AND Mode=1 AND  单机出 库ID<>Deliver_Out.当前任 务ID AND 单机出 库ID<>0 
+ AND Deliver_Out.Step1=0  AND Alarm_Code=0  AND Del iver_Out.货叉位置物料 检检=FALSE AND Deliver_Out.出 库口物料 检检 THEN 
+Deliver_Out.当前任 务ID:= 单机出 库ID;
+Deliver_Out.当前任 务状态:=1;
+Deliver_Out.Step1:=1;
+END_IF;
+(*流程开始*) 
+IF Deliver_Out.Step1=1 AND Deliver_Out. 货叉位置物料 检检=FALSE AND Deliver_Out.出 库口物料 检检 THEN 
+Deliver_Out.出 库口顶升下降控制:=TRUE;
+Deliver_Out.Step1:=2;
+END_IF;
+IF Deliver_Out.Step1=2 AND Deliver_Out.出 库口顶升下限 检检 THEN 
+Deliver_Out.出 库口顶升下降控制:=FALSE;
+IF Deliver_Out. 货叉顶升下限 检检=FALSE THEN 
+Deliver_Out. 货叉顶升下降控制:=TRUE;
+END_IF;
+IF Deliver_Out. 货叉顶升下限 检检 THEN 
+Deliver_Out. 货叉顶升下降控制:=FALSE;
+    Deliver_Out. 库送线控制:=TRUE;
+    Deliver_Out.Step1:=3;
+END_IF;
+END_IF;
+IF Deliver_Out.Step1=3   THEN 
+IF Deliver_Out. 货叉位置减速 检检 THEN 
+Deliver_Out. 库送线低速控制:=TRUE;
+END_IF;
+IF Deliver_Out. 货叉位置物料 检检 THEN 
+Deliver_Out. 库送线控制:=FALSE;
+        Deliver_Out. 库送线低速控制:=FALSE;
+       Deliver_Out. Step1:=4;
+END_IF;
+END_IF;
+IF Deliver_Out.Step1=4 AND Deliver_Out.出 库口物料 检检=FALSE THEN 
+Deliver_Out.出 库口顶升上升控制:=TRUE;
+Deliver_Out.Step1:=5;
+END_IF;
+ 
+IF Deliver_Out.Step1=5 AND Deliver_Out.出 库口顶升上限 检检 THEN 
+Deliver_Out.出 库口顶升上升控制:=FALSE;
+Deliver_Out.当前任 务状态:=2;
+   Deliver_Out. Step1:=0;
+   单机出 库ID:=0;
+   CCLink_W.出 库站台任 务ID:=0;
+END_IF;
+ Deliver_Out.AGV就 绪:=DInput.Photonic3_Error ;
+Deliver_Out.AGV停止:=DInput.Photonic3_output2 ;
+Deliver_Out.AGV本体 检检:=DInput.CV01AGV本体 检检1 AND DInput.CV01AGV本体 检检2 ;
+Deliver_Out.AGV物料探 检:=DInput.CV01AGV物料 检检;
+DOutput.Photonic3_Input3:=Deliver_Out.AGV放行;
+(* 货叉到AGV*) 
+(* 联机*) 
+IF Master_R. 设备状态=1  AND Mode=0 AND CCLink_W.允 许出料到AGV<>0  AND CCLink_R.出 库AGV目的地<>CCLink_W.允 许出料到AGV AND 
+Deliver_Out.AGV就 绪 AND Deliver_Out.AGV停止   AND 
+Deliver_Out.Step1=0  AND Alarm_Code=0 AND Deliver_O ut.AGV物料探 检=FALSE  AND Deliver_Out. 货叉位置物料 检检 AND Deliver_Out.AGV本体 检检 THEN 
+    Deliver_Out.当前任 务状态:=1;
+Deliver_Out.Step1:=10;
+FB/FUNプログラム 2025/11/24 
+データ名 : Outbound 
+ファンクションブロック 
+18 CCLink_R.出 库AGV目的地:=CCLink_W.允 许出料到AGV;
+END_IF;
+(* 单机*) 
+IF Master_R. 设备状态=1  AND Mode=1 AND 单机出 库AGV目的<>0   AND Deliver_Out.AGV就 绪 AND Deliver_Out.AGV停止   AND 
+Deliver_Out.Step1=0  AND Alarm_Code=0 AND Deliver_O ut.AGV物料探 检=FALSE  AND Deliver_Out. 货叉位置物料 检检 AND Deliver_Out.AGV本体 检检 THEN 
+    Deliver_Out.当前任 务状态:=1;
+Deliver_Out.Step1:=10;
+CCLink_R.出 库AGV目的地:= 单机出 库AGV目的;
+单机出 库AGV目的:=0;
+END_IF;
+IF  Deliver_Out.Step1=10 AND  Deliver_Out.AGV物料探 检=FALSE AND Deliver_Out. 货叉位置物料 检检 THEN 
+IF 出 库Fork_在零点=FALSE THEN 
+Deliver_Out. 货叉缩回控制:=TRUE;
+Deliver_Out.Step1:=11;
+END_IF ;
+IF 出 库Fork_在零点 THEN 
+Deliver_Out. 货叉缩回控制:=FALSE;
+Deliver_Out.Step1:=11;
+END_IF ;
+END_IF;
+IF  Deliver_Out.Step1=11 AND Deliver_Out. 货叉缩回到位 THEN 
+Deliver_Out. 货叉顶升上升控制:=TRUE;
+Deliver_Out.Step1:=12;
+END_IF;
+IF  Deliver_Out.Step1=12 AND Deliver_Out. 货叉顶升上限 检检 THEN 
+Deliver_Out. 货叉顶升上升控制:=FALSE;
+Deliver_Out. 货叉伸出控制:=TRUE;
+Deliver_Out.Step1:=13;
+END_IF;
+  
+  IF  Deliver_Out.Step1=13 AND Deliver_Out. 货叉伸出到位 THEN 
+  Deliver_Out. 货叉伸出控制:=FALSE;
+  Deliver_Out. 货叉顶升下降控制:=TRUE;
+Deliver_Out.Step1:=14;
+  END_IF;
+  
+  IF  Deliver_Out.Step1=14 AND Deliver_Out. 货叉顶升下限 检检 THEN 
+    Deliver_Out. 货叉顶升下降控制:=FALSE;
+    Deliver_Out. 货叉缩回控制:=TRUE;
+    Deliver_Out.Step1:=15;
+  END_IF;
+  
+  IF Deliver_Out.Step1=15 AND Deliver_Out. 货叉缩回到位 THEN 
+  Deliver_Out. 货叉缩回控制:=FALSE;
+  Deliver_Out.当前任 务状态:=2;
+Deliver_Out.Step1:=0;
+CCLink_R.出 库AGV放 货完成:=1;
+单机出 库AGV目的:=0;
+  END_IF;
+  
+  (*AGV放行*) 
+IF  CCLink_R.出 库AGV放 货完成=1 AND  Deliver_Out.AGV就 绪 THEN 
+  Deliver_Out.AGV放行:=TRUE;
+   Deliver_Out.AGVl离开中:=TRUE;
+ELSIF 
+  CCLink_R.出 库AGV放 货完成=1 AND  Deliver_Out.AGV就 绪=FALSE AND Deliver_Out.AGV放行 THEN 
+   Deliver_Out.AGV放行:=FALSE;
+  CCLink_R.出 库AGV放 货完成:=0;
+  CCLink_R.出 库AGV目的地:=0;
+END_IF;
+(*AGV已离开_打开光 栅*) 
+IF DInput.Photonic4_output2 AND DInput.Photonic4_Er ror THEN 
+   Deliver_Out.AGVl离开中:=FALSE;
+   DOutput.Photonic4_Input3:=TRUE;
+ELSIF 
+  DOutput.Photonic4_Input3 AND DInput.Photonic4_Err or=FALSE THEN 
+  DOutput.Photonic4_Input3:=FALSE;
+END_IF;
+    
+  
+FB/FUNプログラム 2025/11/24 
+データ名 : Store 
+ファンクションブロック 
+19 (*入 库台初始化*) 
+IF (Mode>1 OR  Deliver_In. Step1=0  OR Alarm_Code<> 0 ) AND 初始化开始=FALSE THEN 
+Deliver_In. 入 库口顶升下降控制:=FALSE;
+Deliver_In. 入 库口顶升上升控制:=FALSE;
+Deliver_In. 货叉顶升上升控制:=FALSE;
+Deliver_In. 货叉顶升下降控制:=FALSE;
+Deliver_In. 库送线控制:=FALSE;
+    Deliver_In. 库送线低速控制:=FALSE;
+    Deliver_In. 货叉伸出控制:=FALSE;
+    Deliver_In. 货叉缩回控制:=FALSE;
+END_IF;
+(*初始化*) 
+IF DOutput.启 动按钮灯 AND NOT 启 动上升沿 THEN 
+初始化开始:=TRUE;
+END_IF;
+启动上升沿:=DOutput.启 动按钮灯;
+IF 初始化开始 THEN 
+IF Deliver_In. 入 库口顶升下限 检检=FALSE AND Deliver_In. 入 库口物料 检检=FALSE THEN 
+Deliver_In. 入 库口顶升下降控制:=TRUE;
+END_IF;
+IF Deliver_In. 货叉顶升下限 检检=FALSE THEN 
+Deliver_In. 货叉顶升下降控制:=TRUE;
+END_IF;
+IF Deliver_Out.出 库口顶升上限 检检=FALSE AND Deliver_Out.出 库口物料 检检=FALSE THEN 
+Deliver_Out.出 库口顶升上升控制:=TRUE;
+END_IF;
+IF Deliver_Out. 货叉顶升下限 检检=FALSE THEN 
+Deliver_Out. 货叉顶升下降控制:=TRUE;
+END_IF;
+IF 入 库Fork_在零点=FALSE THEN 
+Deliver_In.货叉缩回控制:=TRUE;
+END_IF;
+IF 出 库Fork_在零点=FALSE THEN 
+Deliver_Out. 货叉缩回控制:=TRUE;
+END_IF;
+IF  Deliver_In. 入 库口顶升下限 检检 AND Deliver_In. 货叉顶升下限 检检 AND 
+ Deliver_Out.出 库口顶升上限 检检 AND Deliver_Out. 货叉顶升下限 检检 AND 
+ 入 库Fork_在零点 AND 出 库Fork_在零点 THEN 
+ Deliver_In. 入 库口顶升下降控制:=FALSE;
+ Deliver_In. 货叉顶升下降控制:=FALSE;
+ Deliver_Out.出 库口顶升上升控制:=FALSE;
+ Deliver_Out. 货叉顶升下降控制:=FALSE;
+ Deliver_In. 货叉缩回控制:=FALSE;
+ Deliver_Out. 货叉缩回控制:=FALSE;
+ 初始化完成:=TRUE;
+ 初始化开始:=FALSE;
+END_IF;
+END_IF;
+IF DOutput.启 动按钮灯=FALSE THEN 
+初始化完成:=FALSE;
+初始化开始:=FALSE;
+END_IF;
+(* 报警*) 
+IF Alarm_Code<>0 AND Deliver_In.Step1<>0 THEN 
+Deliver_In.Step1:=0;
+Deliver_In.当前任 务状态:=3;
+END_IF;
+(*堆 垛机取 货完成*) 
+IF Deliver_In. 入 库口顶升下限 检检=FALSE AND Deliver_In. 入 库口物料 检检=FALSE AND NOT CCLink_W_Control_Bit.取 货中 AND 堆 垛机取 货中 AND Mode<=1 
+THEN 
+Deliver_In. 入 库口顶升下降控制:=TRUE;
+END_IF;
+堆垛机取 货中:=CCLink_W_Control_Bit.取 货中;
+IF Deliver_In. 入 库口顶升下限 检检 THEN 
+Deliver_In. 入 库口顶升下降控制:=FALSE;
+END_IF;
+(* 货叉到入 库口*) 
+(* 联机*) 
+ IF Master_R. 设备状态=1  AND Mode=0  AND CCLink_W. 货叉站台任 务ID <>Deliver_In.当前任 务ID AND CCLink_W. 货叉站台任 务ID<>0 
+ AND Deliver_In.Step1=0  AND Alarm_Code=0  AND Deli ver_In. 货叉位置物料 检检 AND Deliver_In. 入 库口物料 检检=FALSE  THEN 
+ 
+  Deliver_In.当前任 务ID:=CCLink_W. 货叉站台任 务ID ;
+  Deliver_In.当前任 务状态:=1;
+  Deliver_In.Step1:=1;
+  CCLink_R.站台1001AGV取 货完成:=0;
+END_IF; 
+(* 单机*) 
+ IF Master_R. 设备状态=1  AND Mode=1  AND 单机入 库ID <>Deliver_In.当前任 务ID  AND 单机入 库ID<>0 
+ AND Deliver_In.Step1=0  AND Alarm_Code=0  AND Deli ver_In. 货叉位置物料 检检 AND Deliver_In. 入 库口物料 检检=FALSE  THEN 
+ 
+  Deliver_In.当前任 务ID:= 单机入 库ID ;
+  Deliver_In.当前任 务状态:=1;
+  Deliver_In.Step1:=1;
+  CCLink_R.站台1001AGV取 货完成:=0;
+END_IF; 
+FB/FUNプログラム 2025/11/24 
+データ名 : Store 
+ファンクションブロック 
+20 (*流程开始*) 
+IF Deliver_In.Step1=1 AND Deliver_In. 货叉位置物料 检检 AND Deliver_In. 入 库口物料 检检=FALSE THEN 
+IF Deliver_In. 入 库口顶升下限 检检=FALSE THEN 
+Deliver_In. 入 库口顶升下降控制:=TRUE;
+END_IF;
+IF Deliver_In. 入 库口顶升下限 检检  THEN 
+Deliver_In. 入 库口顶升下降控制:=FALSE;
+Deliver_In.Step1:=2;
+END_IF;
+END_IF;
+IF Deliver_In.Step1=2 AND Deliver_In. 入 库口顶升下限 检检 THEN 
+ Deliver_In. 库送线控制:=TRUE;
+IF Deliver_In. 入 库口减速 检检 THEN 
+Deliver_In. 库送线低速控制:=TRUE;
+END_IF;
+IF Deliver_In. 入 库口物料 检检 THEN 
+Deliver_In. 库送线控制:=FALSE;
+        Deliver_In. 库送线低速控制:=FALSE;
+        Deliver_In.Step1:=3;
+END_IF;
+END_IF;
+IF Deliver_In.Step1=3 AND Deliver_In. 入 库口物料 检检  THEN 
+Deliver_In. 入 库口顶升上升控制:=TRUE;
+     Deliver_In.Step1:=4;
+END_IF;
+ 
+IF Deliver_In.Step1=4 AND Deliver_In. 入 库口顶升上限 检检 THEN 
+Deliver_In. 入 库口顶升上升控制:=FALSE;
+Deliver_In.当前任 务状态:=2;
+    Deliver_In.Step1:=0;
+    单机入 库ID:=0;
+    CCLink_W. 货叉站台任 务ID:=0;
+END_IF;
+(*Deliver_In.AGV就 绪:=模 拟AGV就 绪;
+Deliver_In.AGV停止:=模 拟AGV就 绪;
+Deliver_In.AGV物料探 检:=模 拟AGV就 绪;
+Deliver_In.AGV本体 检检:=模 拟AGV就 绪;*) 
+Deliver_In.AGV就 绪:= DInput.Photonic2_Error ;
+Deliver_In.AGV停止:= DInput.Photonic2_output2 ;
+Deliver_In.AGV物料探 检:=DInput.CV01AGV物料 检检;
+Deliver_In.AGV本体 检检:=DInput.CV01AGV本体 检检1 AND DInput.CV01AGV本体 检检2;
+DOutput.Photonic2_Input3:=Deliver_In.AGV放行;
+(*AGV到 货叉*) 
+IF Master_R. 设备状态=1  AND  Mode<=1  AND Deliver_In.AGV就 绪 AND Deliver_In.AGV停止   AND Deliver_In.Step1=0  AND  Alarm_Code=0 AND 
+ Deliver_In.AGV物料探 检 AND Deliver_In. 货叉位置物料 检检=FALSE AND Deliver_In.AGV本体 检检 THEN 
+ 
+    Deliver_In.当前任 务状态:=1;
+Deliver_In.Step1:=10;
+END_IF;
+IF  Deliver_In.Step1=10 AND  Deliver_In.AGV物料探 检 AND Deliver_In. 货叉位置物料 检检=FALSE THEN 
+IF Deliver_In. 货叉顶升下限 检检=FALSE THEN 
+Deliver_In. 货叉顶升下降控制:=TRUE;
+END_IF;
+IF Deliver_In. 货叉顶升下限 检检  THEN 
+Deliver_In. 货叉顶升下降控制:=FALSE;
+Deliver_In.Step1:=11;
+END_IF;
+END_IF;
+IF  Deliver_In.Step1=11 AND Deliver_In. 货叉顶升下限 检检 THEN 
+Deliver_In.货叉伸出控制:=TRUE;
+Deliver_In.Step1:=12;
+END_IF;
+  
+  IF  Deliver_In.Step1=12 AND Deliver_In. 货叉伸出到位 THEN 
+  Deliver_In. 货叉伸出控制:=FALSE;
+  Deliver_In. 货叉顶升上升控制:=TRUE;
+Deliver_In.Step1:=13;
+  END_IF;
+  
+  IF  Deliver_In.Step1=13 AND Deliver_In. 货叉顶升上限 检检 THEN 
+    Deliver_In. 货叉顶升上升控制:=FALSE;
+    Deliver_In. 货叉缩回控制:=TRUE;
+    Deliver_In.Step1:=14;
+  END_IF;
+  
+  IF Deliver_In.Step1=14 AND Deliver_In. 货叉缩回到位 THEN 
+  Deliver_In. 货叉缩回控制:=FALSE;
+  Deliver_In. 货叉顶升下降控制:=TRUE;
+    Deliver_In.Step1:=15;
+  END_IF;
+    
+IF Deliver_In.Step1=15  AND Deliver_In. 货叉顶升下限 检检 THEN 
+    Deliver_In. 入 库口顶升下降控制:=FALSE;
+Deliver_In. 货叉顶升下降控制:=FALSE;
+Deliver_In.当前任 务状态:=2;
+FB/FUNプログラム 2025/11/24 
+データ名 : Store 
+ファンクションブロック 
+21 Deliver_In.Step1:=0;
+CCLink_R.站台1001AGV取 货完成:=1001;
+(*AGV放行*) 
+        Deliver_In.AGV放行:=TRUE;
+END_IF;
+(*AGV入 库台 放行完成*) 
+IF Deliver_In.AGV放行 AND DInput.Photonic2_Error=FALS E THEN 
+Deliver_In.AGV放行:=FALSE;
+END_IF;
+(*AGV 进入中_屏蔽光 栅*) 
+IF DInput.Photonic1_output2 AND DInput.Photonic1_Er ror AND DInput.Photonic2_Error=FALSE AND Deliver_In .AGV 进入中=FALSE THEN 
+   Deliver_In.AGV 进入中:=TRUE;
+   DOutput.Photonic1_Input3:=TRUE;
+ELSIF 
+  DOutput.Photonic1_Input3 AND DInput.Photonic1_Err or=FALSE THEN 
+  DOutput.Photonic1_Input3:=FALSE;
+END_IF;
+  (*AGV到达入 库口*) 
+  IF DInput.Photonic2_output2 AND DInput.Photonic2_ Error THEN 
+   Deliver_In.AGV 进入中:=FALSE; 
+  END_IF;
+  
+  

@@ -1,0 +1,899 @@
+ (     0) T0 
+心跳 K999 
+T0 
+心跳 T0 
+B/D 0 
+B/D 
+ (     5)  DInput.运行就 绪1 DInput.运行就 绪2DInput.故障复位 
+ DOutput.就 绪按钮指示灯 
+ (    14)  DOutput.启 动按钮指示灯 DOutput.三色灯R 
+DOutput.三色灯G 
+ (    21)  DOutput.启 动按钮指示灯 
+=  Wcs_R.地面柜 设设状态 K1DOutput.三色灯R 
+DOutput.三色灯Y 
+ DInput.手 动自动 SM413 
+ 1s 时时
+ (    34) <> Alarm_Code K0 DOutput.三色灯R DOutput.三色灯R 
+B/D 17 30 
+B/D 
+ (    39) SM400 SB49 
+本站 W0.0 
+站号 1 M370 
+B01_ON正 
+常
+W0.1 
+站号 2 M371 
+B02_ON正 
+常
+W0.2 
+站号 3 M372 
+AGV_ON正 
+常
+ (    51) SM400 
+=  Stacker_R.心跳 检检 HeartbeatK30 
+T1 T1 
+A/S 64 
+A/S 
+MOV  Stacker_R.心跳 检检 Heartbeat Stacker_R.心跳 检检
+A/S 54 62 
+A/S 
+Heartbeat 
+A/S 54 
+B/D 62 
+T1 
+M360 
+Stacker
+ (    67) ENDラダー 2025/11/24 
+数据名 : MAIN 
+1
+ST 2025/11/24 
+数据名 : Alarm 
+2IF DInput.输入电源=FALSE AND Alarm_Code=0 THEN 
+Alarm_Code:=1;
+END_IF;
+IF DInput.柜机空 调故障=FALSE AND Alarm_Code=0 THEN 
+Alarm_Code:=2;
+END_IF;
+IF DInput.光通 讯讯感器故障  AND Alarm_Code=0 THEN 
+Alarm_Code:=3;
+END_IF;
+IF E_Stop=FALSE  AND Alarm_Code=0 THEN 
+Alarm_Code:=4;
+END_IF;
+IF (DInput.B01急停回路1=FALSE  OR DInput.B01急停回路2=FALSE   ) AND Alarm_Code=0 THEN 
+Alarm_Code:=5;
+END_IF;
+IF (DInput.B01光 栅回路1=FALSE  OR DInput.B01光 栅回路2=FALSE  ) AND Alarm_Code=0 THEN 
+Alarm_Code:=6;
+END_IF;
+IF (DInput.B01安全 门回路1=FALSE  OR DInput.B01安全 门回路2=FALSE  ) AND Alarm_Code=0 THEN 
+Alarm_Code:=7;
+END_IF;
+IF (DInput.B02急停回路1=FALSE  OR DInput.B02急停回路2=FALSE   ) AND Alarm_Code=0 THEN 
+Alarm_Code:=8;
+END_IF;
+IF (DInput.B02光 栅回路1=FALSE  OR DInput.B02光 栅回路2=FALSE  ) AND Alarm_Code=0 THEN 
+Alarm_Code:=9;
+END_IF;
+IF (DInput.B02安全 门回路1=FALSE  OR DInput.B02安全 门回路2=FALSE  ) AND Alarm_Code=0 THEN 
+Alarm_Code:=10;
+END_IF;
+IF Stacker_R. 错错错<>0 AND Alarm_Code=0 THEN 
+Alarm_Code:=11;
+END_IF;
+IF CCLink_R1. 错错错<>0 AND Alarm_Code=0 THEN 
+Alarm_Code:=12;
+END_IF;
+IF CCLink_R2. 错错错<>0 AND Alarm_Code=0 THEN 
+Alarm_Code:=13;
+END_IF;
+(*故障复位*) 
+IF (HMI.故障复位 OR DInput.故障复位)  AND Alarm_Code<>0 THE N 
+Alarm_Code:=0;
+CCLink_W1.出 库站台任 务ID:=0;
+CCLink_W2.出 库站台任 务ID:=0;
+CCLink_W1. 货叉站台任 务ID:=0;
+CCLink_W2. 货叉站台任 务ID:=0;
+CCLink_W1.允 许出料到AGV:=0;
+CCLink_W2.允 许出料到AGV:=0;
+Alone.任 务ID:=0;
+    Alone.任 务务型:=0;
+    Stacker_W.任 务ID:=0;
+    Stacker_W.任 务务型:=0;
+    Wcs_W.任 务ID:=0;
+    Wcs_W.任 务务型:=0;
+END_IF;
+ 
+ IF Alarm_Code<>0 AND NOT 上升沿 THEN 
+ HMI画面 编号:=5;
+ END_IF;
+ 上升沿:=Alarm_Code<>0;
+ST 2025/11/24 
+数据名 : CC_Link 
+3(* 1#    RX/RY 0000-002F  RWr/RWw  0100-012F*)  (* 主站X1000(48点)  Y1000(48点)  RWw-D4000(48点)   RWr-D300 0(48点)  *) 
+(* 2#    RX/RY 0030-005F  RWr/RWw  0130-015F*)  (* 主站X1030(48点)  Y1030(48点)  RWw-D4048(48点)   RWr-D304 8(48点)  *) 
+(* 3#    RX/RY 0060-008F  RWr/RWw  0160-018F*)  (* 主站X1060(48点)  Y1060(48点)  RWw-D4096(48点)   RWr-D309 6(48点)  *) 
+(*W*) 
+CCLink_W1.心跳下 发:=TN0;
+CCLink_W2.心跳下 发:=TN0;
+AGV_W.心跳指令:=TN0;
+(*B01-B02_RWw *) 
+CCLink_W1.A01_Mode:=Mode;
+CCLink_W2.A01_Mode:=Mode;
+(*RY*) 
+CCLink_W1_Control_Bit.故障复位:=DInput.故障复位;
+CCLink_W2_Control_Bit.故障复位:=DInput.故障复位;
+CCLink_W1_Control_Bit.取 货中:=Stacker_R_Status_Bit.取 货中 AND Stacker_W.入 库台编号=1 ;
+CCLink_W2_Control_Bit.取 货中:=Stacker_R_Status_Bit.取 货中 AND Stacker_W.入 库台编号=2 ;
+CCLink_W1_Control_Bit.放 货中:=Stacker_R_Status_Bit.放 货中 AND Stacker_W.出 库台编号=3 ;
+CCLink_W2_Control_Bit.放 货中:=Stacker_R_Status_Bit.放 货中 AND Stacker_W.出 库台编号=4;
+(*允 许入库-出 库*) 
+IF M370 THEN 
+    Stacker_W.允 许取货B01:=CCLink_R1.堆 垛机允 许取货1002;
+    Stacker_W.允 许放货B01:=CCLink_R1.堆 垛机允 许放货1004 ;
+ELSE 
+Stacker_W.允 许取货B01:=0;
+    Stacker_W.允 许放货B01:=0 ;
+END_IF;
+IF M371 THEN 
+    Stacker_W.允 许取货B02:=CCLink_R2.堆 垛机允 许取货1002;
+    Stacker_W.允 许放货B02:=CCLink_R2.堆 垛机允 许放货1004;
+ELSE 
+Stacker_W.允 许取货B02:=0;
+    Stacker_W.允 许放货B02:=0;
+END_IF;
+ 
+(*AGV交互*) 
+AGV_W.B01出 库AGV目的:=CCLink_R1.出 库AGV目的地;
+AGV_W.B02出 库AGV目的:=CCLink_R2.出 库AGV目的地;
+AGV_W.B01出 库AGV放 货完成:=CCLink_R1.出 库AGV放 货完成;
+AGV_W.B02出 库AGV放 货完成:=CCLink_R2.出 库AGV放 货完成;
+ST 2025/11/24 
+数据名 : Func 
+4(*急停*) 
+E_Stop:=DInput.A01安全回路1 AND DInput.A01安全回路2;
+IF E_Stop=FALSE OR Alarm_Code<>0 OR mode=2 OR DOutp ut.就 绪按钮指示灯=FALSE THEN 
+    DOutput.启 动按钮指示灯:=FALSE;
+    DOutput. 暂停按 钮指示灯:=FALSE;
+END_IF;
+(*启 动按钮*) 
+IF DInput.启 动 AND DOutput.就 绪按钮指示灯 AND mode<=1 AND Alarm_Code=0  AND DOutput. 暂停按 钮指示灯=FALSE  AND DInput.故障复位=FALSE THEN 
+DOutput.启 动按钮指示灯:=TRUE;
+END_IF;
+(* 暂停按 钮*) 
+IF DInput.暂停 AND DOutput.启 动按钮指示灯 THEN 
+DOutput.暂停按 钮指示灯:=TRUE;
+DOutput.启 动按钮指示灯:=FALSE;
+END_IF;
+ OUT_T(Stacker_R.自 动流程字=0 AND CCLink_R1.入 库流程字=0 AND CCLink_R1.出 库流程字=0 AND 
+              CCLink_R2.入 库流程字=0 AND CCLink_R2.出 库流程字=0 AND DOutput. 暂停按 钮指示灯,TC3,30);
+IF   TC3 THEN 
+DOutput.暂停按 钮指示灯:=FALSE;
+END_IF;
+  
+ (*堆 垛机紧急停止*) 
+ IF E_Stop=FALSE  OR DInput.B01急停回路1=FALSE OR DInpu t.B02急停回路1=FALSE OR 
+ DInput.B01光 栅回路1=FALSE OR DInput.B02光 栅回路1=FALSE OR  DInput.B01安全 门回路1=FALSE OR DInput.B02安全 门回路1=FALSE THEN 
+ Stacker_W. 紧急停止:=1;
+ ELSE 
+ Stacker_W. 紧急停止:=0;
+ END_IF;
+ 
+ (*地面柜 设设状态*) 
+ Wcs_R.地面柜 设设状态:=0;
+IF  DOutput.启 动按钮指示灯 AND mode<=1 AND Alarm_Code=0 THEN 
+Wcs_R.地面柜 设设状态:=1;
+END_IF;
+IF Alarm_Code<>0 THEN 
+Wcs_R.地面柜 设设状态:=2;
+END_IF;
+ 
+ (*模式*) 
+  IF DInput.手 动自动=FALSE THEN 
+  mode :=2;
+  ELSE 
+  IF DInput. 单机联机=FALSE THEN 
+  mode :=1;
+  ELSE 
+  mode :=0;
+  END_IF;
+  END_IF;
+  
+  (*模式 显示*) 
+自动联机模式状 态:=Mode=0;
+自动单机模式状 态:=Mode=1;
+手动模式状 态:=Mode=2;
+  
+ (*任 务务型显示*) 
+HMI.单机入 库务型:=Alone.任 务务型=1;
+HMI.单机出 库务型:=Alone.任 务务型=2;
+HMI.单机移 库务型:=Alone.任 务务型=3;
+HMI.联机入 库务型:=Wcs_W.任 务务型=1;
+HMI.联机出 库务型:=Wcs_W.任 务务型=2;
+HMI.联机移 库务型:=Wcs_W.任 务务型=3;
+HMI.Auto入 库务型:=Stacker_W.任 务务型=1;
+HMI.Auto出 库务型:=Stacker_W.任 务务型=2;
+HMI.Auto移 库务型:=Stacker_W.任 务务型=3;
+  
+(* 语言切 换*) 
+IF 语言显示>3 OR 语言显示=0 THEN 
+语言显示:=1;
+END_IF;
+INCP( 语言切 换,语言显示);
+(*密 错码限-管理者*) 
+IF DInput.管理者=FALSE THEN 
+密错码限:=0;
+DOutput.HA01声音通道4:=FALSE;
+ELSE 
+DOutput.HA01声音通道4:=TRUE;
+END_IF;
+(*-------------------------------------- 库存有无 计算--------------------------------------*) 
+ (* LEN(1,入 库RFID 编错,D98)*) 
+ AO1:=0;
+ AO2:=0;
+FOR AO1:=1 TO 14 DO 
+FOR AO2:=1 TO 5 DO 
+IF  inventory_1[ AO1]. 层[AO2]<>'' THEN 
+inventory_Bit1[AO1]. 层[AO2]:=TRUE;
+ELSE 
+inventory_Bit1[AO1]. 层[AO2]:=FALSE;
+END_IF;
+ST 2025/11/24 
+数据名 : Func 
+5IF  inventory_2[ AO1]. 层[AO2]<>'' THEN 
+inventory_Bit2[AO1]. 层[AO2]:=TRUE;
+ELSE 
+inventory_Bit2[AO1]. 层[AO2]:=FALSE;
+END_IF;
+END_FOR;
+END_FOR;
+(* 计算空 闲库位*) 
+Temp:=FALSE;
+IF Single_Machine. 计算空 闲库位 AND Mode=1 THEN 
+ AO1:=0;
+     AO2:=0;
+     Alone.任 务务型:=1;
+    FOR AO1:=1 TO 14 DO 
+    FOR AO2:=1 TO 5 DO 
+     IF inventory_Bit1[AO1]. 层[AO2]=FALSE THEN 
+     Alone.终点排:=1;
+     Alone.终点列:=AO1;
+     Alone.终点层:=AO2;
+     Temp:=TRUE;
+    EXIT;
+     END_IF;
+     IF inventory_Bit2[AO1]. 层[AO2]=FALSE THEN 
+     Alone.终点排:=2;
+     Alone.终点列:=AO1;
+     Alone.终点层:=AO2;
+     Temp:=TRUE;
+    EXIT;
+     END_IF;
+    END_FOR;
+    IF Temp THEN 
+    EXIT;
+    END_IF;
+END_FOR;
+END_IF;
+(* 库存清空*) 
+IF 库存清空 THEN 
+ AO1:=0;
+     AO2:=0;
+FOR AO1:=1 TO 14 DO 
+FOR AO2:=1 TO 5 DO 
+  inventory_1[ AO1]. 层[AO2]:='';
+  inventory_2[ AO1]. 层[AO2]:='';
+END_FOR;
+END_FOR;
+END_IF;
+(* 库存查查*) 
+IF Single_Machine. 查查 AND Single_Machine.成功=FALSE AND Single_Machine.失 败=FALSE THEN 
+Single_Machine.所在排:=0;
+Single_Machine.所在列:=0;
+Single_Machine.所在 层:=0;
+Alone.任 务务型:=2;
+AO1:=0;
+    AO2:=0;
+FOR AO1:=1 TO 14 DO 
+FOR AO2:=1 TO 5 DO 
+IF Single_Machine. 输入RFID 编错= inventory_1[ AO1]. 层[AO2] THEN 
+Single_Machine.所在排:=1;
+Single_Machine.所在列:=AO1;
+Single_Machine.所在 层:=AO2;
+Single_Machine.成功:=TRUE;
+Single_Machine.失 败:=FALSE;
+Alone.起点排:=Single_Machine.所在排;
+                Alone.起点列:=Single_Machine.所在列;
+                Alone.起点 层:=Single_Machine.所在 层;
+EXIT;
+END_IF;
+IF Single_Machine. 输入RFID 编错= inventory_2[ AO1]. 层[AO2] THEN 
+Single_Machine.所在排:=2;
+Single_Machine.所在列:=AO1;
+Single_Machine.所在 层:=AO2;
+Single_Machine.成功:=TRUE;
+Single_Machine.失 败:=FALSE;
+Alone.起点排:=Single_Machine.所在排;
+                Alone.起点列:=Single_Machine.所在列;
+                Alone.起点 层:=Single_Machine.所在 层;
+EXIT;
+END_IF;
+IF AO1=14 AND AO2=5 THEN 
+         Single_Machine.失 败:=TRUE;
+        Single_Machine.成功:=FALSE;
+        Single_Machine.所在排:=0;
+Single_Machine.所在列:=0;
+Single_Machine.所在 层:=0;
+Alone.起点排:=Single_Machine.所在排;
+                Alone.起点列:=Single_Machine.所在列;
+                Alone.起点 层:=Single_Machine.所在 层;
+ST 2025/11/24 
+数据名 : Func 
+6END_IF;
+END_FOR;
+IF Single_Machine.成功 THEN 
+EXIT;
+END_IF;
+END_FOR;
+END_IF;
+OUT_T(Single_Machine. 查查=FALSE AND (Single_Machine.成功 OR Single_Machine.失 败),TC2,30);
+IF   TC2 THEN 
+   (*rst(TS2,TC2);*) 
+  Single_Machine.失 败:=FALSE;
+  Single_Machine.成功:=FALSE;
+END_IF;
+(* 单机出 库*) 
+IF 自 动单机模式状 态 AND Single_Machine.AGV目的<>0  AND Single_Machine.出 库台物料状 态=1 AND Stacker_R.堆 垛机状 态=1 AND 
+ Single_Machine.所在排<>0 AND Single_Machine.所在列<>0 AN D Single_Machine.所在 层<>0  THEN 
+  Single_Machine.允 许出库条件:=TRUE;
+ IF Single_Machine.允 许出库条件 AND Single_Machine.出 库按钮 THEN 
+  Alone.任 务务型:=2;
+  Alone.任 务ID:= DINT_TO_DWORD(DWORD_TO_DINT(Stacker_R.当前任 务ID)+1);
+         Alone.起点排:=Single_Machine.所在排;
+         Alone.起点列:=Single_Machine.所在列;
+         Alone.起点 层:=Single_Machine.所在 层;
+         IF Alone.出 库台编号=3 THEN 
+            IF Out_CV[1].任 务ID[1]=0 AND Out_CV[1].AGV目的地[1]=0 THEN 
+            Out_CV[1].任 务ID[1]:=Alone.任 务ID;
+            Out_CV[1].AGV目的地[1]:=Single_Machine.AGV 目的;
+            ELSE 
+            Out_CV[1].任 务ID[2]:=Alone.任 务ID;
+            Out_CV[1].AGV目的地[2]:=Single_Machine.AGV 目的;
+            END_IF;
+         ELSIF 
+         Alone.出 库台编号=4 THEN 
+         IF Out_CV[2].任 务ID[1]=0 AND Out_CV[2].AGV目的地[1]=0 THEN 
+            Out_CV[2].任 务ID[1]:=Alone.任 务ID;
+            Out_CV[2].AGV目的地[1]:=Single_Machine.AGV 目的;
+            ELSE 
+            Out_CV[2].任 务ID[2]:=Alone.任 务ID;
+            Out_CV[2].AGV目的地[2]:=Single_Machine.AGV 目的;
+            END_IF;
+         END_IF;
+         Single_Machine.所在排:=0;
+ Single_Machine.所在列:=0;
+     Single_Machine.所在 层:=0;
+     Single_Machine.AGV目的:=0;
+     Single_Machine.出 库按钮:=FALSE;
+ END_IF;
+ELSE 
+Single_Machine.允 许出库条件:=FALSE;
+ END_IF;
+ 
+ (* 单机入 库*) 
+IF 自 动单机模式状 态 AND  Single_Machine. 终点出 库状态=1  AND Single_Machine.入 库台物料状 态=1 AND Stacker_R.堆 垛机状 态=1 AND 
+ ((Alone.入 库台编号=1 AND Wcs_R.B01入 库站台RFID 读取值<> '' ) OR (Alone.入 库台编号=2 AND Wcs_R.B02入 库站台RFID 读取值<> '' )) THEN 
+  Single_Machine.允 许入库条件:=TRUE;
+  IF  Single_Machine.允 许入库条件 AND Single_Machine.入 库按钮 THEN 
+  IF Alone.入 库台编号=1  THEN 
+  入库RFID 编错:=Wcs_R.B01入 库站台RFID 读取值;
+   Alone.任 务务型:=1;
+      Alone.任 务ID:= DINT_TO_DWORD(DWORD_TO_DINT(Stacker_R.当前任 务ID)+1);
+  ELSIF 
+  Alone.入 库台编号=2 THEN 
+  入库RFID 编错:=Wcs_R.B02入 库站台RFID 读取值;
+   Alone.任 务务型:=1;
+      Alone.任 务ID:= DINT_TO_DWORD(DWORD_TO_DINT(Stacker_R.当前任 务ID)+1);
+  END_IF;
+  Single_Machine.入 库按钮:=FALSE;
+  END_IF;
+ELSE 
+Single_Machine.允 许入库条件:=FALSE;
+END_IF;
+  
+(*AGV目的地下 发*) 
+IF  自 动单机模式状 态 AND CCLink_R1_Status_Bit.出 库货叉台物料 检检 AND  CCLink_R1. 设设状态=1 THEN 
+IF  CCLink_R1.站台1003任 务ID= Out_CV[1].任 务ID[1] AND  CCLink_R1.站台1003任 务ID<>0 THEN 
+CCLink_W1.允 许出料到AGV:=Out_CV[1].AGV目的地[1];
+Out_CV[1].任 务ID[1]:=0;
+        Out_CV[1].AGV目的地[1]:=0;
+ELSIF 
+CCLink_R1.站台1003任 务ID= Out_CV[1].任 务ID[2] AND  CCLink_R1.站台1003任 务ID<>0 THEN 
+CCLink_W1.允 许出料到AGV:=Out_CV[1].AGV目的地[2];
+Out_CV[1].任 务ID[2]:=0;
+        Out_CV[1].AGV目的地[2]:=0;
+END_IF;
+END_IF;
+IF  自 动单机模式状 态 AND CCLink_R2_Status_Bit.出 库货叉台物料 检检 AND  CCLink_R2. 设设状态=1 THEN 
+IF  CCLink_R2.站台1003任 务ID= Out_CV[2].任 务ID[1] AND  CCLink_R2.站台1003任 务ID<>0 THEN 
+CCLink_W2.允 许出料到AGV:=Out_CV[2].AGV目的地[1];
+Out_CV[2].任 务ID[1]:=0;
+        Out_CV[2].AGV目的地[1]:=0;
+ST 2025/11/24 
+数据名 : Func 
+7ELSIF 
+CCLink_R2.站台1003任 务ID= Out_CV[2].任 务ID[2] AND  CCLink_R2.站台1003任 务ID<>0 THEN 
+CCLink_W2.允 许出料到AGV:=Out_CV[2].AGV目的地[2];
+Out_CV[2].任 务ID[2]:=0;
+        Out_CV[2].AGV目的地[2]:=0;
+END_IF;
+END_IF;
+(*非 单机模式*) 
+IF  自 动单机模式状 态=FALSE THEN 
+Out_CV[1].任 务ID[1]:=0;
+    Out_CV[1].AGV目的地[1]:=0;
+    Out_CV[1].任 务ID[2]:=0;
+    Out_CV[1].AGV目的地[2]:=0;
+Out_CV[2].任 务ID[1]:=0;
+    Out_CV[2].AGV目的地[1]:=0;
+    Out_CV[2].任 务ID[2]:=0;
+    Out_CV[2].AGV目的地[2]:=0;
+ELSIF 
+CCLink_R1_Status_Bit.出 库台物料 检检=FALSE AND Stacker_R.任 务状态<>2 AND Stacker_R.任 务状态<>5THEN 
+Out_CV[1].任 务ID[1]:=0;
+    Out_CV[1].AGV目的地[1]:=0;
+    Out_CV[1].任 务ID[2]:=0;
+    Out_CV[1].AGV目的地[2]:=0;
+    B01CV_OutID:=0;
+ELSIF 
+CCLink_R2_Status_Bit.出 库台物料 检检=FALSE AND Stacker_R.任 务状态<>2 AND Stacker_R.任 务状态<>5 THEN 
+Out_CV[2].任 务ID[1]:=0;
+    Out_CV[2].AGV目的地[1]:=0;
+    Out_CV[2].任 务ID[2]:=0;
+    Out_CV[2].AGV目的地[2]:=0;
+    B02CV_OutID:=0;
+END_IF;
+ST 2025/11/24 
+数据名 : IO 
+8(* 输入*) 
+DInput.输入电源:=X60;
+DInput.X01_1:=X61;
+DInput.A01安全回路1:=X62;
+DInput.A01安全回路2:=X63;
+DInput.X04_1:=X64;
+DInput.X05_1:=X65;
+DInput.X06_1:=X66;
+DInput.X07_1:=X67;
+DInput.X08_1:=X68;
+DInput.X09_1:=X69;
+DInput.X0A_1:=X6A;
+DInput.X0B_1:=X6B;
+DInput.柜机空 调故障:=X6C;
+DInput.光通 讯讯感器故障:=X6D;
+DInput.X0E_1:=X6E;
+DInput.X0F_1:=X6F;
+DInput.手 动自动:=X70;
+DInput.单机联机:=X71;
+DInput.X02_2:=X72;
+DInput.管理者:=X73;
+DInput.故障复位:=X74;
+DInput.就 绪:=X75;
+DInput.启 动:=X76;
+DInput.暂停:=X77;
+DInput.灯光 检查:=X78;
+DInput.X09_2:=X79;
+DInput.运行就 绪1:=X7A;
+DInput.运行就 绪2:=X7B;
+DInput.X0C_2:=X7C;
+DInput.X0D_2:=X7D;
+DInput.驱动电源:=X7E;
+DInput.X0F_2:=X7F;
+DInput.B01急停回路1:=X80;
+DInput.B01急停回路2:=X81;
+DInput.B01光 栅回路1:=X82;
+DInput.B01光 栅回路2:=X83;
+DInput.B01安全 门回路1:=X84;
+DInput.B01安全 门回路2:=X85;
+DInput.X06_3:=X86;
+DInput.X07_3:=X87;
+DInput.B02急停回路1:=X88;
+DInput.B02急停回路2:=X89;
+DInput.B02光 栅回路1:=X8A;
+DInput.B02光 栅回路2:=X8B;
+DInput.B02安全 门回路1:=X8C;
+DInput.B02安全 门回路2:=X8D;
+DInput.X0E_3:=X8E;
+DInput.X0F_3:=X8F;
+(* 输出*) 
+Y90:=DOutput.三色灯R OR DInput.灯光 检查;
+Y91:=DOutput.三色灯Y OR DInput.灯光 检查;
+Y92:=DOutput.三色灯G OR DInput.灯光 检查;
+Y93:=DOutput.HA01声音通道1;
+Y94:=DOutput.HA01声音通道2;
+Y95:=DOutput.HA01声音通道3;
+Y96:=DOutput.HA01声音通道4;
+Y97:=DOutput.Y07_1;
+Y98:=DOutput.就 绪按钮指示灯 OR DInput.灯光 检查;
+Y99:=DOutput.启 动按钮指示灯 OR DInput.灯光 检查;
+Y9A:=DOutput. 暂停按 钮指示灯 OR DInput.灯光 检查;
+Y9B:=DOutput.Y0B_1;
+Y9C:=DOutput.Y0C_1;
+Y9D:=DOutput.Y0D_1;
+Y9E:=DOutput.Y0E_1;
+Y9F:=DOutput.Y0F_1;
+ST 2025/11/24 
+数据名 : Master 
+9(*堆 垛机指令位 转换*) 
+MOV (1, D128 ,K4M2500);
+MOV (1,K4M2000 ,D224 );
+(*Stacker_status*) 
+Wcs_R.堆 垛机状 态:=Stacker_R.堆 垛机状 态;
+Wcs_R.自 动流程字:=Stacker_R.自 动流程字;
+Wcs_R.错错错:=Stacker_R. 错错错;
+Wcs_R.任 务状态:=Stacker_R.任 务状态;
+Wcs_R.当前任 务ID:=Stacker_R.当前任 务ID;
+Wcs_R.任 务务行总次数:=Stacker_R.任 务务行总次数;
+Wcs_R.行走当前位置:=Stacker_R.行走当前位置;
+Wcs_R.升降当前位置:=Stacker_R.升降当前位置;
+Wcs_R.货叉当前位置:=Stacker_R. 货叉当前位置;
+Wcs_R.行走当前速度:=Stacker_R.行走当前速度;
+Wcs_R.升降当前速度:=Stacker_R.升降当前速度;
+Wcs_R.货叉当前速度:=Stacker_R. 货叉当前速度;
+Wcs_R.当前模式:=Stacker_R.当前模式;
+Wcs_R.心跳 检检 := TN0;
+(*地面柜_status*) 
+Wcs_R.地面柜当前模式:=Mode;
+Wcs_R.地面柜 错错错:=Alarm_Code;
+Wcs_R.B01入 库任务状态:=CCLink_R1.入 库库_任 务状态;
+Wcs_R.B01入 库货叉任 务ID:=CCLink_R1.站台1001AGV取 货完成;
+Wcs_R.B01入 库台任 务ID:=CCLink_R1.站台1002任 务ID;
+Wcs_R.B01出 库任务状态:=CCLink_R1.出 库库_任 务状态;
+Wcs_R.B01出 库台任 务ID:=CCLink_R1.站台1003任 务ID;
+Wcs_R.B01入 库站台RFID 读取值:=CCLink_R1.站台1001RFID 读取值;
+Wcs_R.B01出 库站台RFID 读取值:=CCLink_R1.站台1003RIFD 读取值;
+Wcs_R.B02入 库任务状态:=CCLink_R2.入 库库_任 务状态;
+Wcs_R.B02入 库货叉任 务ID:=CCLink_R2.站台1001AGV取 货完成+4;
+Wcs_R.B02入 库台任 务ID:=CCLink_R2.站台1002任 务ID;
+Wcs_R.B02出 库任务状态:=CCLink_R2.出 库库_任 务状态;
+Wcs_R.B02出 库台任 务ID:=CCLink_R2.站台1003任 务ID;
+Wcs_R.B02入 库站台RFID 读取值:=CCLink_R2.站台1001RFID 读取值;
+Wcs_R.B02出 库站台RFID 读取值:=CCLink_R2.站台1003RIFD 读取值;
+Wcs_R.B01出 库AGV放 货完成:=CCLink_R1.出 库AGV目的地;
+Wcs_R.B02出 库AGV放 货完成:=CCLink_R2.出 库AGV目的地;
+Wcs_R.B01允 许出库:=Stacker_W.允 许放货B01;
+Wcs_R.B02允 许出库:=Stacker_W.允 许放货B02;
+(*Wcs_Write*) 
+Stacker_W.系 统心跳 := TN0;
+(* 联机模式*) 
+IF mode=0  AND Wcs_R.地面柜 设设状态=1 AND Stacker_R.堆 垛机状 态=1 THEN 
+    Stacker_W.任 务务型:=Wcs_W.任 务务型;
+    Stacker_W.任 务ID:=Wcs_W.任 务ID;
+    Stacker_W.起点排:=Wcs_W.起点排;
+    Stacker_W.起点列:=Wcs_W.起点列;
+    Stacker_W.起点 层:=Wcs_W.起点 层;
+    Stacker_W. 终点排:=Wcs_W. 终点排;
+    Stacker_W. 终点列:=Wcs_W. 终点列;
+    Stacker_W. 终点层:=Wcs_W.终点层;
+    IF Wcs_W.入 库台编号=1 THEN 
+     Stacker_W.入 库台编号:=1;
+     ELSIF 
+    Wcs_W.入 库台编号=2 THEN 
+    Stacker_W.入 库台编号:=2;
+     ELSE 
+      Stacker_W.入 库台编号:=0;
+    END_IF;
+    IF Wcs_W.出 库台编号=3 THEN 
+    Stacker_W.出 库台编号:=3;
+    ELSIF 
+       Wcs_W.出 库台编号=4 THEN 
+     Stacker_W.出 库台编号:=4;
+    ELSE 
+     Stacker_W.出 库台编号:=0;
+    END_IF;
+END_IF;
+IF mode=0  AND Wcs_R.地面柜 设设状态=1 THEN 
+    CCLink_W1.允 许出料到AGV:=Wcs_W.B01允 许AGV 对接;
+    CCLink_W2.允 许出料到AGV:=Wcs_W.B02允 许AGV 对接;
+    CCLink_W1.入 库口RFID 报警:=Wcs_W.B01入 库口RFID 报警;
+    CCLink_W1.出 库口RFID 报警:=Wcs_W.B01出 库口RFID 报警;
+    CCLink_W2.入 库口RFID 报警:=Wcs_W.B02入 库口RFID 报警;
+    CCLink_W2.出 库口RFID 报警:=Wcs_W.B02出 库口RFID 报警;
+END_IF;
+(*非 联机模式*) 
+IF mode<>0 THEN 
+Wcs_W.任 务务型:=0;
+Wcs_W.任 务ID:=0;
+B01CV_OutID:=0;
+B02CV_OutID:=0;
+END_IF;
+ST 2025/11/24 
+数据名 : Master 
+10 (*AGV目的清除*) 
+IF  CCLink_R1_Status_Bit.出 库货叉台物料 检检=FALSE THEN 
+CCLink_W1.允 许出料到AGV:=0;
+Wcs_W.B01允 许AGV 对接:=0;
+END_IF;
+IF  CCLink_R2_Status_Bit.出 库货叉台物料 检检=FALSE THEN 
+CCLink_W2.允 许出料到AGV:=0;
+Wcs_W.B02允 许AGV 对接:=0;
+END_IF;
+(*HMI控制*) 
+IF HMI.堆 垛机暂停 THEN 
+Stacker_W. 暂停控制:=1;
+ELSE 
+Stacker_W. 暂停控制:=0;
+END_IF;
+IF HMI.堆 垛机复位 OR DInput.故障复位 THEN 
+Stacker_W.复位控制:=1;
+ELSE 
+Stacker_W.复位控制:=0;
+END_IF;
+IF  HMI.堆 垛机手 动模式 THEN 
+Stacker_W.Mode:=2;
+ELSE 
+Stacker_W.Mode:=0;
+END_IF;
+IF Stacker_R_Status_Bit.堆 垛机地面手 动控制中=FALSE  THEN 
+Stacker_W_Control_Bit.X 轴前进:=FALSE;
+Stacker_W_Control_Bit.X 轴后退:=FALSE;
+Stacker_W_Control_Bit.Y 轴上升:=FALSE;
+Stacker_W_Control_Bit.Y 轴下降:=FALSE;
+Stacker_W_Control_Bit.Z 轴左伸:=FALSE;
+Stacker_W_Control_Bit.Z 轴右伸:=FALSE;
+Stacker_W_Control_Bit.Y 轴轴制动作:=FALSE;
+Stacker_W_Control_Bit.位置 库位定位切 换:=FALSE;
+Stacker_W_Control_Bit.X 轴定位:=FALSE;
+Stacker_W_Control_Bit.Y 轴定位:=FALSE;
+Stacker_W_Control_Bit.Z 轴定位:=FALSE;
+END_IF;
+IF Stacker_R_Status_Bit. 货叉在中位 THEN 
+Stacker_W_Control_Bit.Y 轴轴制动作:=FALSE;
+END_IF;
+(* 单机模式 状 态判断*) 
+IF mode=1  THEN 
+    (*起点排列 层出库状态判断*) 
+   IF  Alone.起点排<>0 AND Alone.起点列<>0 AND Alone.起点 层<>0 THEN 
+     Single_Machine.起点出 库状态显示:=TRUE;
+     IF Alone.起点排=1 AND inventory_Bit1[Alone.起点列]. 层[Alone.起点 层]=FALSE THEN 
+        Single_Machine.起点出 库状态:=0;
+      ELSIF 
+        Alone.起点排=1 AND inventory_Bit1[Alone.起点列]. 层[Alone.起点 层] THEN 
+        Single_Machine.起点出 库状态:=1;
+   ELSIF 
+       Alone.起点排=2 AND inventory_Bit2[Alone.起点列]. 层[Alone.起点 层]=FALSE  THEN 
+       Single_Machine.起点出 库状态:=0;
+   ELSIF 
+       Alone.起点排=2 AND inventory_Bit2[Alone.起点列]. 层[Alone.起点 层] THEN 
+       Single_Machine.起点出 库状态:=1;
+   END_IF;
+   ELSE 
+   Single_Machine.起点出 库状态显示:=FALSE;
+   Single_Machine.起点出 库状态:=0;
+   END_IF;
+   
+   (* 终点排列 层入库状态判断*) 
+   IF  Alone. 终点排<>0 AND Alone. 终点列<>0 AND Alone. 终点层<>0 THEN 
+     Single_Machine. 终点入 库状态显示:=TRUE;
+     IF Alone. 终点排=1 AND inventory_Bit1[Alone. 终点列].层[Alone.终点层]=FALSE THEN 
+        Single_Machine. 终点出 库状态:=1;
+      ELSIF 
+        Alone. 终点排=1 AND inventory_Bit1[Alone. 终点列].层[Alone.终点层] THEN 
+        Single_Machine. 终点出 库状态:=0;
+   ELSIF 
+       Alone. 终点排=2 AND inventory_Bit2[Alone. 终点列].层[Alone.终点层]=FALSE  THEN 
+       Single_Machine. 终点出 库状态:=1;
+   ELSIF 
+       Alone. 终点排=2 AND inventory_Bit2[Alone. 终点列].层[Alone.终点层] THEN 
+       Single_Machine. 终点出 库状态:=0;
+   END_IF;
+   ELSE 
+   Single_Machine. 终点入 库状态显示:=FALSE;
+   Single_Machine. 终点出 库状态:=0;
+   END_IF;
+   
+   (*入 库台入 库状态判断*) 
+   IF Alone.入 库台编号<>0 THEN 
+   Single_Machine.入 库台状 态显示:=TRUE;
+     IF  Alone.入 库台编号=1 AND CCLink_R1_Status_Bit.入 库货叉台物料 检检 THEN 
+     Single_Machine.入 库台物料状 态:=1;
+     ELSIF 
+     Alone.入 库台编号=1 AND CCLink_R1_Status_Bit.入 库货叉台物料 检检=FALSE THEN 
+ST 2025/11/24 
+数据名 : Master 
+11      Single_Machine.入 库台物料状 态:=0;
+     ELSIF 
+     Alone.入 库台编号=2 AND CCLink_R2_Status_Bit.入 库货叉台物料 检检 THEN 
+     Single_Machine.入 库台物料状 态:=1;
+     ELSIF 
+     Alone.入 库台编号=2 AND CCLink_R2_Status_Bit.入 库货叉台物料 检检=FALSE THEN 
+     Single_Machine.入 库台物料状 态:=0;
+     END_IF;
+   ELSE 
+   Single_Machine.入 库台状 态显示:=FALSE;
+   Single_Machine.入 库台物料状 态:=0;
+   END_IF;
+   
+    (*出 库台出 库状态判断*) 
+     IF Alone.出 库台编号<>0 THEN 
+   Single_Machine.出 库台状 态显示:=TRUE;
+     IF  Alone.出 库台编号=3 AND CCLink_R1_Status_Bit.出 库台物料 检检 THEN 
+     Single_Machine.出 库台物料状 态:=1;
+     ELSIF 
+     Alone.出 库台编号=3 AND CCLink_R1_Status_Bit.出 库台物料 检检=FALSE THEN 
+     Single_Machine.出 库台物料状 态:=0;
+     ELSIF 
+     Alone.出 库台编号=4 AND CCLink_R2_Status_Bit.出 库台物料 检检 THEN 
+     Single_Machine.出 库台物料状 态:=1;
+     ELSIF 
+     Alone.出 库台编号=4 AND CCLink_R2_Status_Bit.出 库台物料 检检=FALSE THEN 
+     Single_Machine.出 库台物料状 态:=0;
+     END_IF;
+   ELSE 
+   Single_Machine.出 库台状 态显示:=FALSE;
+   Single_Machine.出 库台物料状 态:=0;
+     END_IF;
+END_IF;
+     
+ (* 单机模式任 务下发*) 
+  IF Stacker_R.堆 垛机状 态=1 AND mode=1 AND Wcs_R.地面柜 设设状态=1 THEN 
+  IF Alone.任 务务型=1 AND Alone.任 务ID<>0 AND Stacker_R.当前任 务ID<>Alone.任 务ID AND   Single_Machine.入 库台物料状 态=1 AND 
+Single_Machine. 终点出 库状态=1THEN 
+           Stacker_W.任 务务型:=Alone.任 务务型;
+           Stacker_W.任 务ID:=Alone.任 务ID;
+           Stacker_W.入 库台编号:=Alone.入 库台编号;
+           Stacker_W. 终点排:=Alone. 终点排;
+           Stacker_W. 终点列:=Alone. 终点列;
+           Stacker_W. 终点层:=Alone.终点层;
+           Single_Machine.指令状 态:=1;
+  ELSIF 
+  Alone.任 务务型=2 AND Alone.任 务ID<>0 AND Stacker_R.当前任 务ID<>Alone.任 务ID AND Single_Machine.起点出 库状态=1 AND 
+Single_Machine.出 库台物料状 态=1 THEN 
+     Stacker_W.任 务务型:=Alone.任 务务型;
+           Stacker_W.任 务ID:=Alone.任 务ID;
+           Stacker_W.起点排:=Alone.起点排;
+           Stacker_W.起点列:=Alone.起点列;
+           Stacker_W.起点 层:=Alone.起点 层;
+           Stacker_W.出 库台编号:=Alone.出 库台编号;
+           Single_Machine.指令状 态:=2;
+  ELSIF 
+  Alone.任 务务型=3 AND Alone.任 务ID<>0 AND Stacker_R.当前任 务ID<>Alone.任 务ID AND  Single_Machine.起点出 库状态=1 AND 
+Single_Machine. 终点出 库状态=1THEN 
+     Stacker_W.任 务务型:=Alone.任 务务型;
+           Stacker_W.任 务ID:=Alone.任 务ID;
+           Stacker_W.起点排:=Alone.起点排;
+           Stacker_W.起点列:=Alone.起点列;
+           Stacker_W.起点 层:=Alone.起点 层;
+           Stacker_W. 终点排:=Alone. 终点排;
+           Stacker_W. 终点列:=Alone. 终点列;
+           Stacker_W. 终点层:=Alone.终点层;
+           Single_Machine.指令状 态:=3;
+  ELSIF 
+  Alone.任 务务型=4 AND Alone.任 务ID<>0 AND Stacker_R.当前任 务ID<>Alone.任 务ID THEN 
+     Stacker_W.任 务务型:=Alone.任 务务型;
+           Stacker_W.任 务ID:=Alone.任 务ID;
+           Stacker_W.起点排:=0;
+           Stacker_W.起点列:=0;
+           Stacker_W.起点 层:=0;
+           Stacker_W. 终点排:=0;
+           Stacker_W. 终点列:=0;
+           Stacker_W. 终点层:=0;
+           Stacker_W.入 库台编号:=0;
+           Stacker_W.出 库台编号:=0;
+           Single_Machine.指令状 态:=4;
+  END_IF;
+  END_IF;
+OUT_T(Single_Machine.指令状 态<>0,TC4,30);
+IF   TC4 THEN 
+Single_Machine.指令状 态:=0;
+END_IF;
+(*堆 垛机手 动回原点*) 
+ IF HMI.堆 垛机回 检修位置 AND Stacker_R.堆 垛机状 态=1 AND Wcs_R.地面柜 设设状态=1 THEN 
+      Alone.任 务务型:=4;
+      Alone.任 务ID:= DINT_TO_DWORD(DWORD_TO_DINT(Stacker_R.当前任 务ID)+1);   
+ST 2025/11/24 
+数据名 : Master 
+12  END_IF;
+(* 输送库*) 
+IF mode<=1 THEN 
+(*入 库*) 
+   IF Stacker_W.任 务务型=1 AND Stacker_W.任 务ID=Stacker_R.当前任 务ID AND Stacker_R.任 务状态=1THEN 
+       IF Stacker_W.入 库台编号=1 AND Stacker_R.当前任 务ID<> CCLink_R1.站台1002任 务ID AND CCLink_R1. 设设状态=1 AND CCLink_R1.入 库流程字=0 AND 
+CCLink_R1. 错错错=0 AND 
+       CCLink_W1. 货叉站台任 务ID<>Stacker_R.当前任 务ID AND CCLink_R1_Status_Bit.入 库货叉台物料 检检 AND Wcs_R.B01入 库站台RFID 读取值<>'' THEN 
+       CCLink_W1. 货叉站台任 务ID:=Stacker_R.当前任 务ID;
+       入库RFID 编错:=Wcs_R.B01入 库站台RFID 读取值;
+       END_IF;
+       IF Stacker_W.入 库台编号=2 AND Stacker_R.当前任 务ID<> CCLink_R2.站台1002任 务ID AND CCLink_R2. 设设状态=1 AND CCLink_R2.入 库流程字=0 AND 
+CCLink_R2. 错错错=0 AND 
+       CCLink_W2. 货叉站台任 务ID<>Stacker_R.当前任 务ID AND CCLink_R2_Status_Bit.入 库货叉台物料 检检 AND Wcs_R.B02入 库站台RFID 读取值<>'' THEN 
+       CCLink_W2. 货叉站台任 务ID:=Stacker_R.当前任 务ID;
+       入库RFID 编错:=Wcs_R.B02入 库站台RFID 读取值;
+       END_IF;
+   END_IF;
+   (*任 务清除*) 
+    IF (CCLink_W1. 货叉站台任 务ID <>0 AND  CCLink_R1.站台1002任 务ID=CCLink_W1. 货叉站台任 务ID ) OR CCLink_R1. 错错错<>0 THEN 
+       CCLink_W1. 货叉站台任 务ID:=0;
+    END_IF;
+    IF (CCLink_W2. 货叉站台任 务ID <>0 AND  CCLink_R2.站台1002任 务ID=CCLink_W2. 货叉站台任 务ID ) OR CCLink_R2. 错错错<>0 THEN 
+       CCLink_W2. 货叉站台任 务ID:=0;
+    END_IF;
+   
+   (*出 库*) 
+   IF B01CV_OutID<>0 AND B01CV_OutID<> CCLink_R1.站台 1003任 务ID AND CCLink_R1. 设设状态=1 AND CCLink_R1.出 库流程字=0 AND CCLink_R1. 错错错=0 
+AND 
+       CCLink_W1.出 库站台任 务ID<>B01CV_OutID AND CCLink_R1_Status_Bit.出 库台物料 检检   AND  CCLink_R1_Status_Bit.出 库货叉台物料 检检=FALSE THEN 
+       CCLink_W1.出 库站台任 务ID:=B01CV_OutID;
+       B01CV_OutID:=0;
+   END_IF;
+   IF B02CV_OutID<>0  AND B02CV_OutID<> CCLink_R2.站 台1003任 务ID AND CCLink_R2. 设设状态=1 AND CCLink_R2.出 库流程字=0 AND CCLink_R2. 错错错=0 
+AND 
+       CCLink_W2.出 库站台任 务ID<>B02CV_OutID AND CCLink_R2_Status_Bit.出 库台物料 检检 AND  CCLink_R2_Status_Bit.出 库货叉台物料 检检=FALSE THEN 
+       CCLink_W2.出 库站台任 务ID:=B02CV_OutID ;
+       B02CV_OutID:=0;
+   END_IF;
+   (*任 务清除*) 
+  IF (CCLink_W1.出 库站台任 务ID<>0 AND CCLink_W1.出 库站台任 务ID=CCLink_R1.站台1003任 务ID) OR CCLink_R1. 错错错<>0 THEN 
+        CCLink_W1.出 库站台任 务ID:=0;
+  END_IF;
+  IF (CCLink_W2.出 库站台任 务ID<>0 AND CCLink_W2.出 库站台任 务ID=CCLink_R2.站台1003任 务ID) OR CCLink_R2. 错错错<>0 THEN 
+        CCLink_W2.出 库站台任 务ID:=0;
+  END_IF;
+END_IF;
+(*------------------------------------------------- --------------------------------------------------- -------------- 库存管理--------- 
+--------------------------------------------------- --------------------------------------------------- ----*) 
+IF  Stacker_R.任 务状态=5 AND NOT Stacker_Done THEN 
+   (*出 库完成清除 库存*) 
+  IF Stacker_W.任 务务型=2 AND Stacker_W.任 务ID=Stacker_R.当前任 务ID AND Stacker_R.任 务状态=5 THEN 
+   IF Stacker_W.起点排=1 THEN 
+    inventory_1[ Stacker_W.起点列]. 层[Stacker_W.起点 层]:= '';
+   ELSIF 
+   Stacker_W.起点排=2 THEN 
+   inventory_2[ Stacker_W.起点列]. 层[Stacker_W.起点 层]:= '';
+   END_IF;
+   
+   IF Stacker_W.出 库台编号=3 AND B01CV_OutID<>Stacker_R.当前任 务ID THEN 
+   B01CV_OutID:=Stacker_R.当前任 务ID;
+   ELSIF 
+   Stacker_W.出 库台编号=4 AND B02CV_OutID<>Stacker_R.当前任 务ID THEN 
+   B02CV_OutID:=Stacker_R.当前任 务ID;
+   END_IF;
+  END_IF;
+    
+   (*入 库完成 录入库存*) 
+   IF   Stacker_W.任 务务型=1 AND Stacker_W.任 务ID=Stacker_R.当前任 务ID AND Stacker_R.任 务状态=5 AND 入 库RFID 编错<> '' THEN     
+          IF Stacker_W. 终点排=1 THEN 
+           inventory_1[ Stacker_W. 终点列].层[Stacker_W. 终点层]:=入 库RFID 编错;
+           入 库RFID 编错:= '' ;
+          ELSIF 
+          Stacker_W. 终点排=2  THEN 
+           inventory_2[ Stacker_W. 终点列].层[Stacker_W. 终点层]:=入 库RFID 编错;
+           入 库RFID 编错:= '' ;
+          END_IF;
+  END_IF;
+ 
+  (*移 库库存*) 
+  IF  Stacker_W.任 务务型=3 AND Stacker_W.任 务ID=Stacker_R.当前任 务ID AND Stacker_R.任 务状态=5 THEN   
+          IF Stacker_W. 终点排=1 THEN 
+            IF Stacker_W.起点排=1 THEN 
+                inventory_1[ Stacker_W. 终点列].层[Stacker_W. 终点层]:=inventory_1[ Stacker_W.起点列]. 层[Stacker_W.起点 层];
+                inventory_1[ Stacker_W.起点列]. 层[Stacker_W.起点 层]:= '';
+            ELSIF Stacker_W.起点排=2 THEN 
+             inventory_1[ Stacker_W. 终点列].层[Stacker_W. 终点层]:=inventory_2[ Stacker_W.起点列]. 层[Stacker_W.起点 层];
+              inventory_2[ Stacker_W.起点列]. 层[Stacker_W.起点 层]:= '';
+ST 2025/11/24 
+数据名 : Master 
+13             END_IF;
+            
+          ELSIF Stacker_W. 终点排=2 THEN 
+           IF Stacker_W.起点排=1 THEN 
+                inventory_2[ Stacker_W. 终点列].层[Stacker_W. 终点层]:=inventory_1[ Stacker_W.起点列]. 层[Stacker_W.起点 层];
+                inventory_1[ Stacker_W.起点列]. 层[Stacker_W.起点 层]:= '';
+            ELSIF Stacker_W.起点排=2 THEN 
+             inventory_2[ Stacker_W. 终点列].层[Stacker_W. 终点层]:=inventory_2[ Stacker_W.起点列]. 层[Stacker_W.起点 层];
+              inventory_2[ Stacker_W.起点列]. 层[Stacker_W.起点 层]:= '';
+            END_IF;
+          END_IF;
+   END_IF;
+END_IF; 
+Stacker_Done:= Stacker_R.任 务状态=5 ;
+ 

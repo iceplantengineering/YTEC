@@ -1,0 +1,1550 @@
+ (     0) SM400 K100 
+T0 
+ 系统初始 
+化
+T2 K5 
+T1 
+500MST1 
+A/S 13 45 
+B/D 61 
+T1 
+500MSK5 
+T2 T2 
+B/D 7 
+B/D 
+ (    18) SM400 
+<>  Auto_Data. 错错错 K0 DOutput.三色灯R DOutput.三色灯R 
+B/D 48 64 
+B/D 
+ DOutput.蜂 鸣器
+ (    27) SM400  自动运行条件  自动运行中 DOutput.三色灯R 
+K0
+= Mode
+ 0联机 1 单
+ 机 2手 动
+  3 维修K2SM413 
+ 自动运行中 
+=  Auto_Data.自 动流程字 K1T1 
+500MS
+<> Warning_Code K0
+K0 DOutput.三色灯Y 
+ (    52) SM400  自动运行中 
+<>  Auto_Data.自 动流程字 K1DOutput.三色灯R 
+K0
+=  Auto_Data.自 动流程字 K1T1 
+500MS
+K0 DOutput.三色灯G 
+ (    68) SM400 
+MOV D106 D161D106 
+A/S 70 
+A/S 
+D161 
+B/D 70 
+B/D 
+MOV D107 D160D107 
+A/S 72 
+A/S 
+D160 
+A/S 74 
+B/D 72 
+DFLT D160 D204D160 
+A/S 74 
+B/D 72 
+D204 
+B/D 74 
+B/D 
+ (    76) SM400 
+DINT D208 D170D208 
+A/S 77 
+A/S 
+D170 
+A/S 81 
+B/D 77 
+MOV D171 D136D171 
+A/S 79 
+A/S 
+D136 
+B/D 79 
+B/D 
+MOV D170 D137D170 
+A/S 81 
+B/D 77 
+D137 
+B/D 81 
+B/D ラダー 2025/11/24 
+データ名 : MAIN 
+1
+ (    83) SM400 
+MOV D116 D163D116 
+A/S 85 
+A/S 
+D163 
+B/D 85 
+B/D 
+MOV D117 D162D117 
+A/S 87 
+A/S 
+D162 
+A/S 89 
+B/D 87 
+DFLT D162 D216D162 
+A/S 89 
+B/D 87 
+D216 
+B/D 89 
+B/D 
+ (    91) SM400 
+DINT D220 D172D220 
+A/S 92 
+A/S 
+D172 
+A/S 96 
+B/D 92 
+MOV D173 D146D173 
+A/S 94 
+A/S 
+D146 
+B/D 94 
+B/D 
+MOV D172 D147D172 
+A/S 96 
+B/D 92 
+D147 
+B/D 96 
+B/D 
+ (    98) SM400 
+MOV D126 D165D126 
+A/S 100 
+A/S 
+D165 
+B/D 100 
+B/D 
+MOV D127 D164D127 
+A/S 102 
+A/S 
+D164 
+A/S 104 
+B/D 102 
+DFLT D164 D228D164 
+A/S 104 
+B/D 102 
+D228 
+B/D 104 
+B/D 
+ (   106) SM400 
+DINT D232 D174D232 
+A/S 107 
+A/S 
+D174 
+A/S 111 
+B/D 107 
+MOV D175 D156D175 
+A/S 109 
+A/S 
+D156 
+B/D 109 
+B/D 
+MOV D174 D157D174 
+A/S 111 
+B/D 107 
+D157 
+B/D 111 
+B/D 
+ (   113) ENDラダー 2025/11/24 
+データ名 : MAIN 
+2
+ST 2025/11/24 
+データ名 : 02_IO 
+3(* 输入*) 
+DInput.AO2安全回路1:=X40;
+DInput.AO2安全回路2:=X41;
+DInput.检修运行:=X42;
+DInput.故障复位:=X43;
+DInput.管理者:=X44;
+DInput.备用:=X45;
+DInput.行走前方避障信号:=X46;
+DInput.行走前方避障故障:=X47;
+DInput.行走后方避障信号:=X48;
+DInput.行走后方避障故障:=X49;
+DInput.备用1:=X4A;
+DInput.备用2:=X4B;
+DInput.行走前方限位:=NOT X4C;
+DInput.行走后方限位:=NOT X4D;
+DInput.行走减速:=X4E;
+DInput.备用3:=X4F;
+DInput.升降上限位:=NOT X50;
+DInput.升降下限位:=NOT X51;
+DInput.升降减速:=X52;
+DInput.升降失速:=X53;
+DInput.升降松 绳1:=X54;
+DInput.升降松 绳2:=X55;
+DInput.升降超重1:=X56;
+DInput.升降超重2:=X57;
+DInput.伸 缩左侧限位:=NOT X58;
+DInput.伸 缩右侧限位:=NOT X59;
+DInput.伸 缩中位 检检1:=X5A;
+DInput.伸 缩中位 检检2:=X5B;
+DInput.中心物料 检检:=X5C;
+DInput.行走 驱动器电源:=X5D;
+DInput.升降 驱动器电源:=X5E;
+DInput.伸 缩驱动器电源:=X5F;
+DInput.左 侧坍塌信号1:=X60;
+DInput.左 侧坍塌信号2:=X61;
+DInput.左 侧超宽信号1:=X62;
+DInput.左 侧超宽信号2:=X63;
+DInput.左 侧超高 检检:=X64;
+DInput.左 侧物料 检检:=X65;
+DInput.备用4:=X66;
+DInput.备用5:=X67;
+DInput.右 侧坍塌信号1:=X68;
+DInput.右 侧坍塌信号2:=X69;
+DInput.右 侧超宽信号1:=X6A;
+DInput.右 侧超宽信号2:=X6B;
+DInput.右 侧超高 检检:=X6C;
+DInput.右 侧物料 检检:=X6D;
+DInput.备用6:=X6E;
+DInput.备用7:=X6F;
+DInput.柜机空 调故障:=X70;
+DInput.光通 讯讯感器故障:=X71;
+DInput.备用8:=X72;
+DInput.备用9:=X73;
+DInput.行走 变变器电源:=X74;
+DInput.升降 变变器电源:=X75;
+DInput.伸 缩变变器电源:=X76;
+DInput.备用10:=X77;
+DInput.操作台安全插 销:=X78;
+DInput.备用11:=X79;
+DInput.载载台安全插 销1:=X7A;
+DInput.载载台安全插 销2:=X7B;
+DInput.备用12:=X7C;
+DInput.备用13:=X7D;
+DInput.备用14:=X7E;
+DInput.备用15:=X7F;
+(* 输出*) 
+Y80:=DOutput.三色灯R;
+Y81:=DOutput.三色灯Y;
+Y82:=DOutput.三色灯G;
+Y83:=DOutput.蜂 鸣器;
+Y84:=DOutput. 备用1;
+Y85:=DOutput. 备用2;
+Y86:=DOutput.行走前方避障模式1;
+Y87:=DOutput.行走前方避障模式2;
+Y88:=DOutput.行走后方避障模式1;
+Y89:=DOutput.行走后方避障模式2;
+Y8A:=DOutput. 备用3;
+Y8B:=DOutput. 备用4;
+Y8C:=DOutput.行走 变变器停止;
+Y8D:=DOutput.升降 变变器停止;
+Y8E:=DOutput.伸 缩变变器停止;
+Y8F:=DOutput. 备用5;
+载叉伸 缩中位 检检:=DInput.伸 缩中位 检检1 AND DInput.伸 缩中位 检检2;
+Fork探 载检检[0] :=DInput.左 侧物料 检检;
+Fork探 载检检[1] :=DInput.右 侧物料 检检;
+载叉物料 检检:= DInput.中心物料 检检;
+E_Stop:=DInput.AO2安全回路1 OR DInput.AO2安全回路2;
+ST 2025/11/24 
+データ名 : 02_IO 
+4(*急停*) 
+ IF E_Stop=FALSE AND Laser.激光避障 报警=FALSE AND Auto_Data. 错错错=0 AND Master_W. 紧急停止=0 THEN 
+ DOutput.行走 变变器停止:=TRUE;
+ DOutput.伸 缩变变器停止:=TRUE;
+ ELSE 
+ DOutput.行走 变变器停止:=FALSE;
+ DOutput.伸 缩变变器停止:=FALSE;
+ END_IF;
+(* 实实扭矩.150停机 *) 
+ OUT_T((ABS(Axle_Y_Sew_Read. 实实扭矩)>1500 ),TC7,20);
+  IF E_Stop=FALSE AND TS7=FALSE AND Auto_Data. 错错错=0  AND Master_W. 紧急停止=0 THEN 
+ DOutput.升降 变变器停止:=TRUE;
+ ELSE 
+ DOutput.升降 变变器停止:=FALSE;
+ END_IF;
+ 
+ST 2025/11/24 
+データ名 : 03_Func 
+5(*SM411~SM414 ：分 别10ms、100ms、1s、1min的 时时脉冲信号*) 
+(*堆 垛机静止中*) 
+IF Auto_Data.自 动流程字=0 THEN 
+堆垛机静止中 :=TRUE;
+ELSE 
+堆垛机静止中 :=FALSE;
+END_IF;
+(*Mode_ 0 联机 1 单机 2手 动 3 维修*) 
+IF  DInput.检修运行=FALSE  THEN 
+Mode:=3;
+ELSE 
+(*主站切 换模式*) 
+IF Master_W.Mode<>模式 记记 AND 堆 垛机静止中 THEN 
+模式 记记 :=Master_W.Mode;
+Mode:=Master_W.Mode;
+END_IF;
+   (*HMI切 换模式*) 
+IF HMI.自 动联机模式 AND 堆 垛机静止中 THEN 
+Mode:=0;
+ELSIF HMI.自 动单机模式 AND 堆 垛机静止中 THEN 
+Mode:=1;
+ELSIF HMI.手 动模式 AND 堆 垛机静止中 THEN 
+Mode:=2;
+END_IF;
+END_IF;
+(*运行开关打开后默 认切换手动模式*) 
+IF DInput.检修运行 AND NOT 维修模式断开 THEN 
+Mode:=2;
+END_IF;
+维修模式断开:=DInput. 检修运行;
+(*模式 显示*) 
+自动联机模式状 态:=Mode=0;
+自动单机模式状 态:=Mode=1;
+手动模式状 态:=Mode=2;
+维修模式状 态:=Mode=3;
+(* 语言切 换*) 
+IF 语言显示>3 OR 语言显示=0 THEN 
+语言显示:=1;
+END_IF;
+INCP( 语言切 换,语言显示);
+(*密 错码限-管理者*) 
+IF DInput.管理者=FALSE THEN 
+密错码限:=0;
+(*DOutput.蜂 鸣器:=FALSE;
+ELSE 
+DOutput.蜂 鸣器:=TRUE;*) 
+END_IF;
+(*任 务务型显示*) 
+HMI.单机入 库务型:=Alone.任 务务型=1;
+HMI.单机出 库务型:=Alone.任 务务型=2;
+HMI.单机移 库务型:=Alone.任 务务型=3;
+HMI.联机入 库务型:=Wcs_interface.任 务务型=1;
+HMI.联机出 库务型:=Wcs_interface.任 务务型=2;
+HMI.联机移 库务型:=Wcs_interface.任 务务型=3;
+HMI.Auto入 库务型:=Auto_Data.任 务务型=1;
+HMI.Auto出 库务型:=Auto_Data.任 务务型=2;
+HMI.Auto移 库务型:=Auto_Data.任 务务型=3;
+(*避障雷达切 换*) 
+IF Auto_Data.X 轴行走当前 实实位置 <0.0 THEN 
+DOutput.行走前方避障模式1:=TRUE;
+ELSE 
+DOutput.行走前方避障模式1:=FALSE;
+END_IF;
+IF Auto_Data.X 轴行走当前 实实位置 >10000.0 THEN 
+DOutput.行走后方避障模式1:=TRUE;
+ELSE 
+DOutput.行走后方避障模式1:=FALSE;
+END_IF;
+ST 2025/11/24 
+データ名 : 04Master 
+6(*数据提取*) 
+BMOV (1, U2\G4096 ,30,D3000 );
+BMOV (1,D3050 ,30,U2\G12288 );
+MOV (1, D3024 ,K4M2500);
+MOV (1,K4M2000 ,D3078 );
+(*通 讯状态*) 
+MOV (1,U2\G3104 ,K4M340);
+(*Write*) 
+Wcs_interface.任 务ID:=Master_W.任 务ID;
+Wcs_interface.任 务务型:=Master_W.任 务务型;
+Wcs_interface.入 库台编号:=Master_W.入 库台编号;
+Wcs_interface.出 库台编号:=Master_W.出 库台编号;
+Wcs_interface.起点排:=Master_W.起点排;
+Wcs_interface.起点列:=Master_W.起点列;
+Wcs_interface.起点 层:=Master_W.起点 层;
+Wcs_interface. 终点排:=Master_W. 终点排;
+Wcs_interface. 终点列:=Master_W. 终点列;
+Wcs_interface. 终点层:=Master_W. 终点层;
+IF Master_W.允 许入库1=1 THEN 
+对接台状 态[1].允 许入库:=TRUE;
+ELSE 
+对接台状 态[1].允 许入库:=FALSE;
+END_IF;
+IF Master_W.允 许入库2=1 THEN 
+对接台状 态[2].允 许入库:=TRUE;
+ELSE 
+对接台状 态[2].允 许入库:=FALSE;
+END_IF;
+IF Master_W.允 许出库1=1 THEN 
+对接台状 态[3].允 许出库:=TRUE;
+ELSE 
+对接台状 态[3].允 许出库:=FALSE;
+END_IF;
+IF Master_W.允 许出库2=1 THEN 
+对接台状 态[4].允 许出库:=TRUE;
+ELSE 
+对接台状 态[4].允 许出库:=FALSE;
+END_IF;
+(*Read*) 
+Master_R.堆 垛机状 态:=Auto_Data.堆 垛机状 态;
+Master_R.自 动流程字:=Auto_Data.自 动流程字;
+Master_R.错错错:=Auto_Data. 错错错;
+Master_R.任 务状态:=Auto_Data.任 务状态;
+Master_R.当前任 务ID:=Auto_Data.当前任 务ID;
+Master_R.任 务务行总次数:=Auto_Data.任 务务行总次数;
+INT(1,Auto_Data.X 轴行走当前 实实位置 ,Master_R.行走当前位置  );
+INT(1,Auto_Data.Y 轴升降当前 实实位置 ,Master_R.升降当前位置  );
+INT(1,Auto_Data.Z 轴载叉当前 实实位置 ,Master_R. 载叉当前位置  );
+INT(1,Auto_Data.X 轴行走当前 实实速度,Master_R.行走当前速度  );
+INT(1,Auto_Data.Y 轴升降当前 实实速度,Master_R.升降当前速度  );
+INT(1,Auto_Data.Z 轴载叉当前 实实速度,Master_R. 载叉当前速度  );
+Master_R.当前模式:=Mode;
+Master_R.心跳 检检:=Master_W.系 统心跳;
+Master_R.X 轴扭矩:=Axle_X_Sew_Read. 实实扭矩/10;
+Master_R.Y 轴扭矩:=Axle_Y_Sew_Read. 实实扭矩/10;
+Master_R.Z 轴扭矩:=Axle_Z_Sew_Read. 实实扭矩/10;
+Master_R.X 轴报警:=Axle_X_Alalm;
+Master_R.Y 轴报警:=Axle_Y_Alalm;
+Master_R.Z 轴报警:=Axle_Z_Alalm;
+Master_R.当前所在列:=堆 垛机当前所在列;
+Master_R.当前所在 层:=堆 垛机当前所在 层;
+Master_R.警告 错:=Warning_Code;
+(*堆 垛机地面手 动控制中*) 
+IF Stacker_W_Control_Bit. 请求手 动控制 AND 手 动模式状 态 THEN 
+Stacker_R_Status_Bit.堆 垛机地面手 动控制中:=TRUE;
+Axle[0].点 动正转 := Stacker_W_Control_Bit.X 轴前进;
+    Axle[0].点 动反转 :=Stacker_W_Control_Bit.X 轴后退;
+    Axle[1].点 动正转  :=Stacker_W_Control_Bit.Y 轴上升;
+    Axle[1].点 动反转  :=Stacker_W_Control_Bit.Y 轴下降;
+    Axle[2].点 动正转  :=Stacker_W_Control_Bit.Z 轴左伸;
+    Axle[2].点 动反转  :=Stacker_W_Control_Bit.Z 轴右伸;
+    手 动Y轴轴制允 许:=Stacker_W_Control_Bit.Y 轴轴制动作;
+    Manual.位置 库位坐 标切换:=Stacker_W_Control_Bit.位置 库位定位切 换;
+    Manual.X 轴单独定位:=Stacker_W_Control_Bit.X 轴定位;
+    Manual.Y 轴单独定位:=Stacker_W_Control_Bit.Y 轴定位;
+    Manual.Z 轴单独定位:=Stacker_W_Control_Bit.Z 轴定位;
+ELSE 
+Stacker_R_Status_Bit.堆 垛机地面手 动控制中:=FALSE;
+END_IF;
+Stacker_R_Status_Bit. 载叉在中位:=Fork_在零点;
+Stacker_R_Status_Bit.前 进到位:=DInput.行走前方限位;
+Stacker_R_Status_Bit.后退到位:=DInput.行走后方限位;
+Stacker_R_Status_Bit.上升到位:=DInput.升降上限位;
+Stacker_R_Status_Bit.下降到位:=DInput.升降下限位;
+Stacker_R_Status_Bit.左伸到位:=DInput.伸 缩左侧限位;
+ST 2025/11/24 
+データ名 : 04Master 
+7Stacker_R_Status_Bit.右伸到位:=DInput.伸 缩右侧限位;
+ST 2025/11/24 
+データ名 : 05_Study 
+8(*列 间距:=1870;
+层间距:=875;
+总列数:=14;
+总层数:=5;*) 
+排坐 标[1]:=1950.0;
+排坐 标[2]:=-1950.0;
+IF  Coords_Home THEN 
+    Parameter_Set.X 轴位置偏移 设置 := Auto_Data.X 轴行走当前 实实位置;
+Parameter_Set.Y 轴位置偏移 设置 := Auto_Data.Y 轴升降当前 实实位置;
+END_IF;
+IF 列坐 标[1] =0.0 AND 层坐标[1] =0.0  THEN 
+FOR AO:=1 TO 13 DO 
+列坐 标[AO+1]:=列坐 标[AO] +1870.0;
+    END_FOR;
+END_IF;
+    
+   (* FOR AO:=1 TO 4 DO 
+层坐标[AO+1]:= 层坐标[AO] +875.0;
+    END_FOR;*) 
+层坐标[1]:=0.0;
+层坐标[2]:=900.0;
+层坐标[3]:=1800.0;
+层坐标[4]:=2925.0;
+层坐标[5]:=3825.0;
+ST 2025/11/24 
+データ名 : 06_Auto 
+9(*参数 设置MM*) 
+载物抬起高度 设置:=60.0;
+载物下降高度 设置:=40.0;
+(*初始化*) 
+IF Auto_Data.自 动流程字=0 THEN 
+Fork_取料完成:=FALSE;
+Fork_放料完成:=FALSE;
+Auto_Data.入 库台编号:=0;
+Auto_Data.出 库台编号:=0;
+Auto_Data.任 务务型:=0;
+Auto_Data.起点排:=0;
+Auto_Data.起点列:=0;
+Auto_Data.起点 层:=0;
+Auto_Data. 终点排:=0;
+Auto_Data. 终点列:=0;
+Auto_Data. 终点层:=0;
+自动运行中 := FALSE;
+Master_R.入 库请求1:=0;
+Master_R.出 库请求1:=0;
+Stacker_R_Status_Bit.取 载中:=FALSE;
+Stacker_R_Status_Bit.放 载中:=FALSE;
+Axle[0].Auto_开启定位[1]:=FALSE;
+Axle[1].Auto_开启定位[1]:=FALSE;
+Axle[2].Auto_开启定位[1]:=FALSE;
+END_IF;
+(*非自 动模式*) 
+IF Mode>1 THEN 
+Auto_Data.自 动流程字:=0;
+自动运行中 := FALSE;
+END_IF;
+(*自 动运行条件*) 
+IF Auto_Data.自 动流程字=0 AND 自 动运行中=FALSE AND Mode<=1 AND E_Stop=FALSE AND 报警复位中=FALSE AND TS0  AND 
+    Axle_X_Sew_Status_Bit.运行就 绪 AND Axle_Y_Sew_Status_Bit.运行就 绪 AND Axle_Z_Sew_Status_Bit.运行就 绪 AND 
+    Axle_X_Sew_Status_Bit.故障=FALSE AND Axle_Y_Sew_S tatus_Bit.故障=FALSE AND Axle_Z_Sew_Status_Bit.故障=FAL SE AND 
+    Axle_X_Sew_Status_Bit.激活的 驱动装置已 寻参 AND Axle_Y_Sew_Status_Bit.激活的 驱动装置已 寻参 AND Axle_Z_Sew_Status_Bit.激活的 驱动装置已 寻参 AND 
+ Auto_Data. 错错错=0 THEN 
+自动运行条件:=TRUE;
+ELSE 
+自动运行条件:=FALSE;
+END_IF;
+(*堆 垛机状 态*) 
+Auto_Data.堆 垛机状 态:=0;
+IF Auto_Data.自 动流程字=0 AND 自 动运行中=FALSE AND Mode<=1 AND 自 动运行条件 THEN 
+Auto_Data.堆 垛机状 态:=1;
+END_IF;
+IF Auto_Data.自 动流程字<>0 OR 自 动运行中  THEN 
+Auto_Data.堆 垛机状 态:=2;
+END_IF;
+IF Auto_Data. 错错错<>0 THEN 
+Auto_Data.堆 垛机状 态:=3;
+END_IF;
+(*任 务开始 WCS就 绪--- 联机模式*) (*Mode_ 0 联机 1 单机 2手 动 3 维修*) 
+IF Auto_Data.堆 垛机状 态=1 AND  Wcs_interface.任 务ID <> 0 THEN 
+(*入 库*) 
+    IF Wcs_interface.任 务务型 = 1 AND Wcs_interface.任 务ID <> Auto_Data.当前任 务ID  AND Wcs_interface.入 库台编号<>0 AND 
+(Wcs_interface. 终点排<>0 AND Wcs_interface. 终点列<>0 AND Wcs_interface. 终点层<>0)  AND Mode=0 AND 
+            Auto_Data.自 动流程字 = 0 AND 自 动运行中 = FALSE THEN 
+    
+                  自 动运行中 := TRUE;
+                  Auto_Data.当前任 务ID:= Wcs_interface.任 务ID;
+  Auto_Data.任 务务型:= Wcs_interface.任 务务型;
+  Auto_Data.入 库台编号:= Wcs_interface.入 库台编号;
+  Auto_Data. 终点排:= Wcs_interface. 终点排;
+  Auto_Data. 终点列:= Wcs_interface. 终点列;
+  Auto_Data. 终点层:= Wcs_interface. 终点层;
+  Auto_Data.任 务务行总次数 := Auto_Data.任 务务行总次数+1;
+  Auto_Data.任 务状态:=1;
+  Auto_Data.自 动流程字:=1;
+END_IF;
+(*出 库*) 
+IF Wcs_interface.任 务务型 = 2 AND Wcs_interface.任 务ID <> Auto_Data.当前任 务ID AND Wcs_interface.出 库台编号<>0 AND 
+(Wcs_interface.起点排<>0 AND Wcs_interface.起点列<>0 AND Wcs_interface.起点 层<>0) AND Mode=0 AND 
+            Auto_Data.自 动流程字 = 0 AND 自 动运行中 = FALSE THEN 
+    
+自动运行中 := TRUE;
+Auto_Data.当前任 务ID:= Wcs_interface.任 务ID;
+Auto_Data.任 务务型:= Wcs_interface.任 务务型;
+Auto_Data.出 库台编号:= Wcs_interface.出 库台编号;
+Auto_Data.起点排:= Wcs_interface.起点排;
+Auto_Data.起点列:= Wcs_interface.起点列;
+Auto_Data.起点 层:= Wcs_interface.起点 层;
+Auto_Data.任 务务行总次数 := Auto_Data.任 务务行总次数+1;
+Auto_Data.任 务状态:=2;
+ Auto_Data.自 动流程字:=1;
+END_IF;
+ST 2025/11/24 
+データ名 : 06_Auto 
+10 (*移 库*) 
+IF Wcs_interface.任 务务型 = 3 AND Wcs_interface.任 务ID <> Auto_Data.当前任 务ID  AND Mode=0 AND 
+(Wcs_interface.起点排<>0 AND Wcs_interface.起点列<>0 AND Wcs_interface.起点 层<>0 AND Wcs_interface. 终点排<>0 AND Wcs_interface. 终点列<>0 
+AND Wcs_interface. 终点层<>0 )AND 
+            Auto_Data.自 动流程字 = 0 AND 自 动运行中 = FALSE THEN 
+    
+自动运行中 := TRUE;
+Auto_Data.当前任 务ID:= Wcs_interface.任 务ID;
+Auto_Data.任 务务型:= Wcs_interface.任 务务型;
+Auto_Data.起点排:= Wcs_interface.起点排;
+Auto_Data.起点列:= Wcs_interface.起点列;
+Auto_Data.起点 层:= Wcs_interface.起点 层;
+Auto_Data. 终点排:= Wcs_interface. 终点排;
+Auto_Data. 终点列:= Wcs_interface. 终点列;
+Auto_Data. 终点层:= Wcs_interface. 终点层;
+Auto_Data.任 务务行总次数 := Auto_Data.任 务务行总次数+1;
+Auto_Data.任 务状态:=3;
+ Auto_Data.自 动流程字:=1;
+END_IF;
+(*回 检修位置*) 
+IF Wcs_interface.任 务务型 = 4 AND Wcs_interface.任 务ID <> Auto_Data.当前任 务ID AND Mode=0 AND 
+ Wcs_interface.起点排=0 AND Wcs_interface.起点列=0 AND Wc s_interface.起点 层=0 AND Wcs_interface. 终点排=0 AND Wcs_interface. 终点列=0 AND 
+Wcs_interface. 终点层=0 AND 
+            Wcs_interface.入 库台编号=0 AND Wcs_interface.出 库台编号=0 AND Auto_Data.自 动流程字 = 0 AND 自 动运行中 = FALSE THEN 
+            自 动运行中 := TRUE;
+Auto_Data.当前任 务ID:= Wcs_interface.任 务ID;
+Auto_Data.任 务务型:= Wcs_interface.任 务务型;
+Auto_Data.任 务状态:=4;
+            Auto_Data.自 动流程字:=1;
+END_IF;
+END_IF;
+(*非 单机模式*) 
+IF Mode<>1 THEN 
+Alone.任 务务型 :=0;
+Alone.任 务ID :=0;
+END_IF;
+(*任 务开始 WCS就 绪--- 单机模式*) (*Mode_ 0 联机 1 单机 2手 动 3 维修*) 
+IF Auto_Data.堆 垛机状 态=1 AND Alone.任 务ID <>0 THEN 
+(*入 库*) 
+    IF Alone.任 务务型 = 1 AND Alone.任 务ID <> Auto_Data.当前任 务ID AND Alone.入 库台编号<>0 AND 
+(Alone.终点排<>0 AND Alone. 终点列<>0 AND Alone. 终点层<>0)  AND Mode=1 AND 
+            Auto_Data.自 动流程字 = 0 AND 自 动运行中 = FALSE THEN 
+    
+                  自 动运行中 := TRUE;
+                  Auto_Data.当前任 务ID:= Alone.任 务ID;
+  Auto_Data.任 务务型:= Alone.任 务务型;
+  Auto_Data.入 库台编号:= Alone.入 库台编号;
+  Auto_Data. 终点排:= Alone. 终点排;
+  Auto_Data. 终点列:= Alone. 终点列;
+  Auto_Data. 终点层:= Alone.终点层;
+  Auto_Data.任 务务行总次数 := Auto_Data.任 务务行总次数+1;
+  Auto_Data.任 务状态:=1;
+   Auto_Data.自 动流程字:=1;
+END_IF;
+(*出 库*) 
+IF Alone.任 务务型 = 2 AND Alone.任 务ID <> Auto_Data.当前任 务ID AND Alone.出 库台编号<>0 AND 
+(Alone.起点排<>0 AND Alone.起点列<>0 AND Alone.起点 层<>0) AND Mode=1 AND 
+            Auto_Data.自 动流程字 = 0 AND 自 动运行中 = FALSE THEN 
+    
+自动运行中 := TRUE;
+Auto_Data.当前任 务ID:= Alone.任 务ID;
+Auto_Data.任 务务型:= Alone.任 务务型;
+Auto_Data.出 库台编号:= Alone.出 库台编号;
+Auto_Data.起点排:= Alone.起点排;
+Auto_Data.起点列:= Alone.起点列;
+Auto_Data.起点 层:= Alone.起点 层;
+Auto_Data.任 务务行总次数 := Auto_Data.任 务务行总次数+1;
+Auto_Data.任 务状态:=2;
+ Auto_Data.自 动流程字:=1;
+END_IF;
+(*移 库*) 
+IF Alone.任 务务型 = 3 AND Alone.任 务ID <> Auto_Data.当前任 务ID  AND Mode=1 AND 
+(Alone.起点排<>0 AND Alone.起点列<>0 AND Alone.起点 层<>0 AND Alone. 终点排<>0 AND Alone. 终点列<>0 AND Alone. 终点层<>0 )AND 
+            Auto_Data.自 动流程字 = 0 AND 自 动运行中 = FALSE THEN 
+    
+自动运行中 := TRUE;
+Auto_Data.当前任 务ID:= Alone.任 务ID;
+Auto_Data.任 务务型:= Alone.任 务务型;
+Auto_Data.起点排:= Alone.起点排;
+Auto_Data.起点列:= Alone.起点列;
+Auto_Data.起点 层:= Alone.起点 层;
+Auto_Data. 终点排:= Alone. 终点排;
+Auto_Data. 终点列:= Alone. 终点列;
+Auto_Data. 终点层:= Alone.终点层;
+Auto_Data.任 务务行总次数 := Auto_Data.任 务务行总次数+1;
+Auto_Data.任 务状态:=3;
+ Auto_Data.自 动流程字:=1;
+ST 2025/11/24 
+データ名 : 06_Auto 
+11 END_IF;
+(*回 检修位置*) 
+IF Alone.任 务务型 = 4 AND Alone.任 务ID <> Auto_Data.当前任 务ID AND Mode=1 AND 
+ Alone.起点排=0 AND Alone.起点列=0 AND Alone.起点 层=0 AND Alone. 终点排=0 AND Alone. 终点列=0 AND Alone. 终点层=0 AND 
+            Alone.入 库台编号=0 AND Alone.出 库台编号=0 AND Auto_Data.自 动流程字 = 0 AND 自 动运行中 = FALSE THEN 
+            自 动运行中 := TRUE;
+Auto_Data.当前任 务ID:= Alone.任 务ID;
+Auto_Data.任 务务型:= Alone.任 务务型;
+Auto_Data.任 务状态:=4;
+            Auto_Data.自 动流程字:=1;
+END_IF;
+END_IF;
+(*延 时2秒开始自 动流程*) 
+OUT_T(自 动运行中 AND Auto_Data.自 动流程字=1,TC17,20);
+IF TS17 THEN 
+Auto_Data.自 动流程字:=2;
+(*任 务务记*) 
+    Record.当前任 务ID:=Auto_Data.当前任 务ID;
+    Record.任 务务型:=Auto_Data.任 务务型;
+    Record.起点排:=Auto_Data.起点排;
+    Record.起点列:=Auto_Data.起点列;
+    Record.起点 层:=Auto_Data.起点 层;
+    Record. 终点排:=Auto_Data. 终点排;
+    Record. 终点列:=Auto_Data. 终点列;
+    Record. 终点层:=Auto_Data. 终点层;
+    Record.入 库台编号:=Auto_Data.入 库台编号;
+    Record.出 库台编号:=Auto_Data.出 库台编号;
+rst(TS17,TC17);
+END_IF;
+(*任 务失败*) 
+IF Auto_Data.自 动流程字 <> 0 AND Auto_Data. 错错错 <> 0  THEN 
+Auto_Data.任 务状态:=6;
+    自 动运行中 := FALSE;
+Axle[0].Auto_开启定位[1]:=FALSE;
+Axle[1].Auto_开启定位[1]:=FALSE;
+Axle[2].Auto_开启定位[1]:=FALSE;
+END_IF;
+(*流程 务记*) 
+IF Auto_Data.自 动流程字<>0 AND Record.自 动流程字<>Auto_Data.自 动流程字 THEN 
+Record.自 动流程字:=Auto_Data.自 动流程字;
+END_IF;
+IF HMI.继继任务 THEN 
+HMI.暂停任 务:=FALSE;
+END_IF;
+(* 终止任 务*) 
+IF HMI .终止任 务 THEN 
+HMI.暂停任 务:=FALSE;
+       Wcs_interface.入 库台编号:=0;
+Wcs_interface.出 库台编号:=0;
+Wcs_interface.任 务务型:=0;
+Wcs_interface.起点排:=0;
+Wcs_interface.起点列:=0;
+Wcs_interface.起点 层:=0;
+Wcs_interface. 终点排:=0;
+Wcs_interface. 终点列:=0;
+Wcs_interface. 终点层:=0;
+Alone.入 库台编号:=0;
+Alone.出 库台编号:=0;
+Alone.任 务务型:=0;
+Alone.起点排:=0;
+Alone.起点列:=0;
+Alone.起点 层:=0;
+Alone.终点排:=0;
+Alone.终点列:=0;
+Alone.终点层:=0;
+Auto_Data.任 务状态:=5;
+Auto_Data.自 动流程字:=0;
+自动运行中 := FALSE;
+Record.自 动流程字:=0;
+END_IF;
+(*自 动流程开始*) 
+IF 自 动运行中 AND Auto_Data. 错错错=0 AND HMI. 暂停任 务=FALSE AND Master_W. 暂停控制<>1THEN 
+  CASE Auto_Data.自 动流程字 OF 
+2:  (* 载叉是否在零位*) 
+    IF Fork_在零点=FALSE THEN 
+         Axle[2].Auto_目 标位置:=0.0;
+     Axle[2].Auto_开启定位[1]:=TRUE;
+END_IF;
+ 
+          IF Fork_在零点 THEN 
+   Axle[2].Auto_开启定位[1]:=FALSE;
+                 IF Auto_Data.任 务务型>=1 AND Auto_Data.任 务务型<=4 THEN 
+          Auto_Data.自 动流程字:=3;
+     END_IF;
+END_IF;
+ST 2025/11/24 
+データ名 : 06_Auto 
+12 3: (*入 库 *) 
+ IF Auto_Data.任 务务型=1   AND Auto_Data.入 库台编号<>0 AND 
+ Auto_Data. 终点排<>0 AND Auto_Data. 终点列<>0 AND Auto_Data. 终点层<>0 THEN 
+ IF 载叉物料 检检 THEN 
+     Axle[0].Auto_目 标位置:=列坐 标 [Auto_Data. 终点列] ;
+        Axle[1].Auto_目 标位置:= 层坐标 [Auto_Data. 终点层]+ 载物抬起高度 设置;
+        Axle[0].Auto_开启定位[1]:=TRUE;
+        Axle[1].Auto_开启定位[1]:=TRUE;
+        Auto_Data.自 动流程字:=15;     (*入 库任务 载叉有料 前往 终点库位*) 
+ ELSE 
+   Axle[0].Auto_目 标位置:= 对接台坐 标[ Auto_Data.入 库台编号].X 轴位置;
+   Axle[1].Auto_目 标位置:= 对接台坐 标[ Auto_Data.入 库台编号].Y 轴位置- 载物抬起高度 设置;
+   Axle[0].Auto_开启定位[1]:=TRUE;
+   Axle[1].Auto_开启定位[1]:=TRUE;
+   Auto_Data.自 动流程字:=10;
+ END_IF;
+ END_IF;
+ 
+(*出 库*) 
+IF ((Auto_Data.任 务务型=2   AND Auto_Data.出 库台编号<>0 ) OR (Auto_Data.任 务务型=3 AND Auto_Data. 终点排<>0 AND Auto_Data. 终点列<>0 AND 
+Auto_Data. 终点层<>0)) AND 
+Auto_Data.起点排<>0 AND Auto_Data.起点列<>0 AND Auto_Data .起点 层<>0 THEN 
+IF 载叉物料 检检 THEN 
+IF Auto_Data.任 务务型=3 THEN 
+    Axle[0].Auto_目 标位置:=列坐 标 [Auto_Data. 终点列] ;
+        Axle[1].Auto_目 标位置:= 层坐标 [Auto_Data. 终点层]+ 载物抬起高度 设置;
+        Axle[0].Auto_开启定位[1]:=TRUE;
+        Axle[1].Auto_开启定位[1]:=TRUE;
+        Auto_Data.自 动流程字:=15;     (*移 库任务 载叉有料 前往 终点库位*) 
+END_IF;
+IF Auto_Data.任 务务型=2 THEN 
+    Axle[0].Auto_目 标位置:= 对接台坐 标[Auto_Data.出 库台编号].X 轴位置;
+    Axle[1].Auto_目 标位置:= 对接台坐 标[Auto_Data.出 库台编号].Y 轴位置+ 载物抬起高度 设置;
+Axle[0].Auto_开启定位[1]:=TRUE;
+        Axle[1].Auto_开启定位[1]:=TRUE;
+        Auto_Data.自 动流程字:=15;     (*出 库任务 载叉有料 前往出 库台*) 
+END_IF;
+ELSE 
+Axle[0].Auto_目 标位置:=列坐 标 [Auto_Data.起点列] ;
+Axle[1].Auto_目 标位置:= 层坐标 [Auto_Data.起点 层]- 载物下降高度 设置;
+Axle[0].Auto_开启定位[1]:=TRUE;
+Axle[1].Auto_开启定位[1]:=TRUE;
+Auto_Data.自 动流程字:=10;
+END_IF;
+END_IF;
+(*回 检修位置*) 
+IF Auto_Data.任 务务型=4    THEN 
+     Axle[0].Auto_目 标位置:=列坐 标 [3] ;
+        Axle[1].Auto_目 标位置:= 层坐标 [1];
+        Axle[0].Auto_开启定位[1]:=TRUE;
+        Axle[1].Auto_开启定位[1]:=TRUE;
+        Auto_Data.自 动流程字:=10; 
+END_IF;
+  END_CASE; 
+END_IF;
+IF 自 动运行中 AND Auto_Data. 错错错=0  AND HMI. 暂停任 务=FALSE AND Master_W. 暂停控制<>1 THEN 
+CASE Auto_Data.自 动流程字 OF 
+    10:  (*前往取 载点*) 
+    IF Axle[0].Auto_位置到达 AND Axle[1].Auto_位置到达 THEN
+  Axle[0].Auto_开启定位[1]:=FALSE;
+  Axle[1].Auto_开启定位[1]:=FALSE; 
+      Auto_Data.自 动流程字:=11;
+      IF Auto_Data.任 务务型=4 THEN 
+      Auto_Data.自 动流程字:=20;
+      END_IF;
+END_IF;
+11:   (*伸出 载叉轴取载*) 
+    IF Auto_Data.任 务务型=1THEN    
+    Master_R.入 库请求1:=1;
+    IF 对接台状 态[Auto_Data.入 库台编号].允 许入库 THEN 
+    Axle[2].Auto_目 标位置:= 对接台坐 标[Auto_Data.入 库台编号].Z 轴位置;
+     Axle[2].Auto_开启定位[1]:=TRUE;
+   Auto_Data.自 动流程字:=12;
+   Stacker_R_Status_Bit.取 载中:=TRUE;
+   Master_R.入 库请求1:=0;
+    END_IF;
+ELSIF 
+   Auto_Data.任 务务型=2 OR Auto_Data.任 务务型=3 THEN 
+     Axle[2].Auto_目 标位置:=排坐 标[Auto_Data.起点排] ;
+     Axle[2].Auto_开启定位[1]:=TRUE;
+     Auto_Data.自 动流程字:=12;
+     Master_R.入 库请求1:=0;
+END_IF;
+12:  (*抬起 载叉轴*) 
+     IF Axle[2].Auto_位置到达 THEN 
+ST 2025/11/24 
+データ名 : 06_Auto 
+13  Axle[2].Auto_开启定位[1]:=FALSE;
+IF Auto_Data.任 务务型=1THEN 
+     Axle[1].Auto_目 标位置:= 对接台坐 标[Auto_Data.入 库台编号].Y 轴位置+ 载物抬起高度 设置;
+ELSIF 
+     Auto_Data.任 务务型=2 OR Auto_Data.任 务务型=3 THEN 
+     Axle[1].Auto_目 标位置:= 层坐标[Auto_Data.起点 层] + 载物抬起高度 设置;
+END_IF;
+    Axle[1].Auto_开启定位[1]:=TRUE;
+Auto_Data.自 动流程字:=13;
+ END_IF;
+13:  (* 缩回载叉轴*) 
+    IF Axle[1].Auto_位置到达 THEN 
+Axle[1].Auto_开启定位[1]:=FALSE;
+    Axle[2].Auto_目 标位置:= 0.0;
+    Axle[2].Auto_开启定位[1]:=TRUE;
+    Auto_Data.自 动流程字:=14;
+END_IF;
+14:   (*Fork_取料完成*) 
+     IF Axle[2].Auto_位置到达 THEN 
+  Axle[2].Auto_开启定位[1]:=FALSE;
+  Stacker_R_Status_Bit.取 载中:=FALSE;
+IF 载叉物料 检检 THEN 
+    Fork_取料完成:=TRUE;
+    IF Auto_Data.任 务务型=1 OR Auto_Data.任 务务型=3 THEN 
+Axle[0].Auto_目 标位置:=列坐 标 [Auto_Data. 终点列] ;
+    Axle[1].Auto_目 标位置:= 层坐标 [Auto_Data. 终点层]+ 载物抬起高度 设置;
+   ELSIF 
+Auto_Data.任 务务型=2 THEN 
+Axle[0].Auto_目 标位置:= 对接台坐 标[Auto_Data.出 库台编号].X 轴位置;
+Axle[1].Auto_目 标位置:= 对接台坐 标[Auto_Data.出 库台编号].Y 轴位置+ 载物抬起高度 设置;
+    END_IF;
+   Axle[0].Auto_开启定位[1]:=TRUE;
+   Axle[1].Auto_开启定位[1]:=TRUE;
+   Auto_Data.自 动流程字:=15;
+ELSE 
+Alarm_record[2]:=TRUE;
+Auto_Data. 错错错:=2;
+END_IF;
+ END_IF;
+15:  (*Fork_前往放 载点*) 
+ IF Axle[0].Auto_位置到达 AND Axle[1].Auto_位置到达 THEN 
+ Axle[0].Auto_开启定位[1]:=FALSE;
+ Axle[1].Auto_开启定位[1]:=FALSE; 
+ Auto_Data.自 动流程字:=16;
+ END_IF;
+ 
+16:  (*伸出 载叉轴*) 
+     IF Auto_Data.任 务务型=2 THEN   
+     Master_R.出 库请求1:=1;
+    IF 对接台状 态[Auto_Data.出 库台编号].允 许出库 AND Fork探 载检检[1]=FALSE THEN 
+Axle[2].Auto_目 标位置:= 对接台坐 标[Auto_Data.出 库台编号].Z 轴位置;
+Axle[2].Auto_开启定位[1]:=TRUE;
+Auto_Data.自 动流程字:=17;
+Stacker_R_Status_Bit.放 载中:=TRUE;
+Master_R.出 库请求1:=0;
+    END_IF;
+ ELSIF 
+    (Auto_Data.任 务务型=1 OR Auto_Data.任 务务型=3) AND 
+((Fork探 载检检[0] =FALSE AND Auto_Data. 终点排=1) OR (Fork探 载检检[1]=FALSE AND Auto_Data. 终点排=2)) THEN 
+    Axle[2].Auto_目 标位置:=排坐 标[Auto_Data. 终点排];
+    Axle[2].Auto_开启定位[1]:=TRUE;
+    Auto_Data.自 动流程字:=17;
+    Master_R.出 库请求1:=0;
+ELSIF 
+   (Auto_Data.任 务务型=1 OR Auto_Data.任 务务型=3) AND 
+   ((Fork探 载检检[0] =TRUE AND Auto_Data. 终点排=1) OR (Fork探 载检检[1]=TRUE AND Auto_Data. 终点排=2))THEN 
+Alarm_record[3]:=TRUE;
+Auto_Data. 错错错:=3;
+ END_IF;
+ 
+17: (*下降 载叉轴*) 
+     IF Axle[2].Auto_位置到达 THEN 
+ Axle[2].Auto_开启定位[1]:=FALSE;
+     IF Auto_Data.任 务务型=2 THEN 
+    Axle[1].Auto_目 标位置:= 对接台坐 标[Auto_Data.出 库台编号].Y 轴位置- 载物下降高度 设置;
+     ELSIF 
+    Auto_Data.任 务务型=1 OR Auto_Data.任 务务型=3 THEN 
+    Axle[1].Auto_目 标位置:= 层坐标[Auto_Data. 终点层] - 载物下降高度 设置;
+     END_IF;
+     Axle[1].Auto_开启定位[1]:=TRUE;
+     Auto_Data.自 动流程字:=18;
+     END_IF;
+18: (* 缩回载叉轴*) 
+      IF Axle[1].Auto_位置到达 THEN 
+  Axle[1].Auto_开启定位[1]:=FALSE;
+     Axle[2].Auto_目 标位置:= 0.0;
+     Axle[2].Auto_开启定位[1]:=TRUE;
+     Auto_Data.自 动流程字:=19;
+ST 2025/11/24 
+データ名 : 06_Auto 
+14   END_IF;
+  
+19:   (*Fork_放料完成*) 
+ IF Axle[2].Auto_位置到达 THEN 
+ Axle[2].Auto_开启定位[1]:=FALSE;
+ Stacker_R_Status_Bit.放 载中:=FALSE;
+ IF 载叉物料 检检=FALSE THEN 
+      Fork_放料完成:=TRUE;
+      Auto_Data.自 动流程字:=20;
+ ELSE 
+ Alarm_record[4]:=TRUE;
+ Auto_Data. 错错错:=4;
+ END_IF;
+ END_IF;
+20:  (*任 务完成判断*) 
+Wcs_interface.入 库台编号:=0;
+Wcs_interface.出 库台编号:=0;
+Wcs_interface.任 务务型:=0;
+Wcs_interface.起点排:=0;
+Wcs_interface.起点列:=0;
+Wcs_interface.起点 层:=0;
+Wcs_interface. 终点排:=0;
+Wcs_interface. 终点列:=0;
+Wcs_interface. 终点层:=0;
+Alone.入 库台编号:=0;
+Alone.出 库台编号:=0;
+Alone.任 务务型:=0;
+Alone.起点排:=0;
+Alone.起点列:=0;
+Alone.起点 层:=0;
+Alone.终点排:=0;
+Alone.终点列:=0;
+Alone.终点层:=0;
+Auto_Data.任 务状态:=5;
+Auto_Data.自 动流程字:=0;
+自动运行中 := FALSE;
+Record.自 动流程字:=0;
+END_CASE; 
+END_IF;
+ST 2025/11/24 
+データ名 : 07_Manua 
+15 (* 电机 位置/速度 计算
+//X 轴 电机每 转位移数 78.54MM   减速比 10    最大运行速度M/MIN 137  加减速度0.4M/S 2 
+//Y 轴 电机每 转位移数 33.35MM    减速比 39   最大运行速度M/MIN 30   加减速度0.4M/S 2 
+//Z 轴 电机每 转位移数 18.43MM    减速比 15      最大运行速度M/MIN 60   加减速度0.5 M/S2 
+//X 轴  //最大速度2000MM/S 
+//Y 轴  //最大速度500MM/S   ---1000 
+//Z 轴  //最大速度1000MM/S----550*) 
+(*当前 电机位置 换算MM*) 
+轴属性[0].电机实实位置:=Axle[0].o_wdCurrentPosition_F / 10.0;
+Auto_Data.X 轴行走当前 实实位置:= 轴属性[0].电机实实位置 - Parameter_Set.X 轴位置偏移 设置;
+轴属性[1].电机实实位置:=Axle[1].o_wdCurrentPosition_F / 10.0;
+Auto_Data.Y 轴升降当前 实实位置:= 轴属性[1].电机实实位置 -  Parameter_Set.Y 轴位置偏移 设置;
+轴属性[2].电机实实位置:=Axle[2].o_wdCurrentPosition_F / 10.0;
+Auto_Data.Z 轴载叉当前 实实位置:= 轴属性[2].电机实实位置 -  Parameter_Set.Z 轴位置偏移 设置;
+(*当前速度 换算MM/S*) 
+FLT(1,Axle_X_Sew_Read. 实实速度 ,Axle[0].o_wdCurrentSpeed_F );
+FLT(1,Axle_Y_Sew_Read. 实实速度 ,Axle[1].o_wdCurrentSpeed_F );
+FLT(1,Axle_Z_Sew_Read. 实实速度, Axle[2].o_wdCurrentSpeed_F );
+Auto_Data.X 轴行走当前 实实速度:=Axle[0].o_wdCurrentSpeed_F / 1.0;
+Auto_Data.Y 轴升降当前 实实速度 :=Axle[1].o_wdCurrentSpeed_F / 1.0;
+Auto_Data.Z 轴载叉当前 实实速度 :=Axle[2].o_wdCurrentSpeed_F / 1.0;
+(*非手 动模式*) 
+IF Mode<>2 THEN 
+Axle[0].Auto_开启定位[2]:=FALSE;
+Axle[1].Auto_开启定位[2]:=FALSE;
+Axle[2].Auto_开启定位[2]:=FALSE;
+END_IF;
+(*数据切 换*) 
+IF Stacker_R_Status_Bit.堆 垛机地面手 动控制中 THEN 
+FLT(1,Master_W.X 轴定位位置,Manual.X 轴定位位置 辅助);
+FLT(1,Master_W.Y 轴定位位置,Manual.Y 轴定位位置 辅助);
+FLT(1,Master_W.Z 轴定位位置,Manual.Z 轴定位位置 辅助);
+Manual.X 库位列 辅助:=Master_W.X 轴定位列;
+Manual.Y 库位层辅助:=Master_W.Y 轴定位 层;
+ELSE 
+Manual.X 轴定位位置 辅助:=Manual.X 轴定位位置;
+Manual.Y 轴定位位置 辅助:=Manual.Y 轴定位位置;
+Manual.Z 轴定位位置 辅助:=Manual.Z 轴定位位置;
+Manual.X 库位列 辅助:=Manual.X 库位列;
+Manual.Y 库位层辅助:=Manual.Y 库位层;
+END_IF;
+(*X 轴单独控制*) 
+IF Mode=2 AND Manual.X 轴单独定位 AND 载叉伸 缩中位 检检  THEN 
+IF Manual.位置 库位坐 标切换 = FALSE THEN 
+        Axle[0].Auto_目 标位置 := Manual.X 轴定位位置 辅助;
+ELSE 
+        Axle[0].Auto_目 标位置 := 列坐 标[Manual.X 库位列 辅助];
+    END_IF;
+    Axle[0].Auto_开启定位[2]:=TRUE;
+    Axle_X_Sew_Write. 设定应用模式:=400;
+    Axle_X_Sew_Write. 额定速度:=Parameter_Set.X 轴自动速度 设置;
+END_IF;
+(* Y 轴单独控制*) 
+IF Mode=2 AND Manual.Y 轴单独定位 AND 载叉伸 缩中位 检检 THEN 
+IF Manual.位置 库位坐 标切换 = FALSE THEN 
+        Axle[1].Auto_目 标位置 := Manual.Y 轴定位位置 辅助;
+ELSE 
+Axle[1].Auto_目 标位置 := 层坐标[Manual.Y 库位层辅助];
+    END_IF;
+    Axle[1].Auto_开启定位[2]:=TRUE;
+    Axle_Y_Sew_Write. 设定应用模式:=400;
+    Axle_Y_Sew_Write. 额定速度:=Parameter_Set.Y 轴自动速度 设置;
+END_IF;
+(* Z 轴单独控制*) 
+IF Mode=2 AND Manual.Z 轴单独定位 THEN 
+    Axle[2].Auto_目 标位置 := Manual.Z 轴定位位置 辅助;
+    Axle[2].Auto_开启定位[2]:=TRUE;
+    Axle_Z_Sew_Write. 设定应用模式:=400;
+    Axle_Z_Sew_Write. 额定速度:=Parameter_Set.Z 轴自动速度 设置;
+END_IF;
+(*自 动数据位置 转换下发*) 
+Axle[0].i_wdTargetPosition_F:=(Axle[0].Auto_目 标位置 + Parameter_Set.X 轴位置偏移 设置) * 10.0;
+Axle[1].i_wdTargetPosition_F:=(Axle[1].Auto_目 标位置 + Parameter_Set.Y 轴位置偏移 设置) *10.0;
+Axle[2].i_wdTargetPosition_F:=(Axle[2].Auto_目 标位置 + Parameter_Set.Z 轴位置偏移 设置) *10.0;
+(*自 动速度及模式 设置MM/S*) 
+Parameter_Set.Y 轴取放物料速度:=50;
+IF  Mode<=1THEN 
+(*X*) 
+IF DInput.行走减速 THEN 
+Axle_X_Sew_Write. 额定速度:=300;
+ELSE 
+ST 2025/11/24 
+データ名 : 07_Manua 
+16 Axle_X_Sew_Write. 额定速度:=Parameter_Set.X 轴自动速度 设置;
+END_IF;
+(*Y*) 
+IF Auto_Data.自 动流程字=13 OR Auto_Data.自 动流程字=18  THEN 
+Axle_Y_Sew_Write. 额定速度:=Parameter_Set.Y 轴取放物料速度;
+ELSE 
+IF DInput.升降减速 THEN 
+ Axle_Y_Sew_Write. 额定速度:=200;
+ELSE 
+   Axle_Y_Sew_Write. 额定速度:=Parameter_Set.Y 轴自动速度 设置;
+   END_IF;
+END_IF;
+(*Z*) 
+Axle_Z_Sew_Write. 额定速度:=Parameter_Set.Z 轴自动速度 设置;
+ Axle_X_Sew_Write. 设定应用模式:=400;
+Axle_Y_Sew_Write. 设定应用模式:=400;
+Axle_Z_Sew_Write. 设定应用模式:=400;
+END_IF;
+(*加减速度 设置*) 
+IF DInput.行走减速 THEN 
+Axle_X_Sew_Write.加速度:=100;
+    Axle_X_Sew_Write.减速度:=100;
+ELSE 
+   Axle_X_Sew_Write.加速度:=Parameter_Set.X 轴加速度;
+   Axle_X_Sew_Write.减速度:=Parameter_Set.X 轴减速度;
+END_IF;
+IF  Auto_Data.自 动流程字=13 OR Auto_Data.自 动流程字=18  THEN 
+Axle_Y_Sew_Write.加速度:=50;
+    Axle_Y_Sew_Write.减速度:=50;
+ELSE 
+    Axle_Y_Sew_Write.加速度:=Parameter_Set.Y 轴加速度;
+    Axle_Y_Sew_Write.减速度:=Parameter_Set.Y 轴减速度;
+END_IF;
+Axle_Z_Sew_Write.加速度:=Parameter_Set.Z 轴加速度;
+Axle_Z_Sew_Write.减速度:=Parameter_Set.Z 轴减速度;
+(*定位允 许*) 
+     (*X*) 
+IF Parameter_Set.X 轴前限位 设置> Axle[0].Auto_目 标位置    AND 
+Parameter_Set.X 轴后限位 设置< Axle[0].Auto_目 标位置    AND 载叉伸 缩中位 检检 THEN 
+    定位允 许[0] :=TRUE;
+ELSE 
+定位允 许[0] :=FALSE;
+END_IF;
+(*Y*) 
+IF Parameter_Set.Y 轴上限位 设置> Axle[1].Auto_目 标位置    AND 
+Parameter_Set.Y 轴下限位 设置< Axle[1].Auto_目 标位置   THEN 
+    定位允 许[1] :=TRUE;
+ELSE 
+定位允 许[1] :=FALSE;
+END_IF;
+(*Z*) 
+IF Parameter_Set.Z 轴左限位 设置>Axle[2].Auto_目 标位置    AND 
+Parameter_Set.Z 轴右限位 设置<Axle[2].Auto_目 标位置 THEN 
+    定位允 许[2] :=TRUE;
+ELSE 
+定位允 许[2] :=FALSE;
+END_IF;
+(*开始定位*) 
+IF ( Axle[0].Auto_开启定位[1] OR Axle[0].Auto_开启定位[2] )  AND 定位允 许[0] THEN 
+Axle_X_Sew_Control_Bit.随 总总斜波启 动停止:=TRUE;
+Axle_X_Sew_Control_Bit.使能 应用停止:=TRUE;
+ELSE 
+Axle_X_Sew_Control_Bit.随 总总斜波启 动停止:=FALSE;
+END_IF;
+IF  ( Axle[1].Auto_开启定位[1] OR Axle[1].Auto_开启定位[2]  ) AND 定位允 许[1] THEN 
+Axle_Y_Sew_Control_Bit.随 总总斜波启 动停止:=TRUE;
+Axle_Y_Sew_Control_Bit.使能 应用停止:=TRUE;
+ELSE 
+Axle_Y_Sew_Control_Bit.随 总总斜波启 动停止:=FALSE;
+END_IF;
+IF  ( Axle[2].Auto_开启定位[1] OR Axle[2].Auto_开启定位[2]  ) AND 定位允 许[2] THEN 
+Axle_Z_Sew_Control_Bit.随 总总斜波启 动停止:=TRUE;
+Axle_Z_Sew_Control_Bit.使能 应用停止:=TRUE;
+ELSE 
+Axle_Z_Sew_Control_Bit.随 总总斜波启 动停止:=FALSE;
+END_IF;
+(*励磁*) 
+IF E_Stop =FALSE THEN 
+Axle_X_Sew_Control_Bit.使能 紧急停止:=TRUE;
+Axle_Y_Sew_Control_Bit.使能 紧急停止:=TRUE;
+Axle_Z_Sew_Control_Bit.使能 紧急停止:=TRUE;
+ELSE 
+Axle_X_Sew_Control_Bit.使能 紧急停止:=FALSE;
+Axle_X_Sew_Control_Bit.使能 应用停止:=FALSE;
+Axle_Y_Sew_Control_Bit.使能 紧急停止:=FALSE;
+ST 2025/11/24 
+データ名 : 07_Manua 
+17 Axle_Y_Sew_Control_Bit.使能 应用停止:=FALSE;
+Axle_Z_Sew_Control_Bit.使能 紧急停止:=FALSE;
+Axle_Z_Sew_Control_Bit.使能 应用停止:=FALSE;
+END_IF;
+(* 软硬限位判断*) 
+     (*X*) 
+IF Parameter_Set.X 轴前限位 设置>Auto_Data.X 轴行走当前 实实位置 AND DInput.行走前方限位=FALSE  AND DInput.行走 变变器电源=FALSE  AND 
+载叉伸 缩中位 检检 AND (DInput.行走前方避障信号=FALSE OR HMI.避障雷达关 闭 ) THEN 
+    Axle[0].正 转允许:=TRUE;
+ELSE 
+Axle[0].正 转允许:=FALSE;
+END_IF;
+IF Parameter_Set.X 轴后限位 设置<Auto_Data.X 轴行走当前 实实位置 AND DInput.行走后方限位=FALSE   AND DInput.行走 变变器电源=FALSE  AND 
+载叉伸 缩中位 检检 AND (DInput.行走后方避障信号=FALSE OR HMI.避障雷达关 闭 ) THEN 
+    Axle[0].反 转允许:=TRUE;
+ELSE 
+Axle[0].反 转允许:=FALSE;
+END_IF;
+(*Y*) 
+IF Parameter_Set.Y 轴上限位 设置>Auto_Data.Y 轴升降当前 实实位置 AND DInput.升降上限位=FALSE  AND DInput.升降 变变器电源=FALSE   AND 
+(载叉伸 缩中位 检检 OR 手 动Y轴轴制允 许) THEN 
+    Axle[1].正 转允许:=TRUE;
+ELSE 
+Axle[1].正 转允许:=FALSE;
+END_IF;
+IF Parameter_Set.Y 轴下限位 设置<Auto_Data.Y 轴升降当前 实实位置 AND DInput.升降下限位=FALSE  AND DInput.升降 变变器电源=FALSE   AND 
+(载叉伸 缩中位 检检 OR 手 动Y轴轴制允 许) THEN 
+    Axle[1].反 转允许:=TRUE;
+ELSE 
+Axle[1].反 转允许:=FALSE;
+END_IF;
+(*Z*) 
+IF Parameter_Set.Z 轴左限位 设置>Auto_Data.Z 轴载叉当前 实实位置 AND DInput.伸 缩左侧限位=FALSE  AND DInput.伸 缩变变器电源=FALSE THEN 
+    Axle[2].正 转允许:=TRUE;
+ELSE 
+Axle[2].正 转允许:=FALSE;
+END_IF;
+IF Parameter_Set.Z 轴右限位 设置<Auto_Data.Z 轴载叉当前 实实位置 AND DInput.伸 缩右侧限位=FALSE  AND DInput.伸 缩变变器电源=FALSE THEN 
+    Axle[2].反 转允许:=TRUE;
+ELSE 
+Axle[2].反 转允许:=FALSE;
+END_IF;
+(*手 动模式*) 
+IF Mode=2 THEN 
+    Axle_X_Sew_Control_Bit.正点 动:=Axle[0].点 动正转 AND Axle[0].正 转允许 ;
+Axle_X_Sew_Control_Bit. 负点动:=Axle[0].点 动反转 AND Axle[0].反 转允许;
+Axle_Y_Sew_Control_Bit.正点 动:=Axle[1].点 动正转 AND Axle[1].正 转允许;
+Axle_Y_Sew_Control_Bit. 负点动:=Axle[1].点 动反转 AND Axle[1].反 转允许;
+Axle_Z_Sew_Control_Bit.正点 动:=Axle[2].点 动正转 AND Axle[2].正 转允许;
+Axle_Z_Sew_Control_Bit. 负点动:=Axle[2].点 动反转 AND Axle[2].反 转允许;
+IF Axle_X_Sew_Control_Bit.正点 动 OR Axle_X_Sew_Control_Bit. 负点动 THEN 
+Axle_X_Sew_Write. 设定应用模式:=100;
+Axle_X_Sew_Control_Bit.使能 应用停止:=TRUE;
+Axle_X_Sew_Write. 额定速度:=Parameter_Set.X 轴手动速度 设置;
+END_IF;
+IF Axle_Y_Sew_Control_Bit.正点 动 OR  Axle_Y_Sew_Control_Bit. 负点动 THEN 
+Axle_Y_Sew_Write. 设定应用模式:=101;
+Axle_Y_Sew_Control_Bit.使能 应用停止:=TRUE;
+Axle_Y_Sew_Write. 额定速度:=Parameter_Set.Y 轴手动速度 设置;
+END_IF;
+IF Axle_Z_Sew_Control_Bit.正点 动 OR Axle_Z_Sew_Control_Bit. 负点动 THEN 
+Axle_Z_Sew_Write. 设定应用模式:=100;
+Axle_Z_Sew_Control_Bit.使能 应用停止:=TRUE;
+Axle_Z_Sew_Write. 额定速度:=Parameter_Set.Z 轴手动速度 设置;
+END_IF;
+END_IF;
+(*定位位置到达判断*) 
+轴属性[0].位置差:=ABS(Auto_Data.X 轴行走当前 实实位置  - Axle[0].Auto_目 标位置);
+轴属性[1].位置差:=ABS(Auto_Data.Y 轴升降当前 实实位置  - Axle[1].Auto_目 标位置);
+轴属性[2].位置差:=ABS(Auto_Data.Z 轴载叉当前 实实位置  - Axle[2].Auto_目 标位置);
+AO1:=0;
+FOR AO1:=0 TO 2 DO 
+    IF 轴属性[AO1].位置差< 2.0 THEN 
+         轴属性[AO1].位置到达 := TRUE;
+    ELSE 
+         轴属性[AO1].位置到达:= FALSE;
+END_IF;
+END_FOR;
+Axle[0].Auto_位置到达:= 轴属性[0].位置到达 AND  Axle_X_Sew_Status_Bit.信息已就位激活 AND  ( Axle[0].Auto_开启定位[1] OR Axle[0].Auto_开启定位[2] ) ;
+Axle[1].Auto_位置到达:= 轴属性[1].位置到达 AND  Axle_Y_Sew_Status_Bit.信息已就位激活 AND  ( Axle[1].Auto_开启定位[1] OR Axle[1].Auto_开启定位[2] ) ;
+Axle[2].Auto_位置到达:= 轴属性[2].位置到达 AND Axle_Z_Sew_Status_Bit.信息已就位激活  AND  ( Axle[2].Auto_开启定位[1] OR Axle[2].Auto_开启定位[2] ) ;
+IF (Axle_X_Sew_Status_Bit.信息已就位激活 AND Axle_X_Sew_Co ntrol_Bit.随 总总斜波启 动停止  AND Axle[0].Auto_位置到达 )OR Auto_Data. 错错错<>0 THEN 
+Axle[0].Auto_开启定位[2]:=FALSE;
+END_IF;
+IF (Axle_Y_Sew_Status_Bit.信息已就位激活 AND Axle_Y_Sew_Co ntrol_Bit.随 总总斜波启 动停止  AND Axle[1].Auto_位置到达 )OR Auto_Data. 错错错<>0 THEN 
+Axle[1].Auto_开启定位[2]:=FALSE;
+END_IF;
+IF (Axle_Z_Sew_Status_Bit.信息已就位激活 AND Axle_Z_Sew_Co ntrol_Bit.随 总总斜波启 动停止  AND Axle[2].Auto_位置到达 )OR Auto_Data. 错错错<>0 THEN 
+ST 2025/11/24 
+データ名 : 07_Manua 
+18 Axle[2].Auto_开启定位[2]:=FALSE;
+END_IF;
+(*复位Sew_Control_Bit.使能 应用停止*) 
+OUT_T(Axle_X_Sew_Control_Bit.正点 动=FALSE AND Axle_X_Sew_Control_Bit. 负点动=FALSE AND Axle[0].Auto_开启定位[1]=FALSE AND 
+Axle[0].Auto_开启定位[2]=FALSE AND Axle_X_Sew_Control_B it.使能 应用停止,TC4,2);
+IF   TS4 THEN 
+rst(TS4,TC4);
+  Axle_X_Sew_Control_Bit.使能 应用停止:=FALSE;
+END_IF;
+OUT_T(Axle_Y_Sew_Control_Bit.正点 动=FALSE AND Axle_Y_Sew_Control_Bit. 负点动=FALSE AND Axle[1].Auto_开启定位[1]=FALSE AND 
+Axle[1].Auto_开启定位[2]=FALSE AND  Axle_Y_Sew_Control_ Bit.使能 应用停止,TC5,3);
+IF  TS5 THEN 
+rst(TS5,TC5);
+  Axle_Y_Sew_Control_Bit.使能 应用停止:=FALSE;
+END_IF;
+OUT_T(Axle_Z_Sew_Control_Bit.正点 动=FALSE AND Axle_Z_Sew_Control_Bit. 负点动=FALSE AND Axle[2].Auto_开启定位[1]=FALSE AND 
+Axle[2].Auto_开启定位[2]=FALSE AND Axle_Z_Sew_Control_B it.使能 应用停止,TC6,3);
+IF   TS6 THEN 
+rst(TS6,TC6);
+  Axle_Z_Sew_Control_Bit.使能 应用停止:=FALSE;
+END_IF;
+(*故障及状 态态取*) 
+IF Axle_X_Sew_Status_Bit.故障 THEN 
+Axle_X_Alalm := Axle_X_Sew_Read.状 态主故障;
+Axle_X_Status := 0;
+ELSE 
+Axle_X_Alalm:=0 ;
+Axle_X_Status:=Axle_X_Sew_Read.状 态主故障 ;
+END_IF;
+IF Axle_Y_Sew_Status_Bit.故障 THEN 
+Axle_Y_Alalm:=Axle_Y_Sew_Read.状 态主故障;
+Axle_Y_Status:=0;
+ELSE 
+Axle_Y_Alalm:=0;
+Axle_Y_Status:=Axle_Y_Sew_Read.状 态主故障;
+END_IF;
+IF Axle_Z_Sew_Status_Bit.故障 THEN 
+Axle_Z_Alalm:=Axle_Z_Sew_Read.状 态主故障;
+Axle_Z_Status:=0;
+ELSE 
+Axle_Z_Alalm:=0;
+Axle_Z_Status:=Axle_Z_Sew_Read.状 态主故障;
+END_IF;
+(*Fork_在零点*) 
+IF 载叉伸 缩中位 检检 AND Auto_Data.Z 轴载叉当前 实实位置>-2.0 AND Auto_Data.Z 轴载叉当前 实实位置<2.0 THEN 
+Fork_在零点:=TRUE;
+ELSE 
+Fork_在零点:=FALSE;
+END_IF;
+(*堆 垛机当前所在位置判断*) 
+堆垛机当前所在列:=0;
+AO1:=0;
+FOR AO1:=1 TO 14 DO 
+IF Auto_Data.X 轴行走当前 实实位置 >(列坐 标[AO1]-50.0) AND Auto_Data.X 轴行走当前 实实位置 <(列坐 标[AO1]+50.0) THEN 
+     堆 垛机当前所在列:=AO1;
+ EXIT;
+END_IF;
+END_FOR;
+堆垛机当前所在 层:=0;
+AO1:=0;
+FOR AO1:=1 TO 5 DO 
+IF Auto_Data.Y 轴升降当前 实实位置 >( 层坐标[AO1]-70.0) AND Auto_Data.Y 轴升降当前 实实位置 <( 层坐标[AO1]+70.0) THEN 
+堆垛机当前所在 层:=AO1;
+EXIT;
+END_IF;
+END_FOR;
+ST 2025/11/24 
+データ名 : 08_Alarm 
+19 (* 错错错*) 
+(*急停*) 
+IF E_Stop  THEN 
+Alarm_record[1]:=TRUE;
+Auto_Data. 错错错 := 1;
+END_IF;
+(*Fork_未取到料箱 报警
+Auto_Data. 错错错:=2;*) 
+(*//Fork_放 载时库位有料箱 报警
+//Auto_Data. 错错错:=3;*) 
+(*//Fork_放 载不成功 报警
+//Auto_Data. 错错错:=4;*) 
+(*//地面站的数据 链接状 态*) 
+IF M340 THEN 
+Alarm_record[5]:=TRUE;
+Auto_Data. 错错错 := 5;
+END_IF;
+(*SEW的数据 链接状 态_*) 
+IF M320 THEN 
+Alarm_record[6]:=TRUE;
+Auto_Data. 错错错 := 6;
+END_IF;
+IF M322 THEN 
+Alarm_record[7]:=TRUE;
+Auto_Data. 错错错 := 7;
+END_IF;
+IF M324 THEN 
+Alarm_record[8]:=TRUE;
+Auto_Data. 错错错 := 8;
+END_IF;
+(* 载叉轴 原点开关异常*) 
+IF 载叉伸 缩中位 检检 = FALSE AND Auto_Data.Z 轴载叉当前 实实位置=0.0 THEN 
+    Alarm_record[9]:=TRUE;
+    Auto_Data. 错错错 := 9;
+END_IF;
+(*WCS指令 错错*) 
+IF (Wcs_interface.任 务务型 < 0 OR Wcs_interface.任 务务型  > 4 OR 
+    Wcs_interface.起点排 > 2 OR Wcs_interface.起点列 > 14  OR Wcs_interface.起点 层 > 5 OR 
+Wcs_interface. 终点排 > 2 OR Wcs_interface. 终点列 > 14 OR Wcs_interface. 终点层 > 5 ) AND Mode<=1  THEN 
+    Alarm_record[10]:=TRUE;
+    Auto_Data. 错错错 := 10;
+END_IF;
+(*上位机急停*) 
+(*IF Master_W. 紧急停止<>0 THEN 
+   Auto_Data. 错错错 :=11;
+   Alarm_record[11]:=TRUE;
+END_IF;*) 
+IF DInput.升降失速=FALSE   THEN 
+    Alarm_record[12]:=TRUE;
+    Auto_Data. 错错错 := 12;
+END_IF;
+IF DInput.升降松 绳1   THEN 
+    Alarm_record[13]:=TRUE;
+    Auto_Data. 错错错 := 13;
+END_IF;
+IF DInput.升降松 绳2   THEN 
+    Alarm_record[14]:=TRUE;
+    Auto_Data. 错错错 := 14;
+END_IF;
+IF DInput.升降超重1   THEN 
+    Alarm_record[15]:=TRUE;
+    Auto_Data. 错错错 := 15;
+END_IF;
+IF DInput.升降超重2   THEN 
+    Alarm_record[16]:=TRUE;
+    Auto_Data. 错错错 := 16;
+END_IF;
+IF DInput.柜机空 调故障  THEN 
+    Alarm_record[17]:=TRUE;
+    Auto_Data. 错错错 := 17;
+END_IF;
+IF DInput.光通 讯讯感器故障=FALSE THEN 
+     Alarm_record[18]:=TRUE;
+     Auto_Data. 错错错 := 18;
+END_IF;
+ST 2025/11/24 
+データ名 : 08_Alarm 
+20 IF Fork_Alarm. 载叉左 侧坍塌 报警1 THEN 
+    Alarm_record[19]:=TRUE;
+    Auto_Data. 错错错 := 19;
+END_IF;
+IF Fork_Alarm. 载叉左 侧坍塌 报警2  THEN 
+    Alarm_record[20]:=TRUE;
+    Auto_Data. 错错错 := 20;
+END_IF;
+IF Fork_Alarm. 载叉左超 宽报警1  THEN 
+    Alarm_record[21]:=TRUE;
+    Auto_Data. 错错错 := 21;
+END_IF;
+IF Fork_Alarm. 载叉左超 宽报警2 THEN 
+    Alarm_record[22]:=TRUE;
+    Auto_Data. 错错错 := 22;
+END_IF;
+IF Fork_Alarm. 载叉左 侧超高 报警 THEN 
+    Alarm_record[23]:=TRUE;
+    Auto_Data. 错错错 := 23;
+END_IF;
+IF Fork_Alarm. 载叉右 侧坍塌 报警1  THEN 
+    Alarm_record[24]:=TRUE;
+    Auto_Data. 错错错 := 24;
+END_IF;
+IF Fork_Alarm. 载叉右 侧坍塌 报警2  THEN 
+    Alarm_record[25]:=TRUE;
+    Auto_Data. 错错错 := 25;
+END_IF;
+IF Fork_Alarm. 载叉右超 宽报警1  THEN 
+    Alarm_record[26]:=TRUE;
+    Auto_Data. 错错错 := 26;
+END_IF;
+IF Fork_Alarm. 载叉右超 宽报警2  THEN 
+    Alarm_record[27]:=TRUE;
+    Auto_Data. 错错错 := 27;
+END_IF;
+IF Fork_Alarm. 载叉右 侧超高 报警  THEN 
+    Alarm_record[28]:=TRUE;
+    Auto_Data. 错错错 := 28;
+END_IF;
+(*激光避障停止*) 
+IF (DInput.行走前方避障信号=FALSE OR  DInput.行走后方避障信号=FALSE  ) AND Mode<=2 AND HMI.避障雷达关 闭=FALSE THEN 
+Laser.激光避障 报警:=TRUE;
+Alarm_record[29]:=TRUE;
+Auto_Data. 错错错 := 29;
+END_IF;
+IF DInput.行走前方避障故障 =FALSE  THEN 
+    Alarm_record[30]:=TRUE;
+    Auto_Data. 错错错 := 30;
+END_IF;
+IF DInput.行走后方避障故障 =FALSE THEN 
+   Alarm_record[31]:=TRUE;
+   Auto_Data. 错错错 := 31;
+END_IF;
+(*入 库任务载叉有料*) 
+(*Alarm_record[32]:=TRUE;
+Auto_Data. 错错错:=32;*) 
+IF  Axle_X_Sew_Status_Bit.故障 THEN 
+Alarm_record[33]:=TRUE;
+Auto_Data. 错错错 := 33;
+END_IF;
+IF  Axle_Y_Sew_Status_Bit.故障 THEN 
+Alarm_record[34]:=TRUE;
+Auto_Data. 错错错 := 34;
+END_IF;
+IF  Axle_Z_Sew_Status_Bit.故障 THEN 
+Alarm_record[35]:=TRUE;
+Auto_Data. 错错错 := 35;
+END_IF;
+ 
+(* 载叉光 电报警*) 
+IF Mode<=1 THEN 
+(*左 侧*) 
+IF DInput.左 侧坍塌信号1 AND 载叉伸 缩中位 检检 THEN 
+Fork_Alarm. 载叉左 侧坍塌 报警1:=TRUE;
+END_IF;
+IF DInput.左 侧坍塌信号2 AND 载叉伸 缩中位 检检 THEN 
+ST 2025/11/24 
+データ名 : 08_Alarm 
+21 Fork_Alarm. 载叉左 侧坍塌 报警2:=TRUE;
+END_IF;
+Fork_Alarm. 载叉左超 宽报警1:=DInput.左 侧超宽信号1;
+Fork_Alarm. 载叉左超 宽报警2:=DInput.左 侧超宽信号2;
+Fork_Alarm. 载叉左 侧超高 报警:=DInput.左 侧超高 检检;
+(*右 侧*) 
+IF DInput.右 侧坍塌信号1 AND 载叉伸 缩中位 检检 THEN 
+Fork_Alarm. 载叉右 侧坍塌 报警1:=TRUE;
+END_IF;
+IF DInput.右 侧坍塌信号2 AND 载叉伸 缩中位 检检 THEN 
+Fork_Alarm. 载叉右 侧坍塌 报警2:=TRUE;
+END_IF;
+Fork_Alarm. 载叉右超 宽报警1:=DInput.右 侧超宽信号1 ;
+Fork_Alarm. 载叉右超 宽报警2:=DInput.右 侧超宽信号2;
+Fork_Alarm. 载叉右 侧超高 报警:=DInput.右 侧超高 检检;
+END_IF;
+(* 报警弹窗*) 
+IF Auto_Data. 错错错<> 0 AND NOT 报警辅助 THEN 
+HMI画面:=5;
+END_IF;
+报警辅助:=Auto_Data. 错错错<> 0;
+(* 报警记记*) 
+IF SM413 AND NOT Rising THEN 
+AO1:=0;
+     FOR AO1:=AO2 TO 40 DO 
+            IF Alarm_record[AO1] AND  (Alarm_No<>AO 1 OR AO2=0) THEN 
+                 Alarm_No:= AO1;
+                 AO2:=AO1;
+             EXIT;
+            END_IF;
+            IF AO1=40 AND AO2=0 THEN 
+            Alarm_No:=0;
+            END_IF;
+          IF AO1=40 THEN 
+          AO2:=0;
+         END_IF;
+    END_FOR;
+END_IF;
+Auto_Data. 错错错:= Alarm_No;
+Rising :=SM413 ;
+(* 报警复位*) 
+IF (HMI.报警复位 OR DInput.故障复位 OR Master_W.复位控制=1) AND  Auto_Da ta.错错错<>0 THEN 
+     K4M800:=0;
+     K4M816:=0;
+     K4M832:=0;
+    Auto_Data. 错错错 := 0;
+    报警复位中 := TRUE;
+Auto_Data.任 务状态:=0;
+Axle[0].Auto_开启定位[1]:=FALSE;
+Axle[1].Auto_开启定位[1]:=FALSE;
+Axle[2].Auto_开启定位[1]:=FALSE;
+Axle[0].Auto_开启定位[2]:=FALSE;
+Axle[1].Auto_开启定位[2]:=FALSE;
+Axle[2].Auto_开启定位[2]:=FALSE;
+    Auto_Data.自 动流程字 := 0;
+    自 动运行中 := FALSE;
+Wcs_interface.入 库台编号:=0;
+Wcs_interface.出 库台编号:=0;
+Wcs_interface.任 务务型:=0;
+Wcs_interface.起点排:=0;
+Wcs_interface.起点列:=0;
+Wcs_interface.起点 层:=0;
+Wcs_interface. 终点排:=0;
+Wcs_interface. 终点列:=0;
+Wcs_interface.起点 层:=0;
+    Laser.激光避障 报警:=FALSE;
+    Axle_X_Sew_Control_Bit.故障复位:=TRUE;
+    Axle_Y_Sew_Control_Bit.故障复位:=TRUE;
+    Axle_Z_Sew_Control_Bit.故障复位:=TRUE;
+    Fork_Alarm. 载叉左 侧坍塌 报警1:=FALSE;
+    Fork_Alarm. 载叉左 侧坍塌 报警2:=FALSE;
+    Fork_Alarm. 载叉右 侧坍塌 报警1:=FALSE;
+    Fork_Alarm. 载叉右 侧坍塌 报警2:=FALSE;
+ELSE 
+    报警复位中 := FALSE;
+     Axle_X_Sew_Control_Bit.故障复位:=FALSE;
+    Axle_Y_Sew_Control_Bit.故障复位:=FALSE;
+    Axle_Z_Sew_Control_Bit.故障复位:=FALSE;
+END_IF;
+  
+  (*警告 错*)  
+  Warning_Code:=0;
+IF Parameter_Set.X 轴前限位 设置< Axle[0].Auto_目 标位置 OR Parameter_Set.X 轴后限位 设置> Axle[0].Auto_目 标位置   THEN 
+Warning_Code:=1;
+END_IF;
+IF Parameter_Set.Y 轴上限位 设置<Axle[1].Auto_目 标位置  OR Parameter_Set.Y 轴下限位 设置> Axle[1].Auto_目 标位置   THEN 
+Warning_Code:=2;
+END_IF;
+IF Parameter_Set.Z 轴左限位 设置<Axle[2].Auto_目 标位置  OR Parameter_Set.Z 轴右限位 设置>Axle[2].Auto_目 标位置 THEN 
+ST 2025/11/24 
+データ名 : 08_Alarm 
+22 Warning_Code:=3;
+END_IF;
+IF DInput.行走前方避障信号=FALSE  THEN 
+Warning_Code:=4;
+END_IF;
+IF DInput.行走后方避障信号=FALSE  THEN 
+Warning_Code:=5;
+END_IF;
+IF Parameter_Set.X 轴前限位 设置<Auto_Data.X 轴行走当前 实实位置 OR DInput.行走前方限位 THEN 
+Warning_Code:=6;
+END_IF;
+IF Parameter_Set.X 轴后限位 设置>Auto_Data.X 轴行走当前 实实位置 OR DInput.行走后方限位 THEN 
+Warning_Code:=7;
+END_IF;
+IF Parameter_Set.Y 轴上限位 设置<Auto_Data.Y 轴升降当前 实实位置 OR DInput.升降上限位 THEN 
+Warning_Code:=8;
+END_IF;
+IF Parameter_Set.Y 轴下限位 设置>Auto_Data.Y 轴升降当前 实实位置 AND DInput.升降下限位 THEN 
+Warning_Code:=9;
+END_IF;
+IF Parameter_Set.Z 轴左限位 设置<Auto_Data.Z 轴载叉当前 实实位置 OR DInput.伸 缩左侧限位 THEN 
+Warning_Code:=10;
+END_IF;
+IF Parameter_Set.Z 轴右限位 设置>Auto_Data.Z 轴载叉当前 实实位置 OR DInput.伸 缩右侧限位 THEN 
+Warning_Code:=11;
+END_IF;
+ST 2025/11/24 
+データ名 : 09_Drive 
+23 (*数据提取*) 
+BMOV (1,U0\G4096,8, D100);
+BMOV(1, D130,8, U0\G12288);
+BMOV (1,U0\G4112,8, D110 );
+BMOV (1,D140,8, U0\G12304 );
+BMOV(1, U0\G4128,8, D120 );
+BMOV(1, D150,8, U0\G12320 );
+(*数据拆解*) 
+MOV (1, D100, K4M200);
+MOV (1, D110, K4M220);
+MOV (1, D120, K4M240);
+MOV (1,K4M260 , D130);
+MOV (1,K4M280 , D140);
+MOV (1,K4M300 , D150);
+(*通 讯状态*) 
+MOV (1,U0\G3104, K4M320);
