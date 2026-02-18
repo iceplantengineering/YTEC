@@ -16,18 +16,32 @@
 ## フォルダ構成
 - `origine/`: リファクタリング前のオリジナルソースコード（参照用）
 - `process/`: 開発プロセスや指示書など
-- `refact/`: **リファクタリング後の実稼働コード**
+- `refact/`: **リファクタリング後の実稼働コード（3PLC構成）**
     - `TTask.lua`: タスク管理Luaスクリプト (一部機能マスク済み)
     - `TConEquipmentTest.lua`: 通信ドライバLuaスクリプト
     - `StackerCrane_Refactored_Q_GXW.asc`: スタッカークレーン用ラダープログラム
     - `Conveyor_Refactored_Q_GXW.asc`: コンベア用ラダープログラム
-    - `GroundPanel_Refactored_Q_GXW.asc`: 地上盤用ラダープログラム
+    - `GroundPanel_Refactored_Q_GXW.asc`: 地上盤用ラダープログラム（B01/B02統合）
     - `Masked_ST_Logic.st`: **[新規]** PLC用タスク判定STロジック
-- `doc/`: **プロジェクトドキュメント**
+- `doc/`: **refact用プロジェクトドキュメント（3PLC構成）**
     - `io_signal_list.md`: IO信号および内部レジスタ一覧
     - `system_architecture.md`: システム構成図・ワークフロー (Mermaid)
     - `debugging_manual.md`: デバッグ・検証手順書
     - `debug_checklist.md`: 動作確認用チェックリスト
+    - `plc_flowcharts.md`: PLCプログラム制御フロー図
+- `REFACT2/`: **B01/B02分割版コード（4PLC構成）**
+    - `B01_GroundPanel_Q_GXW.asc`: B01専用地上盤ラダープログラム（ステーション1001）
+    - `B02_GroundPanel_Q_GXW.asc`: B02専用地上盤ラダープログラム（ステーション1002）
+    - `StackerCrane_Refactored_Q_GXW.asc`: スタッカークレーン用（refactからコピー）
+    - `Conveyor_Refactored_Q_GXW.asc`: コンベア用（refactからコピー）
+    - `TTask.lua`, `TConEquipmentTest.lua`, `TRedis.lua`: Luaスクリプト（refactからコピー）
+    - `Masked_ST_Logic.st`: STロジック（refactからコピー）
+- `DOC2/`: **REFACT2用プロジェクトドキュメント（4PLC構成）**
+    - `system_architecture.md`: 4PLC構成図・B01/B02個別通信仕様
+    - `io_signal_list.md`: B01/B02分割対応IO信号・デバイスマップ
+    - `debugging_manual.md`: B01/B02個別デバッグ手順書
+    - `debug_checklist.md`: B01/B02個別動作確認チェックリスト
+    - `plc_flowcharts.md`: B01/B02それぞれのPLC制御フロー図
 
 ## 確認事項
 この構成により、`origine` の機能が `refact` に完全に移植され、かつ設計コンセプト（PLC主体の制御）に従った実装となっていることを確認してください。
@@ -222,3 +236,50 @@ Phase 2: 現場作業（現地）
 **関連ファイル:**
 - 新規作成: `doc/import_asc.md`
 - 対象ASCファイル: `GroundPanel_Refactored_Q_GXW.asc`, `Conveyor_Refactored_Q_GXW.asc`, `StackerCrane_Refactored_Q_GXW.asc`
+
+### 2026-02-18: REFACT2（B01/B02分割4PLC構成）の作成
+
+**目的:**
+`PLC_separation.md` の分析結果に基づき、`GroundPanel_Refactored_Q_GXW.asc`（B01/B02統合版）をB01専用・B02専用の2ファイルに分割した4PLC構成（REFACT2）を実装しました。
+
+**変更内容:**
+
+1. **`REFACT2/` フォルダの新規作成**
+   - `B01_GroundPanel_Q_GXW.asc`: B01専用地上盤PLC（ステーション1001）
+     - CC-Link受信: B00〜B4F → M1000〜M1079
+     - RFID1/2データ: W0/W10 → D331/D338
+     - CC-Link送信: B1000〜B1023
+     - STK通信: 搬入受取可(D212)・搬出受渡可(D214)
+     - タスク管理: D3287/D3291、ForkSTタスクID(D4001)、CV1出庫STタスクID(D4004)
+   - `B02_GroundPanel_Q_GXW.asc`: B02専用地上盤PLC（ステーション1002）
+     - CC-Link受信: B100〜B101 → M1200〜M1201
+     - RFID3/4データ: W80/W90 → D352/D359
+     - CC-Link送信: B1100〜B1123
+     - STK通信: 搬入受取可(D213)・搬出受渡可(D215)
+     - タスク管理: D3293/D3297、ForkSTタスクID(D4049)、CV2出庫STタスクID(D4052)
+   - `Conveyor_Refactored_Q_GXW.asc`: refactからコピー（変更なし）
+   - `StackerCrane_Refactored_Q_GXW.asc`: refactからコピー（変更なし）
+   - `TTask.lua`, `TConEquipmentTest.lua`, `TRedis.lua`, `Masked_ST_Logic.st`: refactからコピー
+
+2. **`DOC2/` フォルダの新規作成**（REFACT2対応ドキュメント）
+   - `system_architecture.md`: 4PLC構成図、B01/B02個別Modbus/CC-Link仕様
+   - `io_signal_list.md`: B01/B02分割対応IO信号・デバイスマップ（X/Y/M/D/CC-Link）
+   - `debugging_manual.md`: B01/B02個別デバッグ手順書、並列動作テスト手順
+   - `debug_checklist.md`: B01/B02個別動作確認チェックリスト
+   - `plc_flowcharts.md`: B01/B02それぞれのメインフロー・CC-Link送受信・タスク管理フロー図
+
+**技術的詳細:**
+
+| 項目 | REFACT（3PLC） | REFACT2（4PLC） |
+|------|--------------|----------------|
+| 地上盤 | GroundPanel（B01+B02統合） | B01_GroundPanel + B02_GroundPanel（分割） |
+| B01 CC-Link受信 | B00〜B4F | B00〜B4F（変更なし） |
+| B02 CC-Link受信 | B100〜B101 | B100〜B101（変更なし） |
+| B01 CC-Link送信 | B1000〜B1023 | B1000〜B1023（変更なし） |
+| B02 CC-Link送信 | B1100〜B1123 | B1100〜B1123（変更なし） |
+| 独立運転 | 不可（1PLC停止で全停止） | 可能（B01/B02独立） |
+
+**関連ファイル:**
+- 新規作成: `REFACT2/B01_GroundPanel_Q_GXW.asc`, `REFACT2/B02_GroundPanel_Q_GXW.asc`
+- 新規作成: `DOC2/system_architecture.md`, `DOC2/io_signal_list.md`, `DOC2/debugging_manual.md`, `DOC2/debug_checklist.md`, `DOC2/plc_flowcharts.md`
+- 参照ドキュメント: `PLC_separation.md`
