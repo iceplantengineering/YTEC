@@ -42,6 +42,12 @@
     - `debugging_manual.md`: B01/B02個別デバッグ手順書
     - `debug_checklist.md`: B01/B02個別動作確認チェックリスト
     - `plc_flowcharts.md`: B01/B02それぞれのPLC制御フロー図
+- `REFACT3/`: **M8001 オフライン/実装モード切り替え機能付きコード（4PLC構成）**
+    - `B01_GroundPanel_Q_Switch_GXW.asc`: B01地上盤 + M8001切り替え機能
+    - `B02_GroundPanel_Q_Switch_GXW.asc`: B02地上盤 + M8001切り替え機能
+    - `Conveyor_Refactored_Q_Switch_GXW.asc`: コンベア + M8001切り替え機能
+    - `StackerCrane_Refactored_Q_Switch_GXW.asc`: スタッカークレーン + M8001切り替え機能
+    - `M8001_mode_switch_change_report.md`: 各ファイルの変更箇所詳細レポート
 
 ## 確認事項
 この構成により、`origine` の機能が `refact` に完全に移植され、かつ設計コンセプト（PLC主体の制御）に従った実装となっていることを確認してください。
@@ -283,3 +289,61 @@ Phase 2: 現場作業（現地）
 - 新規作成: `REFACT2/B01_GroundPanel_Q_GXW.asc`, `REFACT2/B02_GroundPanel_Q_GXW.asc`
 - 新規作成: `DOC2/system_architecture.md`, `DOC2/io_signal_list.md`, `DOC2/debugging_manual.md`, `DOC2/debug_checklist.md`, `DOC2/plc_flowcharts.md`
 - 参照ドキュメント: `PLC_separation.md`
+
+### 2026-02-21: REFACT3 - M8001 オフライン/実装モード切り替え機能の実装
+
+**目的:**
+REFACT2（4PLC構成）の各GXWプログラムに、M8001をONにするだけで実機なしのオフライン（シミュレーション）モードへ切り替えられる機能を追加しました。これにより、現場実機なしでのPLCロジック検証・デバッグが可能になります。
+
+**変更内容:**
+
+1. **`REFACT3/` フォルダの新規作成**
+   - `B01_GroundPanel_Q_Switch_GXW.asc`: B01地上盤制御 + M8001切り替え機能
+   - `B02_GroundPanel_Q_Switch_GXW.asc`: B02地上盤制御 + M8001切り替え機能
+   - `Conveyor_Refactored_Q_Switch_GXW.asc`: コンベア制御 + M8001切り替え機能
+   - `StackerCrane_Refactored_Q_Switch_GXW.asc`: スタッカークレーン制御 + M8001切り替え機能
+   - `M8001_mode_switch_change_report.md`: 各ファイルの変更箇所詳細レポート
+
+2. **M8001 モード切り替え方式**
+
+   | M8001 | 動作モード | 説明 |
+   |-------|-----------|------|
+   | **OFF** | 実装モード | 実機センサ・CC-Link通信を使用する通常動作 |
+   | **ON**  | オフラインモード | 実機入力をバイパス、PLC内部ロジックのみで動作 |
+
+3. **オフラインモード時の主な動作**
+   - **物理入力(X接点)**: 全てON（正常）固定 → `LD M8001 OR Xnn`
+   - **CC-Link受信ビット(B接点)**: 主要フラグを正常固定 → `LD M8001 OR Bnn`
+   - **異常検出フラグ**: 発生抑制 → `ANI M8001`
+   - **自動運転開始条件**: 全バイパスで即時成立
+   - **軸制御ユニット(U0)通信(STK)**: 受信スキップ・軸レディ/原点を強制SET
+   - **位置到達フラグ(M416/M437/M458)**: 即時SET（シーケンスが即進行）
+   - **初期化**: `LDP M8001`（立上りパルス）でアラームクリア・各軸レディ強制SET
+
+4. **変更規模（推定）**
+
+   | ファイル | 変更箇所数 |
+   |---------|----------|
+   | `B01_GroundPanel_Q_Switch_GXW.asc` | 約70〜80箇所 |
+   | `B02_GroundPanel_Q_Switch_GXW.asc` | 約40〜50箇所 |
+   | `Conveyor_Refactored_Q_Switch_GXW.asc` | 約35〜45箇所 |
+   | `StackerCrane_Refactored_Q_Switch_GXW.asc` | 約80〜110箇所 |
+   | **合計** | **約225〜285箇所** |
+
+**技術的詳細:**
+
+| バイパスパターン | 変更前 | 変更後 |
+|---|---|---|
+| 正論理入力 | `LD Xnn` | `LD M8001` / `OR Xnn` |
+| 反転入力（異常） | `LDI Xnn` | `LDI Xnn` / `ANI M8001` |
+| 異常フラグ抑制 | `SET M異常` | `ANI M8001` / `SET M異常` |
+| CC-Link受信 | `LD Bnn` | `LD M8001` / `OR Bnn` |
+| U0通信受信 | `BMOV U0\G4096 ...` | `ANI M8001` / `BMOV ...` |
+
+**関連ファイル:**
+- 新規作成: `REFACT3/B01_GroundPanel_Q_Switch_GXW.asc`
+- 新規作成: `REFACT3/B02_GroundPanel_Q_Switch_GXW.asc`
+- 新規作成: `REFACT3/Conveyor_Refactored_Q_Switch_GXW.asc`
+- 新規作成: `REFACT3/StackerCrane_Refactored_Q_Switch_GXW.asc`
+- 新規作成: `REFACT3/M8001_mode_switch_change_report.md`
+- ベース: `REFACT2/` 各GXWファイル
