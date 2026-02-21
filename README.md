@@ -347,3 +347,24 @@ REFACT2（4PLC構成）の各GXWプログラムに、M8001をONにするだけ�
 - 新規作成: `REFACT3/StackerCrane_Refactored_Q_Switch_GXW.asc`
 - 新規作成: `REFACT3/M8001_mode_switch_change_report.md`
 - ベース: `REFACT2/` 各GXWファイル
+
+### 2026-02-21: オリジナルコードとの機能互換性確認およびB01/B02機能補完
+
+**目的:**
+`origine`（オリジナルコード）と `REFACT3`（リファクタリング後コード）間の機能互換性を検証し、不足していた機能およびハンドシェイクを実装して互換性を完全に保つことを目的としました。
+
+**変更内容:**
+1. **B01/B02盤 (入出力ステーション) モジュールの修正**:
+   - `B01_GroundPanel_Q_Switch_GXW.asc` および `B02_GroundPanel_Q_Switch_GXW.asc` に対し、オリジナルコードに存在した搬入タスク生成機能（`Store_1`相当）および搬出タスク生成機能（`Outbound_1`相当）のPLCロジックを追加・再構築しました。
+   - CC-Link通信を通じた「搬入受取可」「搬出受渡可」などのコンベヤとのハンドシェイク機構を実装しました。
+   - 設備状態の判定ロジックを追加実装しました。
+
+2. **機能互換性確認（LUA ⇔ PLCの責務分離）**:
+   - `TConEquipmentTest.lua`, `TTask.lua` 等のLuaスクリプトとPLCロジック間の責務変更を検証しました。
+   - Lua側でマスク（無効化）された「タスク種別の生成および動的判定処理」などは、PLC側の `Masked_ST_Logic.st` によって完全に補完・移管されていることを確認しました。
+   - 全体を通して、オリジナルコードが持っていたシステム機能上の欠落がないことを保証しました。
+
+**関連ファイル:**
+- 修正コード: `REFACT3/B01_GroundPanel_Q_Switch_GXW.asc`, `REFACT3/B02_GroundPanel_Q_Switch_GXW.asc`
+- 互換性レポート: 機能互換性に関する詳細な評価内容
+
