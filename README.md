@@ -368,3 +368,15 @@ REFACT2（4PLC構成）の各GXWプログラムに、M8001をONにするだけ�
 - 修正コード: `REFACT3/B01_GroundPanel_Q_Switch_GXW.asc`, `REFACT3/B02_GroundPanel_Q_Switch_GXW.asc`
 - 互換性レポート: 機能互換性に関する詳細な評価内容
 
+### 2026-02-21: M8001シミュレーション対応 ドキュメント (DOC3) 作成
+
+**目的:**
+`REFACT3` にて追加された `M8001`（シミュレーション/オフラインモード対応）の仕様を反映した各種ドキュメントを `DOC3` ディレクトリに整備しました。
+
+**作成ファイル:**
+1. `DOC3/system_architecture.md`: 物理I/Oをバイパスするアーキテクチャ図と構成の比較
+2. `DOC3/plc_flowcharts.md`: M8001分岐処理および搬入・搬出ハンドシェイクのフロー図
+3. `DOC3/io_signal_list.md`: オフライン時の強制ON/OFF挙動や内部ハンドシェイクレジスタを追記
+4. `DOC3/debugging_manual.md`: M8001を活用した実機レスでの単方向・結合テスト手法の追記
+5. `DOC3/debug_checklist.md`: 実機モードとシミュレーションモード切り分けのチェックリスト
+
