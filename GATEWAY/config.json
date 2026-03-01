@@ -1,0 +1,148 @@
+{
+    "plcs": {
+        "B01": {
+            "port": 15021,
+            "station_number": 1,
+            "modbus_mapping": {
+                "400339": "D339",
+                "400340": "D340",
+                "400330": "D330",
+                "400212": "D212",
+                "400214": "D214"
+            }
+        },
+        "B02": {
+            "port": 15024,
+            "station_number": 2,
+            "modbus_mapping": {
+                "401339": "D339",
+                "401340": "D340",
+                "401330": "D330",
+                "401213": "D213",
+                "401215": "D215"
+            }
+        },
+        "SRM": {
+            "port": 15022,
+            "station_number": 3,
+            "modbus_mapping": {
+                "402330": "D330",
+                "402500": "D500"
+            }
+        },
+        "CV": {
+            "port": 15023,
+            "station_number": 4,
+            "modbus_mapping": {}
+        }
+    },
+    "cclink_copy": {
+        "interval_ms": 30,
+        "rules": [
+            {
+                "src": "B01:D330",
+                "dst": "SRM:D330"
+            },
+            {
+                "src": "B01:D212",
+                "dst": "SRM:D212"
+            },
+            {
+                "src": "B01:D214",
+                "dst": "SRM:D214"
+            },
+            {
+                "src": "B02:D330",
+                "dst": "SRM:D331"
+            },
+            {
+                "src": "B02:D213",
+                "dst": "SRM:D213"
+            },
+            {
+                "src": "B02:D215",
+                "dst": "SRM:D215"
+            },
+            {
+                "src": "SRM:D520",
+                "dst": "B01:D520"
+            },
+            {
+                "src": "SRM:D521",
+                "dst": "B02:D521"
+            },
+            {
+                "src": "CV:B39",
+                "dst": "B01:B39"
+            },
+            {
+                "src": "CV:B3F",
+                "dst": "B01:B3F"
+            },
+            {
+                "src": "CV:B49",
+                "dst": "B01:B49"
+            },
+            {
+                "src": "CV:B4F",
+                "dst": "B01:B4F"
+            },
+            {
+                "src": "CV:B30",
+                "dst": "B01:B30"
+            },
+            {
+                "src": "CV:B40",
+                "dst": "B01:B40"
+            },
+            {
+                "src": "B01:D200",
+                "dst": "SRM:D3000"
+            },
+            {
+                "src": "B01:D201",
+                "dst": "SRM:D3001"
+            },
+            {
+                "src": "B01:D203",
+                "dst": "SRM:D3003"
+            },
+            {
+                "src": "B01:D204",
+                "dst": "SRM:D3004"
+            },
+            {
+                "src": "B01:D205",
+                "dst": "SRM:D3005"
+            },
+            {
+                "src": "B01:D206",
+                "dst": "SRM:D3006"
+            },
+            {
+                "src": "B01:D207",
+                "dst": "SRM:D3007"
+            },
+            {
+                "src": "B01:D208",
+                "dst": "SRM:D3008"
+            },
+            {
+                "src": "B01:D209",
+                "dst": "SRM:D3009"
+            },
+            {
+                "src": "B01:D210",
+                "dst": "SRM:D3010"
+            },
+            {
+                "src": "B01:B1000",
+                "dst": "CV:B1000"
+            }
+        ]
+    },
+    "sim_mode": {
+        "enabled": true,
+        "device": "M8001"
+    }
+}

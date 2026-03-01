@@ -1,10 +1,39 @@
-# PLCプログラム 制御フロー図（REFACT3版）
+# PLCプログラム 制御フロー図（REFACT3 + GATEWAY版）
 
-各PLCプログラム（B01地上盤、B02地上盤、スタッカークレーン、コンベア）の制御ロジックを可視化したフロー図です。
+各PLCプログラム（B01地上盤、B02地上盤、スタッカークレーン、コンベア）の制御ロジックと、それをPC内で連動させるための**GATEWAY（Pythonプロセス）**のデータフローを可視化した図です。
 
-> **REFACT3の特徴:** 
+> **REFACT3 + GATEWAYの特徴:** 
 > - REFACT2の4PLC構成をベースとし、全PLCにM8001（シミュレーション/実装モード切替）機能が追加されています。
 > - B01/B02地上盤PLCに、コンベアとの搬入・搬出ハンドシェイク機能（Store_1/Outbound_1相当）が完全実装されました。
+> - **GATEWAY** が介在することで、LuaからのModbus通信を各PLC（GX Simulator2）へルーティングし、さらにPLC間の仮想CC-Link通信（自動コピー）を担います。
+
+---
+
+## 0. GATEWAYによる全体データ連携フロー
+
+```mermaid
+flowchart TD
+    %% External
+    WMS[Lua / WMS] -->|Modbus| GW_Modbus[GATEWAY<br>Modbus Server]
+    
+    %% Gateway core
+    subgraph GATEWAY ["GATEWAY (Python)"]
+        GW_Modbus -->|変換| MX[MX Component<br>アクセス層]
+        CCLinkCopy[cc_link_copy.py<br>30ms周期コピー] --> MX
+    end
+    
+    %% PLCs
+    MX <-->|D339等| B01[GX Sim: B01 PLC]
+    MX <--> B02[GX Sim: B02 PLC]
+    MX <-->|タスク/完了等| SRM[GX Sim: スタッカー PLC]
+    MX <-->|センサ状態等| CV[GX Sim: コンベヤ PLC]
+    
+    %% Virtual Links
+    B01 -.->|CC-Link仮想コピー| CCLinkCopy
+    CV -.->|CC-Link仮想コピー| CCLinkCopy
+    B01 -.->|U2\G仮想ブロックコピー| CCLinkCopy
+    CCLinkCopy -.-> SRM
+```
 
 ---
 
@@ -36,7 +65,7 @@ flowchart TD
     subgraph ModeCtrl ["モード別処理"]
         direction TB
         Block10 --> CheckMode{モード判定}
-        CheckMode -- 連動PC有 --> Block11[11: 連動PC有処理<br/>D400/D401 WMS指示]
+        CheckMode -- 連動PC有 --> Block11[11: 連動PC有処理<br/>(Lua→GW経由でD339/D340書込)]
         CheckMode -- 単独/PC無 --> Block12[12: 単独/PC無処理<br/>D500 手動タスク]
         CheckMode -- 手動 --> Block13[13: 手動操作処理<br/>STKへ手動制御]
     end
@@ -72,29 +101,25 @@ flowchart LR
     end
 ```
 
-### 1-3. 新規実装: 搬入・搬出ハンドシェイク (Block 42)
+### 1-3. 搬入・搬出ハンドシェイク (Block 42) と GATEWAY連携
 
 ```mermaid
 sequenceDiagram
-    participant B01 as B01地上盤
     participant CV1 as コンベアCV1
+    participant GW as GATEWAY (cc_link_copy)
+    participant B01 as B01地上盤
     participant STK as スタッカー
     
     Note over B01,STK: 搬入シーケンス (store_1相当)
-    CV1->>B01: 入庫口リフタ上限 (B3f -> M1063)
-    CV1->>B01: 入庫口在席検出 (B39 -> M1057)
+    CV1->>GW: 読取: 入庫口リフタ上限(B3f), 在席(B39)
+    GW->>B01: 書込: B3f, B39 (内部でM1063/M1057へ転写)
     B01->>B01: 両方成立
-    B01->>STK: D213 = 1 (搬入受取可)
-    STK->>B01: 搬入完了通知
-    B01->>STK: D213 = 0
-    
-    Note over B01,STK: 搬出シーケンス (outbound_1相当)
-    CV1->>B01: 出庫口リフタ上限 (B4f -> M1079)
-    CV1->>B01: 出庫口在席なし (NOT B49 -> NOT M1073)
-    B01->>B01: 両方成立
-    B01->>STK: D214 = 1 (搬出受渡可)
-    STK->>B01: 搬出完了通知
-    B01->>STK: D214 = 0
+    B01->>B01: D213 = 1 (搬入受取可)
+    B01->>GW: 読取: D213
+    GW->>STK: 書込: D213
+    STK->>GW: 搬入完了通知
+    GW->>B01: 搬入完了通知
+    B01->>B01: D213 = 0
 ```
 
 ---
@@ -107,15 +132,17 @@ B02側の処理フローは基本的にB01と同様ですが、監視対象のCC
 ```mermaid
 sequenceDiagram
     participant B02 as B02地上盤
-    participant CV3 as コンベアCV3/CV4
+    participant GW as GATEWAY
     participant STK as スタッカー
     
     Note over B02,STK: 搬入・搬出ハンドシェイク (B02)
-    CV3->>B02: 入庫口(B1200) および在席(B1204)
-    B02->>STK: D213 = 1 (搬入受取可)
+    GW->>B02: 入庫口(B1200) および在席(B1204) を送出
+    B02->>B02: D213 = 1 (搬入受取可)
+    B02->>GW: D213 をスタッカーへ転送依頼
 
-    CV3->>B02: 出庫口(B1201) および在席なし(NOT B1205)
-    B02->>STK: D214 = 1 (搬出受渡可)
+    GW->>B02: 出庫口(B1201) および在席なし(NOT B1205) を送出
+    B02->>B02: D214 = 1 (搬出受渡可)
+    B02->>GW: D214 をスタッカーへ転送依頼
 ```
 
 ---
@@ -131,10 +158,10 @@ flowchart TD
     BlockB -- シミュレーション --> BlockSim[内部タイマーによる<br/>搬送シミュレーション]
     
     BlockReal --> BlockCtrl
-    BlockSim --> BlockCtrl[CC-Link制御データに基づくモータ制御]
+    BlockSim --> BlockCtrl[CC-Link制御データに基づくモータ制御<br>→到着時、B39等(在席)をON]
     
     BlockCtrl --> RFID[RFIDデータ読み取り (実機 or ダミー)]
-    RFID --> Send[B01(B00~B4F) / B02(B100~B101) へ送信]
+    RFID --> Send[B01(B00~B4F) / B02(B100~B101) へ送信<br/>※シミュレーション時はGATEWAYが代行読取]
     Send --> End([END])
 ```
 
@@ -148,7 +175,7 @@ stateDiagram-v2
 
     state Standby {
         [*] --> M50_Wait: 待機中 (M50)
-        M50_Wait --> TaskCheck: D331(TaskID)受信
+        M50_Wait --> TaskCheck: GW経由でD331(TaskID)・D330等受信
     }
 
     state TaskCheck {
@@ -159,8 +186,8 @@ stateDiagram-v2
     state Inbound {
         [*] --> Init_In
         Init_In --> Move_In: 実移動 or<br/> M8001=ON時 タイマー待機
-        Move_In --> WaitHandshake: 搬入先の ハンドシェイク<br/>(D213=1など) 待機
-        WaitHandshake --> Finish_In: 完了処理
+        Move_In --> WaitHandshake: 搬入先の ハンドシェイク<br/>(GW転送の D213=1など) 待機
+        WaitHandshake --> Finish_In: 完了処理 -> GW経由でB01等へ通知
     }
 ```
 *(シミュレーション時は、X軸・Y軸・Z軸（フォーク）の物理インバータ起動をスキップし、タイムアウトや位置決め完了フラグを内部的に強制ONして遷移させます)*

@@ -14,40 +14,30 @@
     *   `doc/` フォルダ配下に、システム構成図、信号表、デバッグ手順書を新規作成しました。
 
 ## フォルダ構成
+現在のプロジェクトは、元のシステム（`origine`）機能との完全な互換性を保ちながら、PC単体でのオフラインフルシミュレーションが可能な構成に整理されています。
+不要な過去のリファクタリング過程のフォルダ（`REFACT2`、`refact`、`DOC2` 等）は削除・統合され、以下の構成となっています。
+
 - `origine/`: リファクタリング前のオリジナルソースコード（参照用）
 - `process/`: 開発プロセスや指示書など
-- `refact/`: **リファクタリング後の実稼働コード（3PLC構成）**
-    - `TTask.lua`: タスク管理Luaスクリプト (一部機能マスク済み)
-    - `TConEquipmentTest.lua`: 通信ドライバLuaスクリプト
-    - `StackerCrane_Refactored_Q_GXW.asc`: スタッカークレーン用ラダープログラム
-    - `Conveyor_Refactored_Q_GXW.asc`: コンベア用ラダープログラム
-    - `GroundPanel_Refactored_Q_GXW.asc`: 地上盤用ラダープログラム（B01/B02統合）
-    - `Masked_ST_Logic.st`: **[新規]** PLC用タスク判定STロジック
-- `doc/`: **refact用プロジェクトドキュメント（3PLC構成）**
-    - `io_signal_list.md`: IO信号および内部レジスタ一覧
-    - `system_architecture.md`: システム構成図・ワークフロー (Mermaid)
-    - `debugging_manual.md`: デバッグ・検証手順書
+- `REFACT3/`: **リファクタリング後の機能互換コード群（最新版）**
+    - B01/B02分割に対応した4PLC構成の実稼働コード一式。
+    - 完全な実機動作（M8001=OFF）と、物理機器レスのオフライン動作（M8001=ON）の両方に対応。
+    - `B01_GroundPanel_Q...asc`, `B02_GroundPanel_Q...asc`: 各地上盤ラダー
+    - `Conveyor_Refactored_Q...asc`, `StackerCrane_Refactored_Q...asc`: コンベア・スタッカーラダー
+    - `Masked_ST_Logic.st`: タスク判定STロジック
+    - `TTask.lua`, `TConEquipmentTest.lua`, `TRedis.lua`: 通信・タスク管理Luaスクリプト
+- `GATEWAY/`: **PC内連動シミュレーション用仮想ネットワーク（Pythonプロセス）**
+    - PC単体で完結する連動テストを実行するためのModbusサーバーおよび仮想CC-Linkコピーツール。
+    - `main.py`, `modbus_server.py`, `plc_access_mx.py`, `cc_link_copy.py` 等で構成。
+    - 実機IPではなく `127.0.0.1` でLuaのModbus要求を受け付け、MX Component経由で各GX Simulator2へルーティングする。
+- `DOC3/`: **最新システム設計・シミュレーション関連ドキュメント**
+    - `system_architecture.md`: システム構成図・ワークフロー（GATEWAY連携版）
+    - `debugging_manual.md`: オフライン連動デバッグ手順書
     - `debug_checklist.md`: 動作確認用チェックリスト
-    - `plc_flowcharts.md`: PLCプログラム制御フロー図
-- `REFACT2/`: **B01/B02分割版コード（4PLC構成）**
-    - `B01_GroundPanel_Q_GXW.asc`: B01専用地上盤ラダープログラム（ステーション1001）
-    - `B02_GroundPanel_Q_GXW.asc`: B02専用地上盤ラダープログラム（ステーション1002）
-    - `StackerCrane_Refactored_Q_GXW.asc`: スタッカークレーン用（refactからコピー）
-    - `Conveyor_Refactored_Q_GXW.asc`: コンベア用（refactからコピー）
-    - `TTask.lua`, `TConEquipmentTest.lua`, `TRedis.lua`: Luaスクリプト（refactからコピー）
-    - `Masked_ST_Logic.st`: STロジック（refactからコピー）
-- `DOC2/`: **REFACT2用プロジェクトドキュメント（4PLC構成）**
-    - `system_architecture.md`: 4PLC構成図・B01/B02個別通信仕様
-    - `io_signal_list.md`: B01/B02分割対応IO信号・デバイスマップ
-    - `debugging_manual.md`: B01/B02個別デバッグ手順書
-    - `debug_checklist.md`: B01/B02個別動作確認チェックリスト
-    - `plc_flowcharts.md`: B01/B02それぞれのPLC制御フロー図
-- `REFACT3/`: **M8001 オフライン/実装モード切り替え機能付きコード（4PLC構成）**
-    - `B01_GroundPanel_Q_Switch_GXW.asc`: B01地上盤 + M8001切り替え機能
-    - `B02_GroundPanel_Q_Switch_GXW.asc`: B02地上盤 + M8001切り替え機能
-    - `Conveyor_Refactored_Q_Switch_GXW.asc`: コンベア + M8001切り替え機能
-    - `StackerCrane_Refactored_Q_Switch_GXW.asc`: スタッカークレーン + M8001切り替え機能
-    - `M8001_mode_switch_change_report.md`: 各ファイルの変更箇所詳細レポート
+    - `plc_flowcharts.md`: PLCプログラム制御フローおよびGATEWAY介在シーケンス図
+    - `io_signal_list.md`: IO信号および内部デバイスマップ
+    - `gateway_verification_report.md`: GATEWAYによるフルシミュレーション実現性レポート
+    - `lua_connection_update_guide.md`: Luaオフライン接続用IP変更手順
 
 ## 確認事項
 この構成により、`origine` の機能が `refact` に完全に移植され、かつ設計コンセプト（PLC主体の制御）に従った実装となっていることを確認してください。
@@ -379,4 +369,26 @@ REFACT2（4PLC構成）の各GXWプログラムに、M8001をONにするだけ�
 3. `DOC3/io_signal_list.md`: オフライン時の強制ON/OFF挙動や内部ハンドシェイクレジスタを追記
 4. `DOC3/debugging_manual.md`: M8001を活用した実機レスでの単方向・結合テスト手法の追記
 5. `DOC3/debug_checklist.md`: 実機モードとシミュレーションモード切り分けのチェックリスト
+
+### 2026-03-01: オフライン連動シミュレーション環境（GATEWAY）の構築とコードの集約化
+
+**目的:**
+PC単体での検証を強化するため、Lua・Redisと各PLC（GX Simulator2）をシームレスに結合するPythonツール群（GATEWAY）を実装。また、複雑化していた過去の検証用リポジトリを統合・削除し、「コード群」「実行ハブ」「関連資料」のシンプルな3層構造へプロジェクトファイル群を整理しました。
+
+**変更内容:**
+1. **`GATEWAY/` の実装と提供**:
+   - `modbus_server.py`: 各PLCの仮想IP（ポート）としてローカルで待ち受け、Luaからのリクエストをパースするサーバー機能。
+   - `plc_access_mx.py`: MX Component経由で直接GX Simulator2のメモリへStringベースで自在にアクセス（D, B, M, U2\G等）するインターフェース。
+   - `cc_link_copy.py`: 物理的には繋がっていない4つのPLCシミュレータ間で、コンベヤ在席フラグ（B接点）やタスクデータ（D, U2\G等）を30ミリ秒周期で転送・上書きし、本番さながらのCC-Link通信を模倣する機能。
+   
+2. **プロジェクトフォルダのクリーンアップ**:
+   - 古い `refact/`、`REFACT2/`、`DOC2/`、`doc/` フォルダを完全に削除。
+   - 全てのLuaスクリプトとSTロジック（`Masked_ST_Logic.st`等）を `REFACT3/` へ移動させ、本番・最新コードの配置場所を１箇所に集約。
+
+3. **`DOC3/` ドキュメントの全面対応化**:
+   - GATEWAYの介入によって自動化されたModbus/CC-Link連動を解説に追加（`system_architecture.md`、`plc_flowcharts.md` の更新）。
+   - シミュレーション時のLua側の接続先IP変更マニュアルの追加（`lua_connection_update_guide.md`）。
+   - シミュレーション可否判定・技術ギャップ解決のレポートを追加（`gateway_verification_report.md`）。
+   
+これにより、「 origine (旧) の機能一式が REFACT3 (新) に揃っており、それをPC上で GATEWAY によって 100%仮想連動できる 」状態が確立しました。
 
